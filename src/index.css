@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&display=swap');
+
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font: 14px/1.5 "Inter", sans-serif;
+    /* height: 100%; */
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #faf2f2;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #4c664d;
+    border-radius: 5px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #10431e;
+}
+
+body,
+button,
+textarea,
+input,
+select {
+    font: inherit;
+}
+
+h1 {
+    font-size: 2.8rem;
+}
+
+h2 {
+    font-size: 2.2rem;
+}
+
+h3 {
+    font-size: 1.8rem;
+}
+
+h4 {
+    font-size: 1.6rem;
+}
+
+h5 {
+    font-size: 1.4rem;
+}
+
+h6 {
+    font-size: 1.2rem;
+}
+
+ul,
+ol {
+    list-style-type: none;
+}
+
+form {
+    color: #0D5120;
+}
+
+main {
+    padding-top: 8.5rem;
+}
+
+input {
+    padding: 0.6em;
+    border: 1px solid #303310;
+    border-radius: 5px;
+}
+
+textarea {
+    padding: 0.8em;
+    resize: none;
+}
+
+select {
+    padding: 0.8em;
+    border: 1px solid #303310;
+    border-radius: 5px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 0.15em solid #52d3dc47;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.form-heading {
+    text-align: center;
+    font-weight: normal;
+}
+
+.form-button {
+    margin: 3em 0 1.5em;
+    padding: 0.7em;
+    color: #FFFFFF;
+    border-radius: 6px;
+    transition: background-color .2s,
+        box-shadow .15s;
+    box-shadow: 0 0 0.2em #96989b;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0.1em 0.1em 0.2em #96989b;
+    }
+}
+
+.field,
+.field input,
+select,
+textarea {
+    font-family: "Alice", sans-serif;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.field label {
+    font-size: 1.1em;
+    margin-bottom: 0.2em;
+}
+
+span.helper-info {
+    margin-top: 0.3em;
+    font-size: 0.8em;
+    line-height: 1.2;
+    font-style: italic;
+}
