@@ -274,3 +274,274 @@ nav  .user-nav-list {
     top: 0;
     left: 0;
 }
+
+/* Home */
+.home-section-banner {
+    background: linear-gradient(0deg, #ffffff 0%, #e2ffcc 100%);
+    /* background-color: #ffffff; */
+    width: 100%;
+    height: 46em;
+    display: flex;
+
+}
+
+.home-section-banner .inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    background-image: url("/woman-dog-sitting-grass-min.jpg");
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: inset 0 0 2em 1em #9a999952;
+    border: 2px solid #444449;
+    border-bottom-right-radius: 60%;
+
+}
+
+.home-section-banner .content {
+    color: #f8f2ee;
+    margin-top: 18em;
+}
+
+.home-section-banner .heading {
+    font-size: 4.2em;
+    margin-left: -4em;
+    text-shadow: 0 0 0.5em #605d5d, 0 0 0.2em #605d5d, 0 0 10em #605d5d, 0 0 0.3em #605d5d, 0 0 0.2em #e2ffcc;
+    /* padding: 0 8em; */
+}
+
+.home-section-banner .banner-subheading {
+    font-size: 1.6em;
+    margin-top: 0.1em;
+    text-shadow: 0 0 0.2em #3e3c3c, 0 0 0.5em #605d5d, 0 0 1em #efeaea, 0 0 0.5em #605d5d, 0 0 0.2em #e2ffcc;
+    color: #ffa30e;
+}
+
+/* Home section adopt */
+.home-section-adopt {
+    background: #f8fbf6;
+    font-family: "Aleo", sans-serif;
+    width: 100%;
+    /* height: 62em; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8em 3em;
+}
+
+.home-section-adopt .tips-container {
+    font-size: 1.1em;
+    display: flex;
+    gap: 5rem;
+    padding: 0 5rem;
+    margin-top: 4rem;
+}
+
+.home-section-adopt .tip {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 2px solid #0000ff;
+    max-width: 20em;
+    padding: 3em 2em 2em;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    gap:2em;
+}
+
+.section-adopt-heading {
+    font-size: 2.8em;
+    text-align: center;
+}
+
+.adoption-subheading {
+    margin-top: 0.5rem;
+    font-size: 1.4em;
+    color: #ffa30e;
+}
+
+.home-section-adopt .steps {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    background: #FF8437;
+    border-radius: 26px;
+    width: 60em;
+    border: 1px solid #949CAD;
+    padding: 5em 3em 2em;
+    margin-top: 5em;
+    box-shadow: 0 0 10px 1px #00000066;
+    text-shadow: 0 0 5px #00000066;
+}
+
+.steps .steps-heading {
+    font-size: 1.8em;
+    font-weight: normal;
+    width: 20em;
+    text-align: center;
+}
+
+.steps .progressbar li {
+    color: #ffffff;
+    font-size: 1.2em;
+}
+
+.steps .progressbar li::before {
+    width: 4rem;
+}
+
+.steps .progressbar li:not(:last-child):after {
+    width: 20rem;
+    height: 0.3rem;
+}
+
+/* Home section previous adoptions */
+.home-section-previous-adoptions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    padding: 8em 3em 2em;
+    font-family: "Aleo", sans-serif;
+}
+
+.previous-adoptions-heading {
+    max-width: 20em;
+}
+
+.adopted-pets-container {
+    display: flex;
+    max-width: 95em;
+    padding: 7em 5em;
+    gap: 2.5em;
+}
+
+.adopted-pet {
+    display: flex;
+    justify-content: center;
+    flex-basis: 33.33%;
+    height: 36em;
+    align-items: center;
+}
+
+.pet-wrapper {
+    display: flex;
+    flex-basis: 100%;
+    height: 100%;
+    flex-direction: column;
+    background: #faf1ea;
+    outline: 1px solid #c4c6c8;
+    transition: flex-basis .3s ease-out, height .3s ease-out;
+}
+
+.pet-wrapper:hover {
+    flex-basis: 90%;
+    height: 90%;
+}
+
+.pet-image {
+    flex: 1 0 65%;
+}
+
+.adopted-pet .pet-image {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.pet-info {
+    flex: 1 1 35%;
+    padding: 1.5em 2em 2em;
+    position: relative;
+}
+
+.pet-info>*+* {
+    margin-top: 1em;
+}
+
+.pet-name {
+    font-size: 1.4em;
+}
+
+.pet-history::after {
+    content: '';
+    position: absolute;
+    width: 10em;
+    height: 0;
+    border: 1px solid #635e5e;
+    bottom: -1.1em;
+    left: 0;
+}
+
+/* PROGRESSBAR */
+
+.progressbar-container {
+    margin-top: 2em;
+    width: 45em;
+    margin: 0 auto;
+}
+
+.progressbar {
+    display: flex;
+    justify-content: space-around;
+    counter-reset: step;
+    padding: 2em;
+    width: 100%;
+}
+
+.progressbar li {
+    list-style-type: none;
+    color: #0D5120;
+    /* text-transform: uppercase; */
+    position: relative;
+    font-family: "Aleo", sans-serif;
+    transition: background .2s linear,
+        color .2s linear;
+}
+
+.progressbar li::before {
+    content: counter(step);
+    counter-increment: step;
+    width: 3rem;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-size: 1em;
+    color: #333;
+    background: #fff;
+    border-radius: 100%;
+    margin: 0 auto 5px auto;
+    box-shadow: 0 0 10px 1px #00000066;
+    z-index: 2;
+}
+
+.progressbar li:not(:last-child):after {
+    content: "";
+    display: block;
+    width: 14em;
+    top: 1.4em;
+    height: 0.4em;
+    background: #fff;
+    position: absolute;
+    left: 54%;
+    box-shadow: 0 0 5px 1px #00000066;
+    z-index: 1;
+    /* border: 2px solid blue; */
+}
+
+.progressbar li.active:before,
+.progressbar li.active:after {
+    background: #d66937;
+    color: #ffffff;
+}

@@ -7,7 +7,7 @@ export default function Header(){
         <nav>
           <ul className="main-nav-list">
             <li>
-              <NavLink to="#" className="nav-link logo">
+              <NavLink to="/" className="nav-link logo">
                 AdoptAPet
               </NavLink >
             </li>
@@ -33,7 +33,7 @@ export default function Header(){
         {/* Nav for authenticated user */}
         {/* <nav>
           <ul class="main-nav-list">
-              <li><NavLink href="#" class="nav-link logo">AdoptAPet</a></li>
+              <li><NavLink href="/" class="nav-link logo">AdoptAPet</a></li>
               <li><NavLink href="#" class="nav-link">Dashboard</a></li>
           </ul>
           <ul class="user-nav-list">
