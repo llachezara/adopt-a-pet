@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 export default function Header(){
     return (
         <header>
@@ -5,43 +7,43 @@ export default function Header(){
         <nav>
           <ul className="main-nav-list">
             <li>
-              <a href="#" className="nav-link logo">
+              <NavLink to="#" className="nav-link logo">
                 AdoptAPet
-              </a>
+              </NavLink >
             </li>
             <li>
-              <a href="#" className="nav-link">
+              <NavLink to="#" className="nav-link">
                 Dashboard
-              </a>
+              </NavLink>
             </li>
           </ul>
           <ul className="auth-nav-list">
             <li>
-              <a href="#" className="nav-link">
+              <NavLink to="#" className="nav-link">
                 Login
-              </a>
+                </NavLink>
             </li>
             <li>
-              <a href="#" className="nav-link register">
+              <NavLink to="#" className="nav-link register">
                 Register
-              </a>
+                </NavLink>
             </li>
           </ul>
         </nav>
         {/* Nav for authenticated user */}
         {/* <nav>
           <ul class="main-nav-list">
-              <li><a href="#" class="nav-link logo">AdoptAPet</a></li>
-              <li><a href="#" class="nav-link">Dashboard</a></li>
+              <li><NavLink href="#" class="nav-link logo">AdoptAPet</a></li>
+              <li><NavLink href="#" class="nav-link">Dashboard</a></li>
           </ul>
           <ul class="user-nav-list">
-              <li><a href="#" class="nav-link create">Create</a></li>
-              <li><a class="nav-link likes-link"></a></li>
+              <li><NavLink href="#" class="nav-link create">Create</NavLink></li>
+              <li><NavLink class="nav-link likes-link"></NavLink></li>
               <li class="profile-menu">
-                  <a class="nav-link profile-link"></a>
+                  <NavLink class="nav-link profile-link"></NavLink>
                   <div class="dropdown-menu">
-                      <a href="#">View details →</a>
-                      <a href="#">Logout</a>
+                      <NavLink href="#">View details →</NavLink>
+                      <NavLink href="#">Logout</NavLink>
                   </div>
               </li>
           </ul>
