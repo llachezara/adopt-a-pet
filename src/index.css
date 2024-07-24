@@ -149,3 +149,128 @@ span.helper-info {
     line-height: 1.2;
     font-style: italic;
 }
+
+/* Header */
+header {
+    background: #535142;
+    width: 100%;
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    border-bottom: 2px solid #444449;
+}
+
+header nav {
+    max-width: 80em;
+    padding: 1.8em 2em 1.5em;
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+nav .main-nav-list,
+.auth-nav-list,
+.user-nav-list {
+    display: flex;
+}
+
+nav .main-nav-list{
+    gap: 2.5em;
+}
+
+nav .auth-nav-list {
+    gap: 3em;
+}
+
+nav  .user-nav-list {
+    gap:2rem;
+}
+
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.nav-link.register {
+    border: 1px solid #F9F1F1;
+    padding: 0.7em 1.5em;
+    border-radius: 1.5em;
+}
+
+
+*>.logo {
+    position: relative;
+}
+
+.logo {
+    font-size: 1.4em;
+    font-weight: bold;
+    font-family: "Alice", sans-serif;
+    margin-top: -0.6rem;
+    display: inline-block;
+}
+
+.logo::before {
+    content: '';
+    background-image: url("/doggo-logo-image.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    width: 3rem;
+    aspect-ratio: 1/1;
+    margin-top: -0.4rem;
+    padding: 1em;
+    border-radius: 50%;
+    top: 0;
+    left: -4rem;
+}
+
+.likes-link, .profile-link{
+    position: relative;
+}
+
+.likes-link::after, .profile-link::after{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-family: "Font Awesome 6 Free";
+    font: var(--fa-font-solid);
+}
+
+.likes-link::after{
+    content: '\f004';
+    display: inline-block;
+    font-size: 2rem;
+    transform: translate(-25%, -20%);
+    margin-right: -2rem;
+    color: #cb3a16;
+}
+
+.profile-link::after{
+    content: '\f2bd';
+    display: inline-block;
+    font-size: 2.5rem;
+    transform: translate(-25%, -20%);
+    margin-right: -4rem;
+    color: #f8f7f5;
+}
+
+.active-nav-link {
+    position: relative;
+}
+
+.active-nav-link::after {
+    content: '';
+    margin-top: 1.5rem;
+    width: 100%;
+    border: 1px solid #ffa30e;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
