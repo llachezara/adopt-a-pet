@@ -1,0 +1,77 @@
+footer {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.big-footer{
+    border: 2px solid  #F0F2F5;
+}
+
+.footer-content {
+    flex: 0 1 90em;
+}
+
+.main-footer {
+    display: flex;
+    padding: 2rem 3rem 1.5rem;
+    font-size: 0.8em;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding-top: 3rem;
+}
+
+.main-footer-info .main-footer-info-heading {
+    margin-left: 3.5rem;
+    font-size: 1.5em;
+}
+
+.main-footer-info .last-words {
+    margin-top: 3em;
+    width: 20em;
+}
+
+.main-footer .contact {
+    margin-top: 0.5rem;
+
+    /* & .contact-us-heading+.contact-us-list,
+    .contact-us-list>*+* {
+        margin-top: 0.5rem;
+    } */
+}
+
+
+.main-footer .contact-us-heading+.contact-us-list,
+.contact-us-list>*+* {
+    margin-top: 0.5rem;
+}
+
+ 
+.main-footer .contact .contact-us-heading {
+    font-size: 1.15em;
+    margin-bottom: 0.8rem;
+}
+
+
+.additional-footer {
+    color: #b1b1b1;
+    font-size: 0.8rem;
+    padding-bottom: 1.6em;
+}
+
+.additional-footer::before {
+    content: "";
+    display: block;
+    border: 1px solid #F0F2F5;
+    width: 100%;
+    height: 0;
+    margin: 0.2rem auto 0;
+}
+
+.additional-footer .content-container {
+    margin-top: 1.2em;
+    max-width: 80vw;
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+}
