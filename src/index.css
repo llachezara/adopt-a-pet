@@ -141,6 +141,14 @@ textarea {
 .field label {
     font-size: 1.1em;
     margin-bottom: 0.2em;
+    position: relative;
+}
+
+label.required::after{
+    content: "*";
+    margin-left: 2px;
+    color:#c40707;
+    position: absolute;
 }
 
 span.helper-info {
@@ -177,7 +185,7 @@ nav .main-nav-list,
     display: flex;
 }
 
-nav .main-nav-list{
+nav .main-nav-list {
     gap: 2.5em;
 }
 
@@ -185,8 +193,8 @@ nav .auth-nav-list {
     gap: 3em;
 }
 
-nav  .user-nav-list {
-    gap:2rem;
+nav .user-nav-list {
+    gap: 2rem;
 }
 
 .nav-link {
@@ -230,11 +238,13 @@ nav  .user-nav-list {
     left: -4rem;
 }
 
-.likes-link, .profile-link{
+.likes-link,
+.profile-link {
     position: relative;
 }
 
-.likes-link::after, .profile-link::after{
+.likes-link::after,
+.profile-link::after {
     display: block;
     position: absolute;
     top: 0;
@@ -243,7 +253,7 @@ nav  .user-nav-list {
     font: var(--fa-font-solid);
 }
 
-.likes-link::after{
+.likes-link::after {
     content: '\f004';
     display: inline-block;
     font-size: 2rem;
@@ -252,7 +262,7 @@ nav  .user-nav-list {
     color: #cb3a16;
 }
 
-.profile-link::after{
+.profile-link::after {
     content: '\f2bd';
     display: inline-block;
     font-size: 2.5rem;
@@ -350,7 +360,7 @@ nav  .user-nav-list {
     padding: 3em 2em 2em;
     border-radius: 10px;
     border: 1px solid #ccc;
-    gap:2em;
+    gap: 2em;
 }
 
 .section-adopt-heading {
@@ -544,4 +554,93 @@ nav  .user-nav-list {
 .progressbar li.active:after {
     background: #d66937;
     color: #ffffff;
+}
+
+/* Register */
+.register-main-container,
+.login-main-container {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(226, 255, 204, 1) 100%);
+}
+
+.register-form-container {
+    max-width: 31.5em;
+    margin: 0 auto;
+    display: flex;
+    box-shadow: 0 0 1em #96989b;
+    border-radius: 10px;
+    position: relative;
+}
+
+.register-form {
+    padding: 2em 3em 1em;
+    background: #FFFFFF;
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: column;
+    border-radius: 10px;
+    border: 1px solid #E2E2E2;
+}
+
+.register-form-heading {
+    margin-bottom: 1.3rem;
+    font-family: "Aleo", sans-serif;
+    font-size: 2.2em;
+}
+
+.register-form .field+.field {
+    margin-top: 1.9rem;
+}
+
+.register-form input {
+    border: 1px solid #303310;
+    padding: 0.65em;
+}
+
+.register-form input:focus {
+    outline: 0.15em solid #667492;
+}
+
+.register-additional-info {
+    font-size: 0.85em;
+    text-align: left;
+    color: #000000;
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+}
+
+.register-additional-info span {
+    cursor: pointer;
+    color: #78127F;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-left: 0.2em;
+    transition: color .2s;
+}
+
+.register-additional-info span a:hover {
+    color: #28072b;
+}
+
+.register-image-container {
+    position: absolute;
+    background-image: url("/register-pets.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 12em;
+    height: 5em;
+    bottom: 0;
+    right: 0;
+    margin-right: 2em;
+    margin-top: 1.5em;
+}
+
+#sign-up-button {
+    border: 1px solid #63a568;
+    background: #45d06a;
+    padding: 0.85em;
+}
+
+#sign-up-button:hover {
+    background: #32ac52;
 }

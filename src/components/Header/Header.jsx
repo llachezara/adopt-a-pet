@@ -24,7 +24,7 @@ export default function Header(){
                 </NavLink>
             </li>
             <li>
-              <NavLink to="#" className="nav-link register">
+              <NavLink to="/auth/register" className="nav-link register">
                 Register
                 </NavLink>
             </li>
