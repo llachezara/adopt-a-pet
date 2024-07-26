@@ -101,6 +101,10 @@ select:focus {
     outline: 0.15em solid #52d3dc47;
 }
 
+input.invalid{
+    outline: 1px solid #D7382B;
+}
+
 a {
     cursor: pointer;
     text-decoration: none;
@@ -156,6 +160,14 @@ span.helper-info {
     font-size: 0.8em;
     line-height: 1.2;
     font-style: italic;
+}
+
+span.invalid-input-error{
+    margin-top: 0.35em;
+    margin-left: 0.3em;
+    font-size: 0.8em;
+    line-height: 1.2;
+    color:#D7382B;
 }
 
 /* Header */

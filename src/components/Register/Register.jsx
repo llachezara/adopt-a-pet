@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 
 export default function Register() {
-    const { values, onChangeHandler, onSubmitHandler } = useForm({
+    const { values, onChangeHandler, onBlurHandler, onFocusHandler, onSubmitHandler, inputErrors } = useForm({
         email: "",
         password: "",
         repassword: ""
@@ -23,9 +23,13 @@ export default function Register() {
                                 id="email"
                                 name="email"
                                 value={values.email}
+                                className={inputErrors["email"] && inputErrors["email"].showError ? "invalid" : ""}
                                 onChange={onChangeHandler}
+                                onBlur={onBlurHandler}
+                                onFocus={onFocusHandler}
                             />
-                            <span className="helper-info">example: john.doe@gmail.com</span>
+                            {inputErrors["email"] && inputErrors["email"].showError ? <span className="invalid-input-error">{inputErrors["email"].currentError}</span>
+                                : <span className="helper-info">example: john.doe@gmail.com</span>}
                         </div>
                         <div className="field">
                             <label htmlFor="password" className="required">Password</label>
@@ -33,13 +37,18 @@ export default function Register() {
                                 type="password"
                                 id="password"
                                 name="password"
+                                className={inputErrors["password"] && inputErrors["password"].showError ? "invalid" : ""}
                                 value={values.password}
                                 onChange={onChangeHandler}
+                                onBlur={onBlurHandler}
+                                onFocus={onFocusHandler}
                             />
-                            <span className="helper-info">
-                                minimum 6 characters, letters and numbers, at least 1 special
-                                character
-                            </span>
+                            {inputErrors["password"] && inputErrors["password"].showError ? <span className="invalid-input-error">{inputErrors["password"].currentError}</span>
+                                :
+                                <span className="helper-info">
+                                    minimum 6 characters, letters and numbers, at least 1 special
+                                    character
+                                </span>}
                         </div>
                         <div className="field">
                             <label htmlFor="repassword" className="required"> Repeat password</label>
@@ -48,6 +57,7 @@ export default function Register() {
                                 id="repassword"
                                 name="repassword"
                                 value={values.repassword}
+                                className={inputErrors["repassword"] ? "invalid" : ""}
                                 onChange={onChangeHandler}
                             />
                             <span className="helper-info">
