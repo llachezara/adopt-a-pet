@@ -59,9 +59,10 @@ export default function Register() {
                                 value={values.repassword}
                                 className={inputErrors["repassword"] ? "invalid" : ""}
                                 onChange={onChangeHandler}
+                                onBlur={onBlurHandler}
+                                onFocus={onFocusHandler}
                             />
-                            <span className="helper-info">
-                            </span>
+                            {inputErrors["repassword"] && inputErrors["repassword"].showError && <span className="invalid-input-error">{inputErrors["repassword"].currentError}</span>}
                         </div>
                         <button className="form-button" id="sign-up-button">
                             SIGN UP
