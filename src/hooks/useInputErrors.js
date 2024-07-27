@@ -42,7 +42,12 @@ function validateInput(inputName, inputValue, formValues) {
     if (!regex(inputName, formValues)) {
         throw new Error(`Input with ${inputName} does not exist in regex Object, used in validateInput function.`)
     }
-    const pattern = new RegExp(regex(inputName, formValues));
+    const pattern = new RegExp(regex(inputName));
+
+    if (inputName == "repassword") {
+        return pattern.test(inputValue) && formValues[inputName] == formValues["password"];
+    }
+
     return pattern.test(inputValue);
 }
 
@@ -52,11 +57,11 @@ const errors = {
     "repassword": "Passwords must match."
 }
 
-const regex = (inputName, formValues) => {
+const regex = (inputName) => {
     const patterns = {
-        "email": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
+        "email": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
         "password": "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&#])[A-Za-z\\d@$!%*?&#]{6,}$",
-        "repassword": formValues.password || "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&#])[A-Za-z\\d@$!%*?&#]{6,}$"
+        "repassword": "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&#])[A-Za-z\\d@$!%*?&#]{6,}$"
     }
 
     return patterns[inputName];
