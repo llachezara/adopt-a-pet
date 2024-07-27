@@ -57,7 +57,7 @@ export default function Register() {
                                 id="repassword"
                                 name="repassword"
                                 value={values.repassword}
-                                className={inputErrors["repassword"] ? "invalid" : ""}
+                                className={inputErrors["repassword"] && inputErrors["repassword"].showError ? "invalid" : ""}
                                 onChange={onChangeHandler}
                                 onBlur={onBlurHandler}
                                 onFocus={onFocusHandler}

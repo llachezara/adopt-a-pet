@@ -1,7 +1,12 @@
 import { useState } from "react"
 
 export function useInputErrors(formValues) {
-    const [inputErrors, setErrors] = useState({});
+    const initialErrorsState = {};
+    for (const key in formValues) {
+        initialErrorsState[key] = {currentError: errors[key], showError: false}
+    }
+
+    const [inputErrors, setErrors] = useState(initialErrorsState);
 
     const checkInputValue = (inputName, inputValue) => {
         let currentError = null;
