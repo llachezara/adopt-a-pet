@@ -6,6 +6,12 @@ export function useForm(initialValues){
     const [inputErrors, checkInputValue, setInputErrors] = useInputErrors(formValues);
 
     const onChangeHandler = (e) => {
+        const {inputName, currentError} = checkInputValue(e.target.name, e.target.value);
+        if(currentError){
+             setInputErrors({[inputName]: {currentError, showError: false}});
+        }else{
+            setInputErrors({[inputName]: null});
+        }
 
         setFormValues(state => {
             return {
@@ -23,12 +29,10 @@ export function useForm(initialValues){
     }
 
     const onBlurHandler = (e) =>{
-        const {inputName, currentError} = checkInputValue(e.target.name, e.target.value);
-
-        if(currentError){
-            return setInputErrors({[inputName]: {currentError, showError: true}});
+        if (!inputErrors[e.target.name]) {
+            return
         }
-        setInputErrors({[inputName]: null});
+        setInputErrors({[e.target.name]: {currentError: inputErrors[e.target.name].currentError, showError: true}});
     }
     
     const onSubmitHandler = (e) =>{
