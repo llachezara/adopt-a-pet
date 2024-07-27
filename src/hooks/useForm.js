@@ -38,7 +38,14 @@ export function useForm(initialValues){
     const onSubmitHandler = (e) =>{
         e.preventDefault();
 
-        console.log(e.target)
+        setChangedInput(state => ({
+            submittedValues: formValues
+        }));
+        const inputErrorsExist = Object.values(inputErrors).some(inputValue => inputValue != null);
+
+        if (!inputErrorsExist) {
+            console.log("Register");
+        }
     }
 
     return {

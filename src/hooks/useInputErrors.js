@@ -10,8 +10,14 @@ export function useInputErrors(formValues, changedInput) {
 
     useEffect(() => {
 
+        if (changedInput.submittedValues) {
+
+            const currentErrors = checkSubmittedValues(formValues);
+            return setInputErrors(currentErrors);
+        }
+
         if (changedInput.inputName != "") {
-            console.log(changedInput.inputName);
+
             const { currentError, moreErrors} = checkInputValue(changedInput.inputName, changedInput.inputValue);
             setInputErrors({ 
                 [changedInput.inputName]: currentError ? { currentError, showError: false } : null, 
@@ -32,13 +38,13 @@ export function useInputErrors(formValues, changedInput) {
                 return {
                     inputName,
                     currentError,
-                    moreErrors: {"repassword" : null}
+                    moreErrors: { "repassword": null }
                 }
-            }else if (!isRepasswordValid && isInputValueValid){
+            } else if (!isRepasswordValid && isInputValueValid) {
                 return {
                     inputName,
                     currentError,
-                    moreErrors: {"repassword" : {currentError: errors["repassword"], showError: true}}
+                    moreErrors: { "repassword": { currentError: errors["repassword"], showError: true } }
                 }
             }
         }
@@ -50,6 +56,22 @@ export function useInputErrors(formValues, changedInput) {
             inputName,
             currentError
         }
+    }
+
+    const checkSubmittedValues = (formValues) => {
+        const currentErrors = {};
+        for (const inputName in formValues) {
+            let currentError = null;
+            const isInputValueValid = validateInput(inputName, formValues[inputName], formValues);
+
+            if (!isInputValueValid) {
+                currentError = errors[inputName];
+            }
+
+            currentErrors[inputName] = currentError ? { currentError, showError: true } : null;
+        }
+
+        return currentErrors;
     }
 
     const setInputErrors = (state) => {
