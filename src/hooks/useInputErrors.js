@@ -1,12 +1,21 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-export function useInputErrors(formValues) {
+export function useInputErrors(formValues, changedInput) {
     const initialErrorsState = {};
     for (const key in formValues) {
-        initialErrorsState[key] = {currentError: errors[key], showError: false}
+        initialErrorsState[key] = { currentError: errors[key], showError: false }
     }
 
     const [inputErrors, setErrors] = useState(initialErrorsState);
+
+    useEffect(() => {
+
+        if (changedInput.inputName != "") {
+            console.log(changedInput.inputName);
+            const { currentError } = checkInputValue(changedInput.inputName, changedInput.inputValue);
+            setInputErrors({ [changedInput.inputName]: currentError ? { currentError, showError: false } : null });
+        }
+    }, [changedInput]);
 
     const checkInputValue = (inputName, inputValue) => {
         let currentError = null;
@@ -32,7 +41,6 @@ export function useInputErrors(formValues) {
 
     return [
         inputErrors,
-        checkInputValue,
         setInputErrors
     ]
 }

@@ -3,22 +3,19 @@ import { useInputErrors } from "./useInputErrors";
 
 export function useForm(initialValues){
     const [formValues, setFormValues] = useState(initialValues);
-    const [inputErrors, checkInputValue, setInputErrors] = useInputErrors(formValues);
+    const [changedInput, setChangedInput] = useState({ inputName: '', inputValue: '' });
+    const [inputErrors, setInputErrors] = useInputErrors(formValues, changedInput);
 
     const onChangeHandler = (e) => {
-        const {inputName, currentError} = checkInputValue(e.target.name, e.target.value);
-        if(currentError){
-             setInputErrors({[inputName]: {currentError, showError: false}});
-        }else{
-            setInputErrors({[inputName]: null});
-        }
-
         setFormValues(state => {
             return {
                 ...state,
                 [e.target.name]: e.target.value
             }
-        })
+        });
+
+        console.log({ inputName: e.target.name, inputValue: e.target.value });
+        setChangedInput(state => ({ inputName: e.target.name, inputValue: e.target.value }));
     }
 
     const onFocusHandler = (e) => {
