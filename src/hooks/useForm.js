@@ -1,10 +1,13 @@
 import { useState } from "react";
+
 import { useInputErrors } from "./useInputErrors";
+import { useSubmitButton } from "./useSubmitButton";
 
 export function useForm(initialValues){
     const [formValues, setFormValues] = useState(initialValues);
     const [changedInput, setChangedInput] = useState({ inputName: '', inputValue: '' });
     const [inputErrors, setInputErrors] = useInputErrors(formValues, changedInput);
+    const [submitButtonEnabledState] = useSubmitButton(inputErrors);
 
     const onChangeHandler = (e) => {
         setFormValues(state => {
@@ -34,6 +37,8 @@ export function useForm(initialValues){
     
     const onSubmitHandler = (e) =>{
         e.preventDefault();
+
+        console.log(e.target)
     }
 
     return {
@@ -42,6 +47,7 @@ export function useForm(initialValues){
         onBlurHandler,
         onFocusHandler,
         onSubmitHandler,
-        inputErrors
+        inputErrors,
+        submitButtonEnabledState
     }
 }

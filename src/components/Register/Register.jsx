@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 
 export default function Register() {
-    const { values, onChangeHandler, onBlurHandler, onFocusHandler, onSubmitHandler, inputErrors } = useForm({
+    const { values, onChangeHandler, onBlurHandler, onFocusHandler, onSubmitHandler, inputErrors, submitButtonEnabledState } = useForm({
         email: "",
         password: "",
         repassword: ""
@@ -64,7 +64,7 @@ export default function Register() {
                             />
                             {inputErrors["repassword"] && inputErrors["repassword"].showError && <span className="invalid-input-error">{inputErrors["repassword"].currentError}</span>}
                         </div>
-                        <button className="form-button" id="sign-up-button">
+                        <button className={`form-button ${submitButtonEnabledState ? "" : "form-button-disabled"}`} disabled={!submitButtonEnabledState} id="sign-up-button">
                             SIGN UP
                         </button>
                         <div className="additional-info-container">

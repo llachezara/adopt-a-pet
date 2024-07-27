@@ -130,6 +130,17 @@ a {
     }
 }
 
+.form-button-disabled{
+    background: #7a7e7b !important;
+    border: 1px solid #b6bcb7 !important;
+    transition: none;
+    cursor: not-allowed;
+
+    &:hover {
+        box-shadow: 0 0 0.2em #96989b;
+    }
+}
+
 .field,
 .field input,
 select,
