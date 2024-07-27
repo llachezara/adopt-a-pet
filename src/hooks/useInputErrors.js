@@ -12,8 +12,11 @@ export function useInputErrors(formValues, changedInput) {
 
         if (changedInput.inputName != "") {
             console.log(changedInput.inputName);
-            const { currentError } = checkInputValue(changedInput.inputName, changedInput.inputValue);
-            setInputErrors({ [changedInput.inputName]: currentError ? { currentError, showError: false } : null });
+            const { currentError, moreErrors} = checkInputValue(changedInput.inputName, changedInput.inputValue);
+            setInputErrors({ 
+                [changedInput.inputName]: currentError ? { currentError, showError: false } : null, 
+                ...moreErrors
+            });
         }
     }, [changedInput]);
 
@@ -21,6 +24,24 @@ export function useInputErrors(formValues, changedInput) {
         let currentError = null;
 
         const isInputValueValid = validateInput(inputName, inputValue, formValues);
+
+        if (inputName == "password" && formValues["repassword"]) {
+            const isRepasswordValid = validateInput("repassword", formValues["repassword"], formValues);
+
+            if (isRepasswordValid && isInputValueValid) {
+                return {
+                    inputName,
+                    currentError,
+                    moreErrors: {"repassword" : null}
+                }
+            }else if (!isRepasswordValid && isInputValueValid){
+                return {
+                    inputName,
+                    currentError,
+                    moreErrors: {"repassword" : {currentError: errors["repassword"], showError: true}}
+                }
+            }
+        }
         if (!isInputValueValid) {
             currentError = errors[inputName];
         }
@@ -61,7 +82,7 @@ function validateInput(inputName, inputValue, formValues) {
 
 const errors = {
     "email": "Invalid email address.",
-    "password": "Password is not valid.",
+    "password": "Password is not in the correct format.",
     "repassword": "Passwords must match."
 }
 
