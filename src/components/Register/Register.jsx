@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+
 import { useForm } from "../../hooks/useForm";
 
 export default function Register() {
@@ -9,7 +13,8 @@ export default function Register() {
         repassword: ""
     });
 
-    console.log(values, " Register");
+    const [showPassword, setShowPassword] = useState(false);
+
     return (
         <div className="register-main-container">
             <main className="register-main">
@@ -33,8 +38,13 @@ export default function Register() {
                         </div>
                         <div className="field">
                             <label htmlFor="password" className="required">Password</label>
+                            <FontAwesomeIcon
+                                icon = {showPassword ? faEyeSlash : faEye}
+                                className="eye-input-icon"
+                                onClick={() => setShowPassword(prevState => !prevState)}
+                            />
                             <input
-                                type="password"
+                                type={showPassword ? "text" : "password"}
                                 id="password"
                                 name="password"
                                 className={inputErrors["password"] && inputErrors["password"].showError ? "invalid" : ""}
@@ -52,8 +62,13 @@ export default function Register() {
                         </div>
                         <div className="field">
                             <label htmlFor="repassword" className="required"> Repeat password</label>
+                            <FontAwesomeIcon
+                                icon = {showPassword ? faEyeSlash : faEye}
+                                className="eye-input-icon"
+                                onClick={() => setShowPassword(prevState => !prevState)}
+                            />
                             <input
-                                type="password"
+                                type={showPassword ? "text" : "password"}
                                 id="repassword"
                                 name="repassword"
                                 value={values.repassword}

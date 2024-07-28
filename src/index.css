@@ -84,6 +84,10 @@ input {
     border-radius: 5px;
 }
 
+input[name="password"], input[name="repassword"]{
+    padding-right: 40px !important;
+}
+
 textarea {
     padding: 0.8em;
     resize: none;
@@ -151,6 +155,7 @@ textarea {
 .field {
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .field label {
@@ -179,6 +184,13 @@ span.invalid-input-error{
     font-size: 0.8em;
     line-height: 1.2;
     color:#D7382B;
+}
+
+.eye-input-icon{
+    position: absolute;
+    top: 2.85rem;
+    right: 1rem;
+    cursor: pointer;
 }
 
 /* Header */
