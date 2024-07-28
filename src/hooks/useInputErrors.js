@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 export function useInputErrors(formValues, changedInput) {
     const initialErrorsState = {};
     for (const key in formValues) {
-        initialErrorsState[key] = { currentError: errors[key], showError: false }
+        initialErrorsState[key] = { currentError: errorsForRequiredFields[key], showError: false }
     }
 
     const [inputErrors, setErrors] = useState(initialErrorsState);
@@ -29,28 +29,55 @@ export function useInputErrors(formValues, changedInput) {
     const checkInputValue = (inputName, inputValue) => {
         let currentError = null;
 
+        if (inputValue == "") {
+            currentError = errorsForRequiredFields[inputName];
+            return {
+                inputName,
+                currentError
+            }
+        }
         const isInputValueValid = validateInput(inputName, inputValue, formValues);
+
+        if (!isInputValueValid) {
+            currentError = errors[inputName];
+        }
 
         if (inputName == "password" && formValues["repassword"]) {
             const isRepasswordValid = validateInput("repassword", formValues["repassword"], formValues);
 
             if (isRepasswordValid && isInputValueValid) {
+                console.log("BOTH VALID*");
                 return {
                     inputName,
                     currentError,
                     moreErrors: { "repassword": null }
                 }
             } else if (!isRepasswordValid && isInputValueValid) {
+                console.log("REPASS NOT, PASS VALID*");
                 return {
                     inputName,
                     currentError,
                     moreErrors: { "repassword": { currentError: errors["repassword"], showError: true } }
                 }
+            } else if (isRepasswordValid && !isInputValueValid) {
+                console.log("REPASS VALID, PASS NOT*")
+                return {
+                    inputName,
+                    currentError,
+                    moreErrors: { "repassword": { currentError: errors["repassword"], showError: false } }
+                }
+            } else if (!isRepasswordValid && !isInputValueValid) {
+                console.log("BOTH NOT VALID*");
+                return {
+                    inputName,
+                    currentError,
+                    moreErrors: { "repassword": { currentError: errors["repassword"], showError: true } }
+                }
+            } else {
+                throw new Error("In useInputErrors when checking password.")
             }
         }
-        if (!isInputValueValid) {
-            currentError = errors[inputName];
-        }
+
 
         return {
             inputName,
@@ -90,15 +117,15 @@ export function useInputErrors(formValues, changedInput) {
 
 
 function validateInput(inputName, inputValue, formValues) {
+    if (inputName == "repassword") {
+        return formValues[inputName] == formValues["password"];
+    }
+
     if (!regex(inputName, formValues)) {
         throw new Error(`Input with ${inputName} does not exist in regex Object, used in validateInput function.`)
     }
+
     const pattern = new RegExp(regex(inputName));
-
-    if (inputName == "repassword") {
-        return pattern.test(inputValue) && formValues[inputName] == formValues["password"];
-    }
-
     return pattern.test(inputValue);
 }
 
@@ -108,11 +135,17 @@ const errors = {
     "repassword": "Passwords must match."
 }
 
+
+const errorsForRequiredFields = {
+    "email": "Email is required.",
+    "password": "Password is required.",
+    "repassword": "Repassword is required."
+}
+
 const regex = (inputName) => {
     const patterns = {
         "email": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
-        "password": "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&#])[A-Za-z\\d@$!%*?&#]{6,}$",
-        "repassword": "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&#])[A-Za-z\\d@$!%*?&#]{6,}$"
+        "password": "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&#])[A-Za-z\\d@$!%*?&#]{6,}$"
     }
 
     return patterns[inputName];
