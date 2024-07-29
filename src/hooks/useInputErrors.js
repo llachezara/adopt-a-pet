@@ -118,7 +118,7 @@ export function useInputErrors(formValues, changedInput) {
 
 function validateInput(inputName, inputValue, formValues) {
     if (inputName == "repassword") {
-        return formValues[inputName] == formValues["password"];
+        return formValues[inputName] == formValues["password"] && formValues[inputName] != "";
     }
 
     if (!regex(inputName, formValues)) {
