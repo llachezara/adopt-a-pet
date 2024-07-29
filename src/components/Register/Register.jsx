@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -15,6 +15,7 @@ export default function Register() {
         repassword: ""
     });
     const { register } = useRegister();
+    const navigate = useNavigate();
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
@@ -25,6 +26,7 @@ export default function Register() {
         }
         await register(values.email, values.password);
         clearFormValues();
+        navigate("/");
 
     }
 
