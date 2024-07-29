@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useInputErrors } from "./useInputErrors";
 import { useSubmitButton } from "./useSubmitButton";
 
-export function useForm(initialValues){
+export function useForm(initialValues) {
     const [formValues, setFormValues] = useState(initialValues);
     const [changedInput, setChangedInput] = useState({ inputName: '', inputValue: '' });
     const [inputErrors, setInputErrors] = useInputErrors(formValues, changedInput);
@@ -25,27 +25,24 @@ export function useForm(initialValues){
         if (!inputErrors[e.target.name]) {
             return
         }
-        setInputErrors({[e.target.name]: {currentError: inputErrors[e.target.name].currentError, showError: false}});
+        setInputErrors({ [e.target.name]: { currentError: inputErrors[e.target.name].currentError, showError: false } });
     }
 
-    const onBlurHandler = (e) =>{
+    const onBlurHandler = (e) => {
         if (!inputErrors[e.target.name]) {
             return
         }
-        setInputErrors({[e.target.name]: {currentError: inputErrors[e.target.name].currentError, showError: true}});
+        setInputErrors({ [e.target.name]: { currentError: inputErrors[e.target.name].currentError, showError: true } });
     }
-    
-    const onSubmitHandler = (e) =>{
-        e.preventDefault();
+
+    const onSubmitCheckValues = () => {
 
         setChangedInput(state => ({
             submittedValues: formValues
         }));
         const inputErrorsExist = Object.values(inputErrors).some(inputValue => inputValue != null);
 
-        if (!inputErrorsExist) {
-            console.log("Register");
-        }
+        return inputErrorsExist;
     }
 
     return {
@@ -53,7 +50,7 @@ export function useForm(initialValues){
         onChangeHandler,
         onBlurHandler,
         onFocusHandler,
-        onSubmitHandler,
+        onSubmitCheckValues,
         inputErrors,
         submitButtonEnabledState
     }

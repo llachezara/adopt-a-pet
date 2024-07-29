@@ -7,13 +7,23 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "../../hooks/useForm";
 
 export default function Register() {
-    const { values, onChangeHandler, onBlurHandler, onFocusHandler, onSubmitHandler, inputErrors, submitButtonEnabledState } = useForm({
+    const { values, onChangeHandler, onBlurHandler, onFocusHandler, onSubmitCheckValues, inputErrors, submitButtonEnabledState } = useForm({
         email: "",
         password: "",
         repassword: ""
     });
 
     const [showPassword, setShowPassword] = useState(false);
+
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+
+        const inputErrorsExist = onSubmitCheckValues();
+        if (inputErrorsExist) {
+            return
+        }
+        console.log("Register");
+    }
 
     return (
         <div className="register-main-container">
@@ -39,7 +49,7 @@ export default function Register() {
                         <div className="field">
                             <label htmlFor="password" className="required">Password</label>
                             <FontAwesomeIcon
-                                icon = {showPassword ? faEyeSlash : faEye}
+                                icon={showPassword ? faEyeSlash : faEye}
                                 className="eye-input-icon"
                                 onClick={() => setShowPassword(prevState => !prevState)}
                             />
@@ -63,7 +73,7 @@ export default function Register() {
                         <div className="field">
                             <label htmlFor="repassword" className="required"> Repeat password</label>
                             <FontAwesomeIcon
-                                icon = {showPassword ? faEyeSlash : faEye}
+                                icon={showPassword ? faEyeSlash : faEye}
                                 className="eye-input-icon"
                                 onClick={() => setShowPassword(prevState => !prevState)}
                             />
