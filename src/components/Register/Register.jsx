@@ -5,15 +5,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 import { useForm } from "../../hooks/useForm";
+import { useRegister } from "../../hooks/auth-hooks/useRegister";
 
 export default function Register() {
+    const [showPassword, setShowPassword] = useState(false);
     const { values, onChangeHandler, onBlurHandler, onFocusHandler, onSubmitCheckValues, inputErrors, submitButtonEnabledState } = useForm({
         email: "",
         password: "",
         repassword: ""
     });
-
-    const [showPassword, setShowPassword] = useState(false);
+    const { register } = useRegister();
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -22,7 +23,7 @@ export default function Register() {
         if (inputErrorsExist) {
             return
         }
-        console.log("Register");
+        register(values.email, values.password);
     }
 
     return (
