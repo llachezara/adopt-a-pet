@@ -9,7 +9,7 @@ import { useRegister } from "../../hooks/auth-hooks/useRegister";
 
 export default function Register() {
     const [showPassword, setShowPassword] = useState(false);
-    const { values, onChangeHandler, onBlurHandler, onFocusHandler, onSubmitCheckValues, inputErrors, submitButtonEnabledState } = useForm({
+    const { values, onChangeHandler, onBlurHandler, onFocusHandler, onSubmitCheckValues, inputErrors, submitButtonEnabledState, clearFormValues } = useForm({
         email: "",
         password: "",
         repassword: ""
@@ -24,6 +24,8 @@ export default function Register() {
             return
         }
         await register(values.email, values.password);
+        clearFormValues();
+
     }
 
     return (

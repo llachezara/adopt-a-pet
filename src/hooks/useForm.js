@@ -45,6 +45,14 @@ export function useForm(initialValues) {
         return inputErrorsExist;
     }
 
+    const clearFormValues = () => {
+        setFormValues({
+            email: "",
+            password: "",
+            repassword: ""
+        })
+    }
+
     return {
         values: formValues,
         onChangeHandler,
@@ -52,6 +60,7 @@ export function useForm(initialValues) {
         onFocusHandler,
         onSubmitCheckValues,
         inputErrors,
-        submitButtonEnabledState
+        submitButtonEnabledState,
+        clearFormValues
     }
 }
