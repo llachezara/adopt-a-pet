@@ -16,14 +16,14 @@ export default function Register() {
     });
     const { register } = useRegister();
 
-    const onSubmitHandler = (e) => {
+    const onSubmitHandler = async (e) => {
         e.preventDefault();
 
         const inputErrorsExist = onSubmitCheckValues();
         if (inputErrorsExist) {
             return
         }
-        register(values.email, values.password);
+        await register(values.email, values.password);
     }
 
     return (
