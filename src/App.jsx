@@ -1,24 +1,29 @@
-import {Routes, Route} from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 import Home from "./components/Home/Home"
 import Register from "./components/Register/Register"
 
-function App() {
-    return(
-        <>
-        <Header/>
+import { useAuth } from "./hooks/auth-hooks/useAuth"
+import { AuthContext } from "./contexts/AuthContext"
 
-        <div className="site">
-            <Routes>
+function App() {
+    const authContextData = useAuth();
+
+    return (
+        <AuthContext.Provider value={authContextData}>
+            <Header />
+
+            <div className="site">
+                <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/auth/register" element={<Register />} />
-            </Routes>
-        </div>
+                </Routes>
+            </div>
 
-        <Footer/>
-        </>
+            <Footer />
+        </AuthContext.Provider>
     )
 }
 
