@@ -26,7 +26,7 @@ export function useAuth() {
     }, []);
 
     const authContextData = {
-        authState,
+        ...authState,
         changeAuthState
     };
 
