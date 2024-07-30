@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 import { useForm } from "../../hooks/useForm";
+import { useLogin } from "../../hooks/auth-hooks/useLogin";
 
 export default function Logout() {
     const [showPassword, setShowPassword] = useState(false);
@@ -12,17 +13,19 @@ export default function Logout() {
         email: "",
         password: ""
     });
+    const { login } = useLogin();
+    const navigate = useNavigate();
 
-    const onSubmitHandler = (e) => {
+    const onSubmitHandler = async (e) => {
         e.preventDefault();
 
         const inputErrorsExist = onSubmitCheckValues();
         if (inputErrorsExist) {
             return
         }
-
+        await login(values.email, values.password);
         clearFormValues();
-        console.log("Login");
+        navigate("/");
     }
 
     return (
