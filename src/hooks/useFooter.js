@@ -17,7 +17,12 @@ export function useFooter() {
                     renderBigFooter: true
                 })
                 break;
-
+            case "/auth/login":
+                setFooterState({
+                    renderFooter: true,
+                    renderBigFooter: false
+                })
+                break;
             default:
                 setFooterState(defaultFooterState)
                 break;

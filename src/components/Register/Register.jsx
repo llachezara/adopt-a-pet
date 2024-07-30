@@ -101,7 +101,7 @@ export default function Register() {
                             <p className="register-additional-info">
                                 Have an account?{" "}
                                 <span>
-                                    <Link to="#">Sign in</Link>
+                                    <Link to="/auth/login" className="span-link">Sign in</Link>
                                 </span>
                             </p>
                         </div>

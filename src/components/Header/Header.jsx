@@ -67,7 +67,7 @@ export default function Header() {
             </ul>
             <ul className="auth-nav-list">
               <li>
-                <NavLink to="#" className="nav-link">
+                <NavLink to="/auth/login" className="nav-link">
                   Login
                 </NavLink>
               </li>

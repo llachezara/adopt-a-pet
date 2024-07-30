@@ -84,7 +84,8 @@ input {
     border-radius: 5px;
 }
 
-input[name="password"], input[name="repassword"]{
+input[name="password"],
+input[name="repassword"] {
     padding-right: 40px !important;
 }
 
@@ -105,7 +106,7 @@ select:focus {
     outline: 0.15em solid #52d3dc47;
 }
 
-input.invalid{
+input.invalid {
     outline: 1px solid #D7382B;
 }
 
@@ -134,7 +135,7 @@ a {
     }
 }
 
-.form-button-disabled{
+.form-button-disabled {
     background: #7a7e7b !important;
     border: 1px solid #b6bcb7 !important;
     transition: none;
@@ -164,10 +165,10 @@ textarea {
     position: relative;
 }
 
-label.required::after{
+label.required::after {
     content: "*";
     margin-left: 2px;
-    color:#c40707;
+    color: #c40707;
     position: absolute;
 }
 
@@ -178,15 +179,15 @@ span.helper-info {
     font-style: italic;
 }
 
-span.invalid-input-error{
+span.invalid-input-error {
     margin-top: 0.35em;
     margin-left: 0.3em;
     font-size: 0.8em;
     line-height: 1.2;
-    color:#D7382B;
+    color: #D7382B;
 }
 
-.eye-input-icon{
+.eye-input-icon {
     position: absolute;
     top: 2.85rem;
     right: 1rem;
@@ -274,7 +275,7 @@ nav .user-nav-list {
     left: -4rem;
 }
 
-.likes-link{
+.likes-link {
     display: inline-block;
     position: absolute;
     top: 0;
@@ -302,7 +303,7 @@ nav .user-nav-list {
     color: #f8f7f5;
 }
 
-.dropdown-menu{
+.dropdown-menu {
     display: none;
     position: absolute;
     top: 3rem;
@@ -667,7 +668,7 @@ nav .user-nav-list {
     margin-bottom: 1.5em;
 }
 
-.register-additional-info span {
+.register-additional-info .span-link{
     cursor: pointer;
     color: #78127F;
     font-weight: bold;
@@ -676,7 +677,7 @@ nav .user-nav-list {
     transition: color .2s;
 }
 
-.register-additional-info span a:hover {
+.register-additional-info .span-link:hover {
     color: #28072b;
 }
 
@@ -702,4 +703,83 @@ nav .user-nav-list {
 
 #sign-up-button:hover {
     background: #32ac52;
+}
+
+.register-form input:focus,
+.login-form input:focus {
+    outline: 0.15em solid #f59745;
+}
+
+.login-main-container,
+.register-main-container {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(226, 255, 204, 1) 100%);
+}
+
+.login-main {
+    padding-bottom: 2.2em;
+}
+
+.login-form-container {
+    max-width: 56em;
+    margin: 0 auto;
+    display: flex;
+    box-shadow: 0 0 1em #96989b;
+    border-radius: 10px;
+}
+
+.login-form {
+    padding: 2em 3em;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 45%;
+    border-radius: 10px 0 0 10px;
+    border: 1px solid #E2E2E2;
+}
+
+.login-form-heading {
+    margin-bottom: 1.2em;
+    font-family: "Alice", sans-serif;
+    font-size: 2.1em;
+}
+
+.login-form .field+.field {
+    margin-top: 2.5em;
+}
+
+#sign-in-button {
+    background: #364688;
+    padding: 0.7em;
+}
+
+#sign-in-button:hover {
+    background: #282F4C;
+}
+
+.login-additional-info {
+    font-size: 0.8em;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 1.5em;
+}
+
+.login-additional-info .span-link{
+    color: #1EC044;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-left: 0.2em;
+    transition: color 0.2s;
+}
+
+.login-additional-info .span-link:hover {
+    color: #236d34;
+}
+
+.login-image-container {
+    flex: 1 1 auto;
+    border-radius: 0 10px 10px 0;
+    background-image: url("/login-doggo-cropped.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
