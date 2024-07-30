@@ -1,8 +1,13 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 import { useForm } from "../../hooks/useForm";
 
 export default function Logout() {
+    const [showPassword, setShowPassword] = useState(false);
     const { values, onChangeHandler, onBlurHandler, onFocusHandler, onSubmitCheckValues, inputErrors, submitButtonEnabledState, clearFormValues } = useForm({
         email: "",
         password: ""
@@ -45,8 +50,13 @@ export default function Logout() {
                         </div>
                         <div className="field">
                             <label htmlFor="password">Password</label>
+                            <FontAwesomeIcon
+                                icon={showPassword ? faEyeSlash : faEye}
+                                className="eye-input-icon"
+                                onClick={() => setShowPassword(prevState => !prevState)}
+                            />
                             <input
-                                type="password"
+                                type={showPassword ? "text" : "password"}
                                 id="password"
                                 name="password"
                                 value={values.password}
