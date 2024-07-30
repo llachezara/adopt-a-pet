@@ -230,6 +230,7 @@ nav .auth-nav-list {
 
 nav .user-nav-list {
     gap: 2rem;
+    position: relative;
 }
 
 .nav-link {
@@ -273,37 +274,60 @@ nav .user-nav-list {
     left: -4rem;
 }
 
-.likes-link,
-.profile-link {
-    position: relative;
-}
-
-.likes-link::after,
-.profile-link::after {
-    display: block;
+.likes-link{
+    display: inline-block;
     position: absolute;
     top: 0;
     right: 0;
-    font-family: "Font Awesome 6 Free";
-    font: var(--fa-font-solid);
-}
-
-.likes-link::after {
-    content: '\f004';
-    display: inline-block;
     font-size: 2rem;
     transform: translate(-25%, -20%);
     margin-right: -2rem;
-    color: #cb3a16;
+    color: #bd3512;
 }
 
-.profile-link::after {
-    content: '\f2bd';
+/* Profile Menu */
+
+.profile-menu {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: -6rem;
+}
+
+.profile-link {
     display: inline-block;
     font-size: 2.5rem;
-    transform: translate(-25%, -20%);
-    margin-right: -4rem;
+    transform: translate(-25%, -25%);
     color: #f8f7f5;
+}
+
+.dropdown-menu{
+    display: none;
+    position: absolute;
+    top: 3rem;
+    left: -1.5rem;
+    background-color: #fff;
+    box-shadow: 0 8px 16px #00000033;
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1;
+    width: 10rem;
+}
+
+.dropdown-menu a {
+    color: #333;
+    padding: 12px 16px;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f1f1f1;
+}
+
+.profile-menu:hover .dropdown-menu,
+.dropdown-menu:hover {
+    display: block;
 }
 
 .active-nav-link {
