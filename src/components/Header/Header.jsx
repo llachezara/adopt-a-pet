@@ -5,9 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 import { AuthContext } from "../../contexts/AuthContext";
+import { useLogout } from "../../hooks/auth-hooks/useLogout";
 
 export default function Header() {
   const user = useContext(AuthContext);
+  const { logout } = useLogout();
 
   return (
     <header>
@@ -43,7 +45,7 @@ export default function Header() {
               </NavLink>
               <div className="dropdown-menu">
                 <NavLink href="#">View details →</NavLink>
-                <NavLink href="#">Logout</NavLink>
+                <NavLink onClick={logout}>Logout</NavLink>
               </div>
             </li>
           </ul>

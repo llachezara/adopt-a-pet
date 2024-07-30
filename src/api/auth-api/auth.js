@@ -1,5 +1,5 @@
 import { auth } from "../../config/firebase"
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 
 export async function registerUser(email, password) {
 
@@ -22,4 +22,12 @@ export function getUserAuthState(changeAuthState) {
             loading: false
         });
     });
+}
+
+export async function logoutUser(){
+    try {
+        await signOut(auth);
+    } catch (error) {
+        return error;
+    }
 }
