@@ -64,6 +64,11 @@ export default function AnimalProfileCreate() {
                                                 onBlur={animalDetails.onBlurHandler}
                                                 onFocus={animalDetails.onFocusHandler}
                                             />
+                                            {animalDetails.inputErrors["name"] && animalDetails.inputErrors["name"].showError ?
+                                                <span className="invalid-input-error">{animalDetails.inputErrors["name"].currentError}</span>
+                                                :
+                                                <span className="helper-info">example: Daisy</span>
+                                            }
                                         </div>
                                         <div className="field">
                                             <label htmlFor="species" className="required">Species</label>
@@ -81,6 +86,9 @@ export default function AnimalProfileCreate() {
                                                 <option value="rabbit">Rabbit</option>
                                                 <option value="horse">Horse</option>
                                             </select>
+                                            {animalDetails.inputErrors["species"] && animalDetails.inputErrors["species"].showError &&
+                                                <span className="invalid-input-error">{animalDetails.inputErrors["species"].currentError}</span>
+                                            }
                                         </div>
                                         <div className="field">
                                             <label htmlFor="breed" className="required">Breed</label>
@@ -93,6 +101,11 @@ export default function AnimalProfileCreate() {
                                                 onBlur={animalDetails.onBlurHandler}
                                                 onFocus={animalDetails.onFocusHandler}
                                             />
+                                            {animalDetails.inputErrors["breed"] && animalDetails.inputErrors["breed"].showError ?
+                                                <span className="invalid-input-error">{animalDetails.inputErrors["breed"].currentError}</span>
+                                                :
+                                                <span className="helper-info">example: Half german sheperd, half street dog</span>
+                                            }
                                         </div>
                                         <div className="field">
                                             <label htmlFor="age" className="required">Age</label>
@@ -105,6 +118,11 @@ export default function AnimalProfileCreate() {
                                                 onBlur={animalDetails.onBlurHandler}
                                                 onFocus={animalDetails.onFocusHandler}
                                             />
+                                             {animalDetails.inputErrors["age"] && animalDetails.inputErrors["age"].showError ?
+                                                <span className="invalid-input-error">{animalDetails.inputErrors["age"].currentError}</span>
+                                                :
+                                                <span className="helper-info">example: Less than 1 month</span>
+                                            }
                                         </div>
                                         <div className="field field-upload-photos">
                                             <label htmlFor="imageUrl"> Pet's image URL</label>
@@ -117,6 +135,11 @@ export default function AnimalProfileCreate() {
                                                 onBlur={animalDetails.onBlurHandler}
                                                 onFocus={animalDetails.onFocusHandler}
                                             />
+                                            {animalDetails.inputErrors["imageUrl"] && animalDetails.inputErrors["imageUrl"].showError ?
+                                                <span className="invalid-input-error">{animalDetails.inputErrors["imageUrl"].currentError}</span>
+                                                :
+                                                <span className="helper-info">Image URL must start with 'https://' and be with format png|jpg|jpeg|gif|bmp|svg.</span>
+                                            }
                                         </div>
                                     </div>
                                     <div className="fields-wrapper-2">
@@ -134,6 +157,9 @@ export default function AnimalProfileCreate() {
                                                 <option value="medium">Medium</option>
                                                 <option value="large">Large</option>
                                             </select>
+                                            {animalDetails.inputErrors["size"] && animalDetails.inputErrors["size"].showError &&
+                                                <span className="invalid-input-error">{animalDetails.inputErrors["size"].currentError}</span>
+                                            }
                                         </div>
                                         <div className="field">
                                             <label htmlFor="gender" className="required">Gender</label>
@@ -148,6 +174,9 @@ export default function AnimalProfileCreate() {
                                                 <option value="male">Male</option>
                                                 <option value="female">Female</option>
                                             </select>
+                                            {animalDetails.inputErrors["gender"] && animalDetails.inputErrors["gender"].showError &&
+                                                <span className="invalid-input-error">{animalDetails.inputErrors["gender"].currentError}</span>
+                                            }
                                         </div>
                                         <div className="field">
                                             <label htmlFor="personality">Personality traits</label>
@@ -161,6 +190,9 @@ export default function AnimalProfileCreate() {
                                                 onBlur={animalDetails.onBlurHandler}
                                                 onFocus={animalDetails.onFocusHandler}
                                             />
+                                            {animalDetails.inputErrors["personality"] && animalDetails.inputErrors["personality"].showError &&
+                                                <span className="invalid-input-error">{animalDetails.inputErrors["personality"].currentError}</span>
+                                            }
                                         </div>
                                         <div className="field">
                                             <label htmlFor="background">Pet's background / history</label>
@@ -174,6 +206,9 @@ export default function AnimalProfileCreate() {
                                                 onBlur={animalDetails.onBlurHandler}
                                                 onFocus={animalDetails.onFocusHandler}
                                             />
+                                            {animalDetails.inputErrors["background"] && animalDetails.inputErrors["background"].showError &&
+                                                <span className="invalid-input-error">{animalDetails.inputErrors["background"].currentError}</span>
+                                            }
                                         </div>
                                     </div>
                                 </div>
