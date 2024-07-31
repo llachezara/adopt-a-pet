@@ -1,7 +1,20 @@
 import { useEffect, useState } from "react"
+import { useForm } from "../../hooks/useForm";
 
 export default function AnimalProfileCreate() {
     const [formStepState, setFormStepState] = useState(1);
+    const animalDetails = useForm({
+        name: "",
+        species: "cat",
+        breed: "",
+        age: "",
+        imageUrl: "",
+        size: "small",
+        gender: "male",
+        personality: "",
+        background: ""
+
+    })
 
     const nextHandler = (e) => {
         e.preventDefault();
@@ -42,43 +55,96 @@ export default function AnimalProfileCreate() {
                                     <div className="fields-wrapper-1">
                                         <div className="field">
                                             <label htmlFor="name">Name</label>
-                                            <input type="text" id="name" name="name" />
+                                            <input
+                                                type="text"
+                                                id="name"
+                                                name="name"
+                                                value={animalDetails.values.name}
+                                                onChange={animalDetails.onChangeHandler}
+                                                onBlur={animalDetails.onBlurHandler}
+                                                onFocus={animalDetails.onFocusHandler}
+                                            />
                                         </div>
                                         <div className="field">
                                             <label htmlFor="species" className="required">Species</label>
-                                            <select name="species" id="species">
+                                            <select
+                                                name="species"
+                                                id="species"
+                                                value={animalDetails.values.species}
+                                                onChange={animalDetails.onChangeHandler}
+                                                onBlur={animalDetails.onBlurHandler}
+                                                onFocus={animalDetails.onFocusHandler}
+                                            >
                                                 <option value="cat">Cat</option>
                                                 <option value="dog">Dog</option>
-                                                <option value="rabbit">Bird</option>
+                                                <option value="bird">Bird</option>
                                                 <option value="rabbit">Rabbit</option>
                                                 <option value="horse">Horse</option>
                                             </select>
                                         </div>
                                         <div className="field">
                                             <label htmlFor="breed" className="required">Breed</label>
-                                            <input type="text" id="breed" name="breed" />
+                                            <input
+                                                type="text"
+                                                id="breed"
+                                                name="breed"
+                                                value={animalDetails.values.breed}
+                                                onChange={animalDetails.onChangeHandler}
+                                                onBlur={animalDetails.onBlurHandler}
+                                                onFocus={animalDetails.onFocusHandler}
+                                            />
                                         </div>
                                         <div className="field">
                                             <label htmlFor="age" className="required">Age</label>
-                                            <input type="text" id="age" name="age" />
+                                            <input
+                                                type="text"
+                                                id="age"
+                                                name="age"
+                                                value={animalDetails.values.age}
+                                                onChange={animalDetails.onChangeHandler}
+                                                onBlur={animalDetails.onBlurHandler}
+                                                onFocus={animalDetails.onFocusHandler}
+                                            />
                                         </div>
-                                        <div className="field field-upload-photos required">
-                                            <label htmlFor="imageUrl">Pet's image URL</label>
-                                            <input type="text" id="imageUrl" />
+                                        <div className="field field-upload-photos">
+                                            <label htmlFor="imageUrl"> Pet's image URL</label>
+                                            <input
+                                                type="text"
+                                                id="imageUrl"
+                                                name="imageUrl"
+                                                value={animalDetails.values.imageUrl}
+                                                onChange={animalDetails.onChangeHandler}
+                                                onBlur={animalDetails.onBlurHandler}
+                                                onFocus={animalDetails.onFocusHandler}
+                                            />
                                         </div>
                                     </div>
                                     <div className="fields-wrapper-2">
                                         <div className="field">
                                             <label htmlFor="size" className="required">Size</label>
-                                            <select name="size" id="size">
+                                            <select
+                                                name="size"
+                                                id="size"
+                                                value={animalDetails.values.size}
+                                                onChange={animalDetails.onChangeHandler}
+                                                onBlur={animalDetails.onBlurHandler}
+                                                onFocus={animalDetails.onFocusHandler}
+                                            >
                                                 <option value="small">Small</option>
                                                 <option value="medium">Medium</option>
                                                 <option value="large">Large</option>
                                             </select>
                                         </div>
-                                        <div className="field required">
-                                            <label htmlFor="gender">Gender</label>
-                                            <select name="gender" id="gender">
+                                        <div className="field">
+                                            <label htmlFor="gender" className="required">Gender</label>
+                                            <select
+                                                name="gender"
+                                                id="gender"
+                                                value={animalDetails.values.gender}
+                                                onChange={animalDetails.onChangeHandler}
+                                                onBlur={animalDetails.onBlurHandler}
+                                                onFocus={animalDetails.onFocusHandler}
+                                            >
                                                 <option value="male">Male</option>
                                                 <option value="female">Female</option>
                                             </select>
@@ -90,6 +156,10 @@ export default function AnimalProfileCreate() {
                                                 id="personality"
                                                 name="personality"
                                                 placeholder="Friendly, Energetic, Calm, etc."
+                                                value={animalDetails.values.personality}
+                                                onChange={animalDetails.onChangeHandler}
+                                                onBlur={animalDetails.onBlurHandler}
+                                                onFocus={animalDetails.onFocusHandler}
                                             />
                                         </div>
                                         <div className="field">
@@ -99,7 +169,10 @@ export default function AnimalProfileCreate() {
                                                 placeholder="The pet was..."
                                                 name="background"
                                                 id="background"
-                                                defaultValue={""}
+                                                value={animalDetails.values.background}
+                                                onChange={animalDetails.onChangeHandler}
+                                                onBlur={animalDetails.onBlurHandler}
+                                                onFocus={animalDetails.onFocusHandler}
                                             />
                                         </div>
                                     </div>
@@ -183,7 +256,7 @@ export default function AnimalProfileCreate() {
                                     </div>
                                 </div>
                                 <div className="action-buttons">
-                                    <button type="button" className="form-button previous-button" onClick = {previousHandler}>
+                                    <button type="button" className="form-button previous-button" onClick={previousHandler}>
                                         PREVIOUS
                                     </button>
                                     <button type="submit" className="form-button next-button">
@@ -193,7 +266,7 @@ export default function AnimalProfileCreate() {
                             </fieldset>
                         </form>}
                     {formStepState == 3 &&
-                        <form action="#" method="POST" className="create-form" key={3} onSubmit={(e) => { e.preventDefault(); console.log("Submit")}}>
+                        <form action="#" method="POST" className="create-form" key={3} onSubmit={(e) => { e.preventDefault(); console.log("Submit") }}>
                             <fieldset className="type-1">
                                 <h4 className="fieldset-heading">Owner Details</h4>
                                 <div className="fields-wrapper">
@@ -220,7 +293,7 @@ export default function AnimalProfileCreate() {
                                     </div>
                                 </div>
                                 <div className="action-buttons">
-                                    <button type="button" className="form-button previous-button" onClick = {previousHandler}>
+                                    <button type="button" className="form-button previous-button" onClick={previousHandler}>
                                         PREVIOUS
                                     </button>
                                     <button type="submit" className="form-button submit-button">
