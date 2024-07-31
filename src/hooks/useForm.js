@@ -40,7 +40,7 @@ export function useForm(initialValues) {
         setChangedInput(state => ({
             submittedValues: formValues
         }));
-        const inputErrorsExist = Object.values(inputErrors).some(inputValue => inputValue != null);
+        const inputErrorsExist = Object.values(inputErrors).some(errorObject => errorObject.currentError != null);
 
         return inputErrorsExist;
     }

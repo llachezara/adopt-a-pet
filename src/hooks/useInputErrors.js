@@ -7,6 +7,7 @@ export function useInputErrors(formValues, changedInput) {
     }
 
     const [inputErrors, setErrors] = useState(initialErrorsState);
+    console.log(inputErrors);
 
     useEffect(() => {
 
@@ -19,8 +20,9 @@ export function useInputErrors(formValues, changedInput) {
         if (changedInput.inputName != "") {
 
             const { currentError, moreErrors} = checkInputValue(changedInput.inputName, changedInput.inputValue);
+
             setInputErrors({ 
-                [changedInput.inputName]: currentError ? { currentError, showError: false } : null, 
+                [changedInput.inputName]: currentError ? { currentError, showError: false } : { currentError: null, showError: false }, 
                 ...moreErrors
             });
         }
@@ -95,7 +97,7 @@ export function useInputErrors(formValues, changedInput) {
                 currentError = errors[inputName];
             }
 
-            currentErrors[inputName] = currentError ? { currentError, showError: true } : null;
+            currentErrors[inputName] = currentError ? { currentError, showError: true } : { currentError: null, showError: false }
         }
 
         return currentErrors;

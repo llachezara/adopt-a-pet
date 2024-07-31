@@ -45,7 +45,7 @@ export default function Logout() {
                                 onBlur={onBlurHandler}
                                 onFocus={onFocusHandler}
                             />
-                            {inputErrors["email"] && inputErrors["email"].showError ?
+                            {inputErrors["email"].currentError && inputErrors["email"].showError ?
                                 <span className="invalid-input-error">{inputErrors["email"].currentError}</span>
                                 :
                                 <span className="helper-info">example: john.doe@gmail.com</span>
@@ -67,7 +67,7 @@ export default function Logout() {
                                 onBlur={onBlurHandler}
                                 onFocus={onFocusHandler}
                             />
-                            {inputErrors["password"] && inputErrors["password"].showError ?
+                            {inputErrors["password"].currentError && inputErrors["password"].showError ?
                                 <span className="invalid-input-error">{inputErrors["password"].currentError}</span>
                                 :
                                 <span className="helper-info">

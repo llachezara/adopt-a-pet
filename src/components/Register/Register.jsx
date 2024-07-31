@@ -43,13 +43,16 @@ export default function Register() {
                                 id="email"
                                 name="email"
                                 value={values.email}
-                                className={inputErrors["email"] && inputErrors["email"].showError ? "invalid" : ""}
+                                className={inputErrors["email"].currentError && inputErrors["email"].showError ? "invalid" : ""}
                                 onChange={onChangeHandler}
                                 onBlur={onBlurHandler}
                                 onFocus={onFocusHandler}
                             />
-                            {inputErrors["email"] && inputErrors["email"].showError ? <span className="invalid-input-error">{inputErrors["email"].currentError}</span>
-                                : <span className="helper-info">example: john.doe@gmail.com</span>}
+                            {inputErrors["email"].currentError && inputErrors["email"].showError ?
+                                <span className="invalid-input-error">{inputErrors["email"].currentError}</span>
+                                :
+                                <span className="helper-info">example: john.doe@gmail.com</span>
+                            }
                         </div>
                         <div className="field">
                             <label htmlFor="password" className="required">Password</label>
@@ -62,18 +65,20 @@ export default function Register() {
                                 type={showPassword ? "text" : "password"}
                                 id="password"
                                 name="password"
-                                className={inputErrors["password"] && inputErrors["password"].showError ? "invalid" : ""}
+                                className={inputErrors["password"].currentError && inputErrors["password"].showError ? "invalid" : ""}
                                 value={values.password}
                                 onChange={onChangeHandler}
                                 onBlur={onBlurHandler}
                                 onFocus={onFocusHandler}
                             />
-                            {inputErrors["password"] && inputErrors["password"].showError ? <span className="invalid-input-error">{inputErrors["password"].currentError}</span>
+                            {inputErrors["password"].currentError && inputErrors["password"].showError ?
+                                <span className="invalid-input-error">{inputErrors["password"].currentError}</span>
                                 :
                                 <span className="helper-info">
                                     minimum 6 characters, letters and numbers, at least 1 special
                                     character
-                                </span>}
+                                </span>
+                            }
                         </div>
                         <div className="field">
                             <label htmlFor="repassword" className="required"> Repeat password</label>
@@ -87,12 +92,12 @@ export default function Register() {
                                 id="repassword"
                                 name="repassword"
                                 value={values.repassword}
-                                className={inputErrors["repassword"] && inputErrors["repassword"].showError ? "invalid" : ""}
+                                className={inputErrors["repassword"].currentError && inputErrors["repassword"].showError ? "invalid" : ""}
                                 onChange={onChangeHandler}
                                 onBlur={onBlurHandler}
                                 onFocus={onFocusHandler}
                             />
-                            {inputErrors["repassword"] && inputErrors["repassword"].showError && <span className="invalid-input-error">{inputErrors["repassword"].currentError}</span>}
+                            {inputErrors["repassword"].currentError && inputErrors["repassword"].showError && <span className="invalid-input-error">{inputErrors["repassword"].currentError}</span>}
                         </div>
                         <button className={`form-button ${submitButtonEnabledState ? "" : "form-button-disabled"}`} disabled={!submitButtonEnabledState} id="sign-up-button">
                             SIGN UP

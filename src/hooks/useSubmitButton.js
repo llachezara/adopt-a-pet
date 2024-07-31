@@ -15,5 +15,5 @@ export function useSubmitButton(inputErrors) {
 
 function checkSubmitButtonState(inputErrors){
     // console.log("Submit button state: ", !Object.values(inputErrors).some(errorObject => errorObject != null))
-    return !Object.values(inputErrors).some(errorObject => errorObject != null);
+    return !Object.values(inputErrors).some(errorObject => errorObject.currentError != null);
 }
