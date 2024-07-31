@@ -18,19 +18,19 @@ export default function Header() {
         (<nav>
           <ul className="main-nav-list">
             <li>
-              <NavLink href="/" className="nav-link logo">
+              <NavLink to="/" className="nav-link logo">
                 AdoptAPet
               </NavLink>
             </li>
             <li>
-              <NavLink href="#" className="nav-link">
+              <NavLink to="#" className="nav-link">
                 Dashboard
               </NavLink>
             </li>
           </ul>
           <ul className="user-nav-list">
             <li>
-              <NavLink href="#" className="nav-link create">
+              <NavLink to="#" className="nav-link create">
                 Create
               </NavLink>
             </li>
@@ -44,7 +44,7 @@ export default function Header() {
                 <FontAwesomeIcon icon={faCircleUser} />
               </NavLink>
               <div className="dropdown-menu">
-                <NavLink href="#">View details →</NavLink>
+                <NavLink to="#">View details →</NavLink>
                 <NavLink onClick={logout}>Logout</NavLink>
               </div>
             </li>
