@@ -91,10 +91,15 @@ export function useInputErrors(formValues, changedInput) {
         const currentErrors = {};
         for (const inputName in formValues) {
             let currentError = null;
+
             const isInputValueValid = validateInput(inputName, formValues[inputName], formValues);
 
             if (!isInputValueValid) {
                 currentError = errors[inputName];
+            }
+
+            if (formValues[inputName] == "" && !isInputValueValid) {
+                currentError = errorsForRequiredFields[inputName] || null;
             }
 
             currentErrors[inputName] = currentError ? { currentError, showError: true } : { currentError: null, showError: false }
