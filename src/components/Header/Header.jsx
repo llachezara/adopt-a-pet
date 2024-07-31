@@ -30,7 +30,7 @@ export default function Header() {
           </ul>
           <ul className="user-nav-list">
             <li>
-              <NavLink to="#" className="nav-link create">
+              <NavLink to="/animal-profile/create" className="nav-link create">
                 Create
               </NavLink>
             </li>

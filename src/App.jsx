@@ -6,6 +6,8 @@ import Home from "./components/Home/Home"
 import Register from "./components/Register/Register"
 import Login from "./components/Login/Login"
 
+import AnimalProfileCreate from "./components/Animal-profile-create/AnimalProfileCreate"
+
 import { useAuth } from "./hooks/auth-hooks/useAuth"
 import { AuthContext } from "./contexts/AuthContext"
 
@@ -21,6 +23,8 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/auth/register" element={<Register />} />
                     <Route path="/auth/login" element={<Login />} />
+
+                    <Route path="/animal-profile/create" element={<AnimalProfileCreate/>}/>
                 </Routes>
             </div>
 

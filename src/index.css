@@ -783,3 +783,142 @@ nav .user-nav-list {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+/* CREATE */
+.create-main-container {
+    background: linear-gradient(0deg, #ffffff 0%, #FFE4D1 100%);
+}
+
+.create-main {
+    padding: 5rem;
+}
+
+.create-form-container {
+    max-width: 50em;
+    margin: 3rem auto;
+    color: #0D5120;
+}
+
+.create-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em 0em 1em;
+}
+
+.create-form fieldset {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    padding: 0 2em 1em;
+    margin: 0 3em;
+    border: 0 none;
+    border-radius: 10px;
+    box-shadow: 0 0 15px 1px #00000066;
+    position: relative;
+}
+
+.create-form fieldset.type-2 {
+    max-width: 85%;
+}
+
+.create-form-heading {
+    font-size: 2.2em;
+    font-weight: 500;
+    margin-top: 1rem 0 2rem;
+}
+
+.create-form-heading,
+.fieldset-heading {
+    font-family: "Aleo", sans-serif;
+}
+
+.create-form .fieldset-heading {
+    color: #636965;
+    font-weight: normal;
+    font-size: 1.4em;
+    text-align: center;
+    margin: 1.5em 0 1.2em;
+}
+
+.create-form .fields-wrapper {
+    display: flex;
+    gap: 2.5em;
+}
+
+.fields-wrapper-1,
+.fields-wrapper-2 {
+    flex-basis: 50%;
+}
+
+.create-form .field+.field {
+    margin-top: 2.5rem;
+}
+
+.create-form input,
+textarea,
+select {
+    /* background: #F4F3F1; */
+    background: #EDF2F5;
+    border: none;
+    opacity: 0.8;
+    box-shadow: 0 0 0.1em #96989b;
+}
+
+.create-form input[type="radio"] {
+    box-shadow: none;
+}
+
+.create-form input[type="number"] {
+    font-size: 1.2em;
+}
+
+.create-form label {
+    font-size: 1.2em;
+}
+
+.textarea-disabled {
+    background: #dde0e1;
+}
+
+.create-form .health-info {
+    display: flex;
+    flex-direction: column;
+    margin: 1.5em 0 1em;
+}
+
+.health-info .health-heading {
+    text-align: center;
+    margin: 0.8em 0 1.2em;
+}
+
+.health-info input[type="radio"] {
+    margin-left: 1em;
+}
+
+.health-info textarea {
+    margin-top: 1.5em;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 3em;
+    font-size: 0.9em;
+    margin-top: 1rem;
+}
+
+.next-button,
+.previous-button,
+.submit-button {
+    margin-top: 2.5em;
+    padding: 0.8em 2.5em;
+    background: #27AE60;
+    border: #364688;
+    align-self: center;
+
+    &:hover {
+        box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+    }
+}
