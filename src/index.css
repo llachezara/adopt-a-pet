@@ -574,8 +574,6 @@ nav .user-nav-list {
     /* text-transform: uppercase; */
     position: relative;
     font-family: "Aleo", sans-serif;
-    transition: background .2s linear,
-        color .2s linear;
 }
 
 .progressbar li::before {
@@ -589,25 +587,28 @@ nav .user-nav-list {
     position: relative;
     font-size: 1em;
     color: #333;
-    background: #fff;
+    background: #fcf9f5;
     border-radius: 100%;
     margin: 0 auto 5px auto;
     box-shadow: 0 0 10px 1px #00000066;
     z-index: 2;
+    transition: background-color .4s linear,
+    color .4s linear;
 }
 
-.progressbar li:not(:last-child):after {
+.progressbar li:not(:first-child):after {
     content: "";
     display: block;
-    width: 14em;
+    width: 15em;
     top: 1.4em;
     height: 0.4em;
-    background: #fff;
+    background: #fcf9f5;
     position: absolute;
-    left: 54%;
+    right: 3em;
     box-shadow: 0 0 5px 1px #00000066;
     z-index: 1;
-    /* border: 2px solid blue; */
+    transition: background-color .3s linear,
+    color .3s linear;
 }
 
 .progressbar li.active:before,
