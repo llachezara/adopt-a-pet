@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 export function useInputErrors(formValues, changedInput) {
     const initialErrorsState = {};
     for (const key in formValues) {
-        initialErrorsState[key] = { currentError: errorsForRequiredFields[key], showError: false }
+        initialErrorsState[key] = { currentError: errorsForRequiredFields[key] || null, showError: false }
     }
 
     const [inputErrors, setErrors] = useState(initialErrorsState);
@@ -122,7 +122,7 @@ function validateInput(inputName, inputValue, formValues) {
     }
 
     if (!regex(inputName, formValues)) {
-        throw new Error(`Input with ${inputName} does not exist in regex Object, used in validateInput function.`)
+        return true;
     }
 
     const pattern = new RegExp(regex(inputName));
@@ -132,20 +132,34 @@ function validateInput(inputName, inputValue, formValues) {
 const errors = {
     "email": "Invalid email address.",
     "password": "Password is not in the correct format.",
-    "repassword": "Passwords must match."
+    "repassword": "Passwords must match.",
+    "name": "Name must be maximum 15 characters.",
+    "breed": "Breed must be maximum 50 characters.",
+    "age": "Age must be maximum 20 characters.",
+    "imageUrl": "Invalid image URL.",
+    "personality": "Personality description must be maximum 40 characters.",
+    "background": "Pet's background must be maximum 200 characters."
 }
 
 
 const errorsForRequiredFields = {
     "email": "Email is required.",
     "password": "Password is required.",
-    "repassword": "Repassword is required."
+    "repassword": "Repassword is required.",
+    "breed": "Breed is required.",
+    "age": "Age is required."
 }
 
 const regex = (inputName) => {
     const patterns = {
         "email": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
-        "password": "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&#])[A-Za-z\\d@$!%*?&#]{6,}$"
+        "password": "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&#])[A-Za-z\\d@$!%*?&#]{6,}$",
+        "name": "^.{1,15}$",
+        "breed": "^.{1,50}$",
+        "age": "^.{1,20}$",
+        "imageUrl": "^(https?:\\/\\/.*\\.(?:png|jpg|jpeg|gif|bmp|svg))$",
+        "personality": "^.{1,40}$",
+        "background": "^.{1,200}$"
     }
 
     return patterns[inputName];
