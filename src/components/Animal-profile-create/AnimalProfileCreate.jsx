@@ -327,13 +327,20 @@ export default function AnimalProfileCreate() {
                                             onBlur={healthInformation.onBlurHandler}
                                             onFocus={healthInformation.onFocusHandler}
                                         />
+                                        {healthInformation.inputErrors["med-conditions-info"].currentError && healthInformation.inputErrors["med-conditions-info"].showError &&
+                                            <span className="invalid-input-error">{healthInformation.inputErrors["med-conditions-info"].currentError}</span>
+                                        }
                                     </div>
                                 </div>
                                 <div className="action-buttons">
                                     <button type="button" className="form-button previous-button" onClick={previousHandler}>
                                         PREVIOUS
                                     </button>
-                                    <button type="submit" className="form-button next-button">
+                                    <button
+                                        type="submit"
+                                        className={`form-button next-button ${healthInformation.submitButtonEnabledState ? "" : "form-button-disabled"}`}
+                                        disabled={!healthInformation.submitButtonEnabledState}
+                                    >
                                         NEXT
                                     </button>
                                 </div>

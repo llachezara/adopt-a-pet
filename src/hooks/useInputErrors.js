@@ -4,10 +4,13 @@ export function useInputErrors(formValues, changedInput) {
     const initialErrorsState = {};
     for (const key in formValues) {
         initialErrorsState[key] = { currentError: errorsForRequiredFields[key] || null, showError: false }
+        if (key == "med-conditions-info") {
+            initialErrorsState[key] = { currentError: null, showError: false }
+        }
     }
 
     const [inputErrors, setErrors] = useState(initialErrorsState);
-    console.log(inputErrors);
+    console.log(formValues);
 
     useEffect(() => {
 
@@ -80,7 +83,23 @@ export function useInputErrors(formValues, changedInput) {
             }
         }
 
+        if (inputName == "med-conditions") {
 
+            if (formValues["med-conditions"] == "No") {
+                return {
+                    inputName,
+                    currentError,
+                    moreErrors: { "med-conditions-info": { currentError: null, showError: false } }
+                }
+            }
+            if (formValues["med-conditions"] == "Yes") {
+                return {
+                    inputName,
+                    currentError,
+                    moreErrors: { "med-conditions-info": { currentError: errorsForRequiredFields["med-conditions-info"], showError: false } }
+                }
+            }
+        }
         return {
             inputName,
             currentError
@@ -145,7 +164,8 @@ const errors = {
     "age": "Age must be maximum 20 characters.",
     "imageUrl": "Invalid image URL.",
     "personality": "Personality description must be maximum 40 characters.",
-    "background": "Pet's background must be maximum 200 characters."
+    "background": "Pet's background must be maximum 200 characters.",
+    "med-conditions-info": "Medical conditions description must be maximum 50 characters."
 }
 
 
@@ -154,7 +174,8 @@ const errorsForRequiredFields = {
     "password": "Password is required.",
     "repassword": "Repassword is required.",
     "breed": "Breed is required.",
-    "age": "Age is required."
+    "age": "Age is required.",
+    "med-conditions-info": "You must specify the medical conditions."
 }
 
 const regex = (inputName) => {
@@ -166,7 +187,8 @@ const regex = (inputName) => {
         "age": "^.{1,20}$",
         "imageUrl": "^(https?:\\/\\/.*\\.(?:png|jpg|jpeg|gif|bmp|svg))$",
         "personality": "^.{1,40}$",
-        "background": "^.{1,200}$"
+        "background": "^.{1,200}$",
+        "med-conditions-info": "^.{1,150}$"
     }
 
     return patterns[inputName];
