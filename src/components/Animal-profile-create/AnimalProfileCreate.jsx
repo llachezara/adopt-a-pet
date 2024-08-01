@@ -14,13 +14,20 @@ export default function AnimalProfileCreate() {
         personality: "",
         background: ""
 
-    })
+    });
     const healthInformation = useForm({
         vaccinated: "No",
         spayed: "No",
         "med-conditions": "No",
         "med-conditions-info": ""
-    })
+    });
+    const ownerDetails = useForm({
+        "owner-name": "",
+        "owner-email": "",
+        "owner-phone": "",
+        "location": ""
+
+    });
     const checkCurrentFormValues = (checkHandler) => {
         return checkHandler();
     }
@@ -354,21 +361,53 @@ export default function AnimalProfileCreate() {
                                     <div className="fields-wrapper-1">
                                         <div className="field">
                                             <label htmlFor="owner-name" className="required">Name</label>
-                                            <input type="text" id="owner-name" name="owner-name" />
+                                            <input
+                                                type="text"
+                                                id="owner-name"
+                                                name="owner-name"
+                                                value={ownerDetails.values["owner-name"]}
+                                                onChange={ownerDetails.onChangeHandler}
+                                                onBlur={ownerDetails.onBlurHandler}
+                                                onFocus={ownerDetails.onFocusHandler}
+                                            />
                                         </div>
                                         <div className="field">
                                             <label htmlFor="owner-phone" className="required">Phone Number</label>
-                                            <input type="text" id="owner-phone" name="owner-phone" />
+                                            <input
+                                                type="text"
+                                                id="owner-phone"
+                                                name="owner-phone"
+                                                value={ownerDetails.values["owner-phone"]}
+                                                onChange={ownerDetails.onChangeHandler}
+                                                onBlur={ownerDetails.onBlurHandler}
+                                                onFocus={ownerDetails.onFocusHandler}
+                                            />
                                         </div>
                                         <div className="field">
                                             <label htmlFor="owner-email" className="required">Email Address</label>
-                                            <input type="text" id="owner-email" name="owner-email" />
+                                            <input
+                                                type="text"
+                                                id="owner-email"
+                                                name="owner-email"
+                                                value={ownerDetails.values["owner-email"]}
+                                                onChange={ownerDetails.onChangeHandler}
+                                                onBlur={ownerDetails.onBlurHandler}
+                                                onFocus={ownerDetails.onFocusHandler}
+                                            />
                                         </div>
                                     </div>
                                     <div className="fields-wrapper-2">
                                         <div className="field">
                                             <label htmlFor="location">Location</label>
-                                            <input type="text" id="location" name="location" />
+                                            <input
+                                                type="text"
+                                                id="location"
+                                                name="location"
+                                                value={ownerDetails.values["location"]}
+                                                onChange={ownerDetails.onChangeHandler}
+                                                onBlur={ownerDetails.onBlurHandler}
+                                                onFocus={ownerDetails.onFocusHandler}
+                                            />
                                             {/* TODO: Integrate google maps */}
                                         </div>
                                     </div>
