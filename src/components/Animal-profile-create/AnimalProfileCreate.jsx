@@ -22,7 +22,7 @@ export default function AnimalProfileCreate() {
     const nextHandler = (e) => {
         e.preventDefault();
         let inputErrorsExist = false;
-        
+
         switch (formStepState) {
             case 1:
                 inputErrorsExist = checkCurrentFormValues(animalDetails.onSubmitCheckValues);
@@ -225,7 +225,11 @@ export default function AnimalProfileCreate() {
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" className="form-button next-button">
+                                <button
+                                    type="submit"
+                                    className={`form-button next-button ${animalDetails.submitButtonEnabledState ? "" : "form-button-disabled"}`}
+                                    disabled={!animalDetails.submitButtonEnabledState}
+                                >
                                     NEXT
                                 </button>
                             </fieldset>

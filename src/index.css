@@ -142,7 +142,7 @@ a {
     cursor: not-allowed;
 
     &:hover {
-        box-shadow: 0 0 0.2em #96989b;
+        box-shadow: 0 0 0.2em #96989b !important;
     }
 }
 
