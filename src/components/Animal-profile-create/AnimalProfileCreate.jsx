@@ -21,11 +21,10 @@ export default function AnimalProfileCreate() {
 
     const nextHandler = (e) => {
         e.preventDefault();
-        const currentFormKey = e.currentTarget.getAttribute("data-form-key");
-
         let inputErrorsExist = false;
-        switch (currentFormKey) {
-            case "1":
+        
+        switch (formStepState) {
+            case 1:
                 inputErrorsExist = checkCurrentFormValues(animalDetails.onSubmitCheckValues);
                 break;
         }
@@ -61,7 +60,7 @@ export default function AnimalProfileCreate() {
                         </ul>
                     </div>
                     {formStepState == 1 &&
-                        <form action="#" method="POST" className="create-form" key={1} data-form-key="1" onSubmit={nextHandler}>
+                        <form action="#" method="POST" className="create-form" key={1} onSubmit={nextHandler}>
 
                             <fieldset className="type-1">
                                 <h4 className="fieldset-heading">Animal Details</h4>
@@ -232,7 +231,7 @@ export default function AnimalProfileCreate() {
                             </fieldset>
                         </form>}
                     {formStepState == 2 &&
-                        <form action="#" method="POST" className="create-form" key={2} data-form-key="2" onSubmit={nextHandler}>
+                        <form action="#" method="POST" className="create-form" key={2} onSubmit={nextHandler}>
                             <fieldset className="type-2">
                                 <div className="health-info">
                                     <h5 className="fieldset-heading health-heading">
@@ -315,7 +314,7 @@ export default function AnimalProfileCreate() {
                             </fieldset>
                         </form>}
                     {formStepState == 3 &&
-                        <form action="#" method="POST" className="create-form" key={3} data-form-key="3" onSubmit={(e) => { e.preventDefault(); console.log("Submit") }}>
+                        <form action="#" method="POST" className="create-form" key={3} onSubmit={(e) => { e.preventDefault(); console.log("Submit") }}>
                             <fieldset className="type-1">
                                 <h4 className="fieldset-heading">Owner Details</h4>
                                 <div className="fields-wrapper">
