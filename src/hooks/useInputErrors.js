@@ -52,7 +52,7 @@ export function useInputErrors(formValues, changedInput) {
                 return {
                     inputName,
                     currentError,
-                    moreErrors: { "repassword": null }
+                    moreErrors: { "repassword": { currentError: null, showError: false } }
                 }
             } else if (!isRepasswordValid && isInputValueValid) {
                 console.log("REPASS NOT, PASS VALID*");
