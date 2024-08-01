@@ -28,6 +28,11 @@ export default function AnimalProfileCreate() {
         "location": ""
 
     });
+
+    useEffect(() => {
+        window?.scrollTo(0, 0);
+    }, [formStepState]);
+
     const checkCurrentFormValues = (checkHandler) => {
         return checkHandler();
     }
@@ -39,6 +44,9 @@ export default function AnimalProfileCreate() {
         switch (formStepState) {
             case 1:
                 inputErrorsExist = checkCurrentFormValues(animalDetails.onSubmitCheckValues);
+                break;
+            case 2:
+                inputErrorsExist = checkCurrentFormValues(healthInformation.onSubmitCheckValues);
                 break;
         }
 
@@ -52,9 +60,14 @@ export default function AnimalProfileCreate() {
         setFormStepState(prevState => prevState - 1);
     }
 
-    useEffect(() => {
-        window?.scrollTo(0, 0);
-    }, [formStepState]);
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+
+        const inputErrorsExist = checkCurrentFormValues(ownerDetails.onSubmitCheckValues);
+        if(inputErrorsExist){
+            return
+        }
+    }
 
     return (
         <div className="create-main-container">
