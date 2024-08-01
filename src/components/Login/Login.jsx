@@ -40,6 +40,7 @@ export default function Logout() {
                                 type="email"
                                 id="email"
                                 name="email"
+                                className={inputErrors["email"].currentError && inputErrors["email"].showError ? "invalid" : ""}
                                 value={values.email}
                                 onChange={onChangeHandler}
                                 onBlur={onBlurHandler}
@@ -62,6 +63,7 @@ export default function Logout() {
                                 type={showPassword ? "text" : "password"}
                                 id="password"
                                 name="password"
+                                className={inputErrors["password"].currentError && inputErrors["password"].showError ? "invalid" : ""}
                                 value={values.password}
                                 onChange={onChangeHandler}
                                 onBlur={onBlurHandler}

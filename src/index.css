@@ -103,11 +103,14 @@ select {
 input:focus,
 textarea:focus,
 select:focus {
+    outline: 0.15em solid #898a8247;
     outline: 0.15em solid #52d3dc47;
 }
 
-input.invalid {
-    outline: 1px solid #D7382B;
+input.invalid,
+textarea.invalid,
+select.invalid {
+    outline: 0.05em solid #D7382B;
 }
 
 a {
@@ -708,7 +711,7 @@ nav .user-nav-list {
 
 .register-form input:focus,
 .login-form input:focus {
-    outline: 0.15em solid #f59745;
+    outline: 0.15em solid #667492;
 }
 
 .login-main-container,

@@ -85,6 +85,7 @@ export default function AnimalProfileCreate() {
                                                 type="text"
                                                 id="name"
                                                 name="name"
+                                                className={animalDetails.inputErrors["name"].currentError && animalDetails.inputErrors["name"].showError ? "invalid" : ""}
                                                 value={animalDetails.values.name}
                                                 onChange={animalDetails.onChangeHandler}
                                                 onBlur={animalDetails.onBlurHandler}
@@ -101,6 +102,7 @@ export default function AnimalProfileCreate() {
                                             <select
                                                 name="species"
                                                 id="species"
+                                                className={animalDetails.inputErrors["species"].currentError && animalDetails.inputErrors["species"].showError ? "invalid" : ""}
                                                 value={animalDetails.values.species}
                                                 onChange={animalDetails.onChangeHandler}
                                                 onBlur={animalDetails.onBlurHandler}
@@ -122,6 +124,7 @@ export default function AnimalProfileCreate() {
                                                 type="text"
                                                 id="breed"
                                                 name="breed"
+                                                className={animalDetails.inputErrors["breed"].currentError && animalDetails.inputErrors["breed"].showError ? "invalid" : ""}
                                                 value={animalDetails.values.breed}
                                                 onChange={animalDetails.onChangeHandler}
                                                 onBlur={animalDetails.onBlurHandler}
@@ -139,6 +142,7 @@ export default function AnimalProfileCreate() {
                                                 type="text"
                                                 id="age"
                                                 name="age"
+                                                className={animalDetails.inputErrors["age"].currentError && animalDetails.inputErrors["age"].showError ? "invalid" : ""}
                                                 value={animalDetails.values.age}
                                                 onChange={animalDetails.onChangeHandler}
                                                 onBlur={animalDetails.onBlurHandler}
@@ -156,6 +160,7 @@ export default function AnimalProfileCreate() {
                                                 type="text"
                                                 id="imageUrl"
                                                 name="imageUrl"
+                                                className={animalDetails.inputErrors["imageUrl"].currentError && animalDetails.inputErrors["imageUrl"].showError ? "invalid" : ""}
                                                 value={animalDetails.values.imageUrl}
                                                 onChange={animalDetails.onChangeHandler}
                                                 onBlur={animalDetails.onBlurHandler}
@@ -174,6 +179,7 @@ export default function AnimalProfileCreate() {
                                             <select
                                                 name="size"
                                                 id="size"
+                                                className={animalDetails.inputErrors["size"].currentError && animalDetails.inputErrors["size"].showError ? "invalid" : ""}
                                                 value={animalDetails.values.size}
                                                 onChange={animalDetails.onChangeHandler}
                                                 onBlur={animalDetails.onBlurHandler}
@@ -192,6 +198,7 @@ export default function AnimalProfileCreate() {
                                             <select
                                                 name="gender"
                                                 id="gender"
+                                                className={animalDetails.inputErrors["gender"].currentError && animalDetails.inputErrors["gender"].showError ? "invalid" : ""}
                                                 value={animalDetails.values.gender}
                                                 onChange={animalDetails.onChangeHandler}
                                                 onBlur={animalDetails.onBlurHandler}
@@ -210,14 +217,16 @@ export default function AnimalProfileCreate() {
                                                 type="text"
                                                 id="personality"
                                                 name="personality"
-                                                placeholder="Friendly, Energetic, Calm, etc."
+                                                className={animalDetails.inputErrors["personality"].currentError && animalDetails.inputErrors["personality"].showError ? "invalid" : ""}
                                                 value={animalDetails.values.personality}
                                                 onChange={animalDetails.onChangeHandler}
                                                 onBlur={animalDetails.onBlurHandler}
                                                 onFocus={animalDetails.onFocusHandler}
                                             />
-                                            {animalDetails.inputErrors["personality"].currentError && animalDetails.inputErrors["personality"].showError &&
+                                            {animalDetails.inputErrors["personality"].currentError && animalDetails.inputErrors["personality"].showError ?
                                                 <span className="invalid-input-error">{animalDetails.inputErrors["personality"].currentError}</span>
+                                                :
+                                                <span className="helper-info">example: friendly, energetic, calm, etc.</span>
                                             }
                                         </div>
                                         <div className="field">
@@ -227,6 +236,7 @@ export default function AnimalProfileCreate() {
                                                 placeholder="The pet was..."
                                                 name="background"
                                                 id="background"
+                                                className={animalDetails.inputErrors["background"].currentError && animalDetails.inputErrors["background"].showError ? "invalid" : ""}
                                                 value={animalDetails.values.background}
                                                 onChange={animalDetails.onChangeHandler}
                                                 onBlur={animalDetails.onBlurHandler}
@@ -327,7 +337,7 @@ export default function AnimalProfileCreate() {
                                             name="med-conditions-info"
                                             id="med-conditions-info"
                                             placeholder="Write the medical condition..."
-                                            className={healthInformation.values["med-conditions"] == "Yes" ? "" : "textarea-disabled"}
+                                            className={`${healthInformation.values["med-conditions"] == "Yes" ? "" : "textarea-disabled"} ${healthInformation.inputErrors["med-conditions-info"].currentError && healthInformation.inputErrors["med-conditions-info"].showError ? "invalid" : ""}`}
                                             disabled={healthInformation.values["med-conditions"] == "Yes" ? false : true}
                                             value={healthInformation.values["med-conditions-info"]}
                                             onChange={healthInformation.onChangeHandler}
@@ -365,6 +375,7 @@ export default function AnimalProfileCreate() {
                                                 type="text"
                                                 id="owner-name"
                                                 name="owner-name"
+                                                className={ownerDetails.inputErrors["owner-name"].currentError && ownerDetails.inputErrors["owner-name"].showError ? "invalid" : ""}
                                                 value={ownerDetails.values["owner-name"]}
                                                 onChange={ownerDetails.onChangeHandler}
                                                 onBlur={ownerDetails.onBlurHandler}
@@ -382,6 +393,7 @@ export default function AnimalProfileCreate() {
                                                 type="text"
                                                 id="owner-phone"
                                                 name="owner-phone"
+                                                className={ownerDetails.inputErrors["owner-phone"].currentError && ownerDetails.inputErrors["owner-phone"].showError ? "invalid" : ""}
                                                 value={ownerDetails.values["owner-phone"]}
                                                 onChange={ownerDetails.onChangeHandler}
                                                 onBlur={ownerDetails.onBlurHandler}
@@ -400,6 +412,7 @@ export default function AnimalProfileCreate() {
                                                 type="text"
                                                 id="owner-email"
                                                 name="owner-email"
+                                                className={ownerDetails.inputErrors["owner-email"].currentError && ownerDetails.inputErrors["owner-email"].showError ? "invalid" : ""}
                                                 value={ownerDetails.values["owner-email"]}
                                                 onChange={ownerDetails.onChangeHandler}
                                                 onBlur={ownerDetails.onBlurHandler}
@@ -419,6 +432,7 @@ export default function AnimalProfileCreate() {
                                                 type="text"
                                                 id="location"
                                                 name="location"
+                                                className={ownerDetails.inputErrors["location"].currentError && ownerDetails.inputErrors["location"].showError ? "invalid" : ""}
                                                 value={ownerDetails.values["location"]}
                                                 onChange={ownerDetails.onChangeHandler}
                                                 onBlur={ownerDetails.onBlurHandler}
