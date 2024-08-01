@@ -15,6 +15,12 @@ export default function AnimalProfileCreate() {
         background: ""
 
     })
+    const healthInformation = useForm({
+        vaccinated: "No",
+        spayed: "No",
+        "med-conditions": "No",
+        "med-conditions-info": ""
+    })
     const checkCurrentFormValues = (checkHandler) => {
         return checkHandler();
     }
@@ -248,14 +254,18 @@ export default function AnimalProfileCreate() {
                                                 type="radio"
                                                 name="vaccinated"
                                                 id="vacc-yes"
-                                                defaultValue="Yes"
+                                                value="Yes"
+                                                checked={healthInformation.values["vaccinated"] == "Yes"}
+                                                onChange={healthInformation.onChangeHandler}
                                             />
                                             <label htmlFor="vacc-yes">Yes</label>
                                             <input
                                                 type="radio"
                                                 name="vaccinated"
                                                 id="vacc-no"
-                                                defaultValue="No"
+                                                value="No"
+                                                checked={healthInformation.values["vaccinated"] == "No"}
+                                                onChange={healthInformation.onChangeHandler}
                                             />
                                             <label htmlFor="vacc-no">No</label>
                                         </div>
@@ -267,33 +277,41 @@ export default function AnimalProfileCreate() {
                                                 type="radio"
                                                 name="spayed"
                                                 id="spayed-yes"
-                                                defaultValue="Yes"
+                                                value="Yes"
+                                                checked={healthInformation.values["spayed"] == "Yes"}
+                                                onChange={healthInformation.onChangeHandler}
                                             />
                                             <label htmlFor="spayed-yes">Yes</label>
                                             <input
                                                 type="radio"
                                                 name="spayed"
                                                 id="spayed-no"
-                                                defaultValue="No"
+                                                value="No"
+                                                checked={healthInformation.values["spayed"] == "No"}
+                                                onChange={healthInformation.onChangeHandler}
                                             />
                                             <label htmlFor="spayed-no">No</label>
                                         </div>
                                     </div>
                                     <div className="field">
-                                        <label htmlFor="med-conditions" className="required">Any known Medical conditions</label>
+                                        <label htmlFor="med-conditions" className="required">Any known medical conditions</label>
                                         <div className="radio-container">
                                             <input
                                                 type="radio"
                                                 name="med-conditions"
                                                 id="med-conditions-yes"
-                                                defaultValue="Yes"
+                                                value="Yes"
+                                                checked={healthInformation.values["med-conditions"] == "Yes"}
+                                                onChange={healthInformation.onChangeHandler}
                                             />
                                             <label htmlFor="med-conditions-yes">Yes</label>
                                             <input
                                                 type="radio"
                                                 name="med-conditions"
                                                 id="med-conditions-no"
-                                                defaultValue="No"
+                                                value="No"
+                                                checked={healthInformation.values["med-conditions"] == "No"}
+                                                onChange={healthInformation.onChangeHandler}
                                             />
                                             <label htmlFor="med-conditions-no">No</label>
                                         </div>
@@ -302,8 +320,12 @@ export default function AnimalProfileCreate() {
                                             name="med-conditions-info"
                                             id="med-conditions-info"
                                             placeholder="Write the medical condition..."
-                                            className="textarea-disabled"
-                                            defaultValue={""}
+                                            className={healthInformation.values["med-conditions"] == "Yes" ? "" : "textarea-disabled"}
+                                            disabled={healthInformation.values["med-conditions"] == "Yes" ? false : true}
+                                            value={healthInformation.values["med-conditions-info"]}
+                                            onChange={healthInformation.onChangeHandler}
+                                            onBlur={healthInformation.onBlurHandler}
+                                            onFocus={healthInformation.onFocusHandler}
                                         />
                                     </div>
                                 </div>
