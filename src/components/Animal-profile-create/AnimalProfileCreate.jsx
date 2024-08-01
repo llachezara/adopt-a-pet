@@ -370,6 +370,11 @@ export default function AnimalProfileCreate() {
                                                 onBlur={ownerDetails.onBlurHandler}
                                                 onFocus={ownerDetails.onFocusHandler}
                                             />
+                                            {ownerDetails.inputErrors["owner-name"].currentError && ownerDetails.inputErrors["owner-name"].showError ?
+                                                <span className="invalid-input-error">{ownerDetails.inputErrors["owner-name"].currentError}</span>
+                                                :
+                                                <span className="helper-info">example: Yana Petkova</span>
+                                            }
                                         </div>
                                         <div className="field">
                                             <label htmlFor="owner-phone" className="required">Phone Number</label>
@@ -382,7 +387,13 @@ export default function AnimalProfileCreate() {
                                                 onBlur={ownerDetails.onBlurHandler}
                                                 onFocus={ownerDetails.onFocusHandler}
                                             />
+                                            {ownerDetails.inputErrors["owner-phone"].currentError && ownerDetails.inputErrors["owner-phone"].showError ?
+                                                <span className="invalid-input-error">{ownerDetails.inputErrors["owner-phone"].currentError}</span>
+                                                :
+                                                <span className="helper-info">Please enter a valid Bulgarian phone number starting with '08', followed by 8 digits (e.g., 0871234567).</span>
+                                            }
                                         </div>
+                                        {/* enter a valid Bulgarian phone number starting with '08', followed by 8 digits (e.g., 0871234567). */}
                                         <div className="field">
                                             <label htmlFor="owner-email" className="required">Email Address</label>
                                             <input
@@ -394,6 +405,11 @@ export default function AnimalProfileCreate() {
                                                 onBlur={ownerDetails.onBlurHandler}
                                                 onFocus={ownerDetails.onFocusHandler}
                                             />
+                                            {ownerDetails.inputErrors["owner-email"].currentError && ownerDetails.inputErrors["owner-email"].showError ?
+                                                <span className="invalid-input-error">{ownerDetails.inputErrors["owner-email"].currentError}</span>
+                                                :
+                                                <span className="helper-info">example: john.doe@gmail.com</span>
+                                            }
                                         </div>
                                     </div>
                                     <div className="fields-wrapper-2">
@@ -416,7 +432,11 @@ export default function AnimalProfileCreate() {
                                     <button type="button" className="form-button previous-button" onClick={previousHandler}>
                                         PREVIOUS
                                     </button>
-                                    <button type="submit" className="form-button submit-button">
+                                    <button
+                                        type="submit"
+                                        className={`form-button next-button ${ownerDetails.submitButtonEnabledState ? "" : "form-button-disabled"}`}
+                                        disabled={!ownerDetails.submitButtonEnabledState}
+                                    >
                                         SUBMIT
                                     </button>
                                 </div>

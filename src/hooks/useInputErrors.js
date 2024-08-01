@@ -10,7 +10,7 @@ export function useInputErrors(formValues, changedInput) {
     }
 
     const [inputErrors, setErrors] = useState(initialErrorsState);
-    console.log(formValues);
+    console.log(inputErrors);
 
     useEffect(() => {
 
@@ -165,7 +165,10 @@ const errors = {
     "imageUrl": "Invalid image URL.",
     "personality": "Personality description must be maximum 40 characters.",
     "background": "Pet's background must be maximum 200 characters.",
-    "med-conditions-info": "Medical conditions description must be maximum 50 characters."
+    "med-conditions-info": "Medical conditions description must be maximum 50 characters.",
+    "owner-name": "Name must be maximum 40 characters.",
+    "owner-phone": "Phone number must be in the correct format.",
+    "owner-email": "Invalid email address."
 }
 
 
@@ -175,7 +178,10 @@ const errorsForRequiredFields = {
     "repassword": "Repassword is required.",
     "breed": "Breed is required.",
     "age": "Age is required.",
-    "med-conditions-info": "You must specify the medical conditions."
+    "med-conditions-info": "You must specify the medical conditions.",
+    "owner-name": "Name is required.",
+    "owner-phone": "Phone number is required.",
+    "owner-email": "Email is required."
 }
 
 const regex = (inputName) => {
@@ -188,7 +194,10 @@ const regex = (inputName) => {
         "imageUrl": "^(https?:\\/\\/.*\\.(?:png|jpg|jpeg|gif|bmp|svg))$",
         "personality": "^.{1,40}$",
         "background": "^.{1,200}$",
-        "med-conditions-info": "^.{1,150}$"
+        "med-conditions-info": "^.{1,150}$",
+        "owner-name": "^.{1,40}$",
+        "owner-phone": "^08[7-9]\\d{7}$",
+        "owner-email": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
     }
 
     return patterns[inputName];
