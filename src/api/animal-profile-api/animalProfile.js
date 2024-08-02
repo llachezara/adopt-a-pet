@@ -14,10 +14,10 @@ export async function createAnimalProfile(data, curretUserId) {
         const animalDocRef = await addDoc(animalProfileCollectionRef, animalDocData);
         await updateDoc(animalDocRef, {id: animalDocRef.id});
 
-        return animalDocRef;
+        return {animalDocRef, error: null};
         
     } catch (error) {
-        return error;
+        return {error};
     }
 
 }
