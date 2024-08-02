@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react"
 import { useForm } from "../../hooks/useForm";
+import { useCreateAnimalProfile } from "../../hooks/animal-profile-hooks/useCreateAnimalProfile";
 
 export default function AnimalProfileCreate() {
     const [formStepState, setFormStepState] = useState(1);
+    const { create } = useCreateAnimalProfile();
+
     const animalDetails = useForm({
         name: "",
         species: "cat",
@@ -60,13 +63,19 @@ export default function AnimalProfileCreate() {
         setFormStepState(prevState => prevState - 1);
     }
 
-    const onSubmitHandler = (e) => {
+    const onSubmitHandler = async (e) => {
         e.preventDefault();
 
         const inputErrorsExist = checkCurrentFormValues(ownerDetails.onSubmitCheckValues);
         if(inputErrorsExist){
             return
         }
+
+        await create({
+            ...animalDetails.values,
+            ...healthInformation.values,
+            ...ownerDetails.values
+        })
     }
 
     return (
