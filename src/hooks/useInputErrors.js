@@ -69,7 +69,7 @@ export function useInputErrors(formValues, changedInput) {
                 return {
                     inputName,
                     currentError,
-                    moreErrors: { "repassword": { currentError: errors["repassword"], showError: false } }
+                    moreErrors: { "repassword": { currentError: null, showError: false } }
                 }
             } else if (!isRepasswordValid && !isInputValueValid) {
                 console.log("BOTH NOT VALID*");
