@@ -377,7 +377,7 @@ export default function AnimalProfileCreate() {
                             </fieldset>
                         </form>}
                     {formStepState == 3 &&
-                        <form action="#" method="POST" className="create-form" key={3} onSubmit={(e) => { e.preventDefault(); console.log("Submit") }}>
+                        <form action="#" method="POST" className="create-form" key={3} onSubmit={onSubmitHandler}>
                             <fieldset className="type-1">
                                 <h4 className="fieldset-heading">Owner Details</h4>
                                 <div className="fields-wrapper">

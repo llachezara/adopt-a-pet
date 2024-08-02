@@ -103,7 +103,6 @@ select {
 input:focus,
 textarea:focus,
 select:focus {
-    outline: 0.15em solid #898a8247;
     outline: 0.15em solid #52d3dc47;
 }
 
