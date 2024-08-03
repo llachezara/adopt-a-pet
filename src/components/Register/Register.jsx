@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
+import { showErrorMessage, showSuccessMessage } from "../../utils/messagesUtil";
 import { useForm } from "../../hooks/useForm";
 import { useRegister } from "../../hooks/auth-hooks/useRegister";
 
@@ -24,8 +25,14 @@ export default function Register() {
         if (inputErrorsExist) {
             return
         }
-        await register(values.email, values.password);
+
+        const registerError = await register(values.email, values.password);
+        if (registerError) {
+            return showErrorMessage(registerError.message);
+        }
+
         clearFormValues();
+        showSuccessMessage("Successful register.");
         navigate("/");
 
     }

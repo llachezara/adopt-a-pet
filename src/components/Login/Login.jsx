@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
+import { showErrorMessage, showSuccessMessage } from "../../utils/messagesUtil";
 import { useForm } from "../../hooks/useForm";
 import { useLogin } from "../../hooks/auth-hooks/useLogin";
 
@@ -23,8 +24,15 @@ export default function Logout() {
         if (inputErrorsExist) {
             return
         }
-        await login(values.email, values.password);
+
+        const loginError = await login(values.email, values.password);
+        if (loginError) {
+            console.log(loginError);
+            return showErrorMessage(loginError.message);
+        }
+
         clearFormValues();
+        showSuccessMessage("Successful login.")
         navigate("/");
     }
 

@@ -1,15 +1,27 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 import { AuthContext } from "../../contexts/AuthContext";
+import { showErrorMessage, showSuccessMessage } from "../../utils/messagesUtil";
 import { useLogout } from "../../hooks/auth-hooks/useLogout";
 
 export default function Header() {
   const user = useContext(AuthContext);
   const { logout } = useLogout();
+  const navigate = useNavigate();
+
+  const onClickLogout = async () => {
+    const logoutError = await logout();
+    if (logoutError) {
+      return showErrorMessage(logoutError.message);
+    }
+
+    showSuccessMessage("You've logged out. Come back anytime!");
+    navigate("/");
+  }
 
   return (
     <header>
@@ -45,7 +57,7 @@ export default function Header() {
               </NavLink>
               <div className="dropdown-menu">
                 <NavLink to="#">View details →</NavLink>
-                <NavLink onClick={logout}>Logout</NavLink>
+                <NavLink onClick={onClickLogout}>Logout</NavLink>
               </div>
             </li>
           </ul>

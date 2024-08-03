@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 
+import { showErrorMessage, showSuccessMessage } from "../../../utils/messagesUtil";
 import { useForm } from "../../../hooks/useForm";
 import { useCreateAnimalProfile } from "../../../hooks/animal-profile-hooks/useCreateAnimalProfile";
 
@@ -74,11 +75,16 @@ export default function AnimalProfileCreate() {
             return
         }
 
-        await create({
+        const createError = await create({
             ...animalDetails.values,
             ...healthInformation.values,
             ...ownerDetails.values
         })
+        if (createError) {
+            return showErrorMessage(createError.message);
+        }
+
+        showSuccessMessage("Animal profile created!");
         navigate("/dashboard");
     }
 

@@ -7,11 +7,11 @@ export function useRegister(){
         const registerUserInfo = await registerUser(email, password);
 
         if (registerUserInfo.error) {
-            return console.log("REGISTER ERROR", registerUserInfo.error);
+            return registerUserInfo.error;
         }
 
         const createUserError = await createUser(registerUserInfo.id, email);
-        console.log("CREATE USER ERROR", createUserError)
+        return createUserError;
     }
 
     return {

@@ -11,11 +11,11 @@ export function useCreateAnimalProfile(){
         const animalProfileData = await createAnimalProfile(data, user.id);
 
         if (animalProfileData.error) {
-            return console.log("ANIMAL PROFILE CREATION ERROR", animalProfileData.error);
+            return animalProfileData.error;
         }
 
         const updateUserCreatedAnimalListError = await updateUserCreatedAnimalsList(user.id, animalProfileData.animalDocRef.id, "add");
-        console.log("ERROR in update user's created animal profiles list", updateUserCreatedAnimalListError);
+        return updateUserCreatedAnimalListError;
     }
 
     return {
