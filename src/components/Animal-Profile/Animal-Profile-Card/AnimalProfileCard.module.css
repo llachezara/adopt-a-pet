@@ -1,0 +1,81 @@
+.pet-for-adoption-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30em;
+    align-items: center;
+    font-family: "Aleo", sans-serif;
+    transition: .30s box-shadow;
+    background: #fffcf7;
+    overflow: hidden;
+    box-shadow: 0 0 1em #96989b;
+    border-radius: 5px;
+}
+
+.pet-for-adoption-wrapper:hover {
+    box-shadow: 0 0 2em #797069;
+}
+
+.pet-for-adoption {
+    display: flex;
+    flex-basis: 100%;
+    height: 100%;
+    flex-direction: column;
+    background: #fffcf7;
+}
+
+.pet-info-wrapper {
+    display: flex;
+    flex-direction: row;
+    padding: 1.5rem 1.5rem 2rem;
+}
+
+.pet-info {
+    padding: 0;
+    flex: 1 1 35%;
+    font-size: 1.1rem;
+    text-shadow: 0 0 2px #0000001a;
+}
+
+.pet-info > *+* {
+    margin-top: 0.5rem;
+}
+
+.pet-image-container {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.pet-image-container .pet-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pet-image-container .pet-name {
+    font-size: 1.8em;
+    margin-left: 0.5em;
+    color: #f8f7f5;
+    text-shadow: 0 0 0.5em #605d5d, 0 0 0.2em #605d5d, 0 0 10em #605d5d, 0 0 0.3em #605d5d;
+    position: absolute;
+}
+
+.pet-details-button {
+    align-self: flex-end;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    border: 1px solid #63a58c;
+    background: #5cbea9;
+    color: #ffffff;
+    text-shadow: 0 0 5px #00000066;
+    transition: background-color .2s;
+    box-shadow: 0.1em 0.1em 0.2em #96989b;
+    cursor: pointer;
+}
+
+.pet-details-button:hover {
+    background: #43827e;
+}

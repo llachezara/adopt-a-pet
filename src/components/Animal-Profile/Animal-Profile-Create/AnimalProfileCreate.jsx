@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 
-import { useForm } from "../../hooks/useForm";
-import { useCreateAnimalProfile } from "../../hooks/animal-profile-hooks/useCreateAnimalProfile";
+import { useForm } from "../../../hooks/useForm";
+import { useCreateAnimalProfile } from "../../../hooks/animal-profile-hooks/useCreateAnimalProfile";
 
 export default function AnimalProfileCreate() {
     const [formStepState, setFormStepState] = useState(1);

@@ -4,8 +4,8 @@ import { getAllAnimalProfiles } from "../../api/animal-profile-api/animalProfile
 
 
 export function useGetAnimalProfiles() {
-    const [animaProfilesState, setAnimalProfilesState] = useState({animalProfiles:[], loading: true});
-    console.log(animaProfilesState);
+    const [animalProfilesState, setAnimalProfilesState] = useState({animalProfiles:[], loading: true});
+    console.log(animalProfilesState);
     
 
     useEffect(() => {
@@ -19,6 +19,6 @@ export function useGetAnimalProfiles() {
     }, []);
 
     return {
-        animaProfilesState
+        animalProfilesState
     }
 }

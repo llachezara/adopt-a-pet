@@ -6,7 +6,7 @@ import Home from "./components/Home/Home"
 import Register from "./components/Register/Register"
 import Login from "./components/Login/Login"
 
-import AnimalProfileCreate from "./components/Animal-profile-create/AnimalProfileCreate"
+import AnimalProfileCreate from "./components/Animal-Profile/Animal-Profile-Create/AnimalProfileCreate"
 
 import { useAuth } from "./hooks/auth-hooks/useAuth"
 import { AuthContext } from "./contexts/AuthContext"
