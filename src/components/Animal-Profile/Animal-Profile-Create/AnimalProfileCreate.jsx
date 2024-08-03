@@ -195,7 +195,7 @@ export default function AnimalProfileCreate() {
                                             {animalDetails.inputErrors["imageUrl"].currentError && animalDetails.inputErrors["imageUrl"].showError ?
                                                 <span className="invalid-input-error">{animalDetails.inputErrors["imageUrl"].currentError}</span>
                                                 :
-                                                <span className="helper-info">Image URL must start with 'https://' and be with format png|jpg|jpeg|gif|bmp|svg.</span>
+                                                <span className="helper-info">Image URL must start with 'https://' and be with format png|jpg|jpeg|gif|bmp|svg|webp.</span>
                                             }
                                         </div>
                                     </div>
