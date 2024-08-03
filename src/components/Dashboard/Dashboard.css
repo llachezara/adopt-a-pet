@@ -1,0 +1,196 @@
+.dashboard-header {
+    margin: 0 auto;
+    height: 46em;
+    padding: 3rem 4rem 0 0;
+    color: #535142;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/dasboard-banner.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.dashboard-header-heading {
+    max-width: 50rem;
+    font-size: 3.8rem;
+    text-align: center;
+    text-shadow: 0 0 0.2em #dcd5d5, 0 0 1.2em #605d5d;
+}
+
+.dashboard-content-container {
+    display: flex;
+    flex-direction: row;
+    min-height: 75rem;
+    justify-content: flex-end;
+    margin: 0 auto;
+    max-width: 120rem;
+    background: #ffffff;
+    color: #535142;
+    margin-bottom: 5rem;
+}
+
+/*Showing items shown on current page info*/
+.filter-number-block {
+    font-size: 1.2em;
+    display: flex;
+    gap: 0.2em;
+    justify-content: flex-end;
+    padding: 0 2em;
+    color: #928f8f;
+}
+
+.filter-number-block .inline-block {
+    display: inline-block;
+}
+
+.results-count,
+.items-count {
+    color: #425346;
+    margin: 0 0.3em;
+    font-weight: 600;
+}
+
+.dashboard-main-container {
+    flex: 1 1 80%;
+    margin-top: 2rem;
+}
+
+.dashboard-main {
+    display: grid;
+    flex: 1 1 85em;
+    grid-template-columns: 30% 30% 30%;
+    grid-gap: 3em;
+    padding: 3rem 4rem;
+    min-height: 95%;
+}
+
+.dashboard-main .pet-for-adoption-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30em;
+    align-items: center;
+    font-family: "Aleo", sans-serif;
+    transition: .30s box-shadow;
+    background: #fffcf7;
+    overflow: hidden;
+    box-shadow: 0 0 1em #96989b;
+    border-radius: 5px;
+}
+
+.dashboard-main .pet-for-adoption-wrapper:hover {
+    box-shadow: 0 0 2em #797069;
+}
+
+.dashboard-main .pet-for-adoption {
+    display: flex;
+    flex-basis: 100%;
+    height: 100%;
+    flex-direction: column;
+    background: #fffcf7;
+}
+
+.dashboard-main .pet-info-wrapper {
+    display: flex;
+    flex-direction: row;
+    padding: 1.5rem 1.5rem 2rem;
+}
+
+.dashboard-main .pet-info {
+    padding: 0;
+    font-size: 1.1rem;
+    text-shadow: 0 0 2px #0000001a;
+}
+
+.dashboard-main .pet-info>*+* {
+    margin-top: 0.5rem;
+}
+
+.pet-image-container {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.pet-image-container .pet-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pet-image-container .pet-name {
+    font-size: 1.8em;
+    margin-left: 0.5em;
+    color: #f8f7f5;
+    text-shadow: 0 0 0.5em #605d5d, 0 0 0.2em #605d5d, 0 0 10em #605d5d, 0 0 0.3em #605d5d;
+    position: absolute;
+    /* z-index: 2; */
+}
+
+.pet-details-button {
+    align-self: flex-end;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    border: 1px solid #63a58c;
+    background: #5cbea9;
+    color: #ffffff;
+    text-shadow: 0 0 5px #00000066;
+    transition: background-color .2s;
+    box-shadow: 0.1em 0.1em 0.2em #96989b;
+    cursor: pointer;
+}
+
+.pet-details-button:hover {
+    background: #43827e;
+}
+
+/* PAGINATOR */
+.paginator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0;
+    margin-top: 1rem;
+}
+
+.page-info {
+    margin-right: 1rem;
+}
+
+.page-numbers {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.page-number {
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    text-decoration: none;
+    color: #000;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.page-number.active {
+    background-color: #1db854;
+    color: #fff;
+}
+
+.paginatot-next-button {
+    margin-left: 1rem;
+    padding: 0.6rem 1rem;
+    text-decoration: none;
+    color: #000;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.page-number:hover,
+.paginatot-next-button:hover {
+    background-color: #f0f0f0;
+    color: #000;
+}

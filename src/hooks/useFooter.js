@@ -12,6 +12,7 @@ export function useFooter() {
     useEffect(() => {
         switch (location.pathname) {
             case "/":
+            case "/dashboard":
                 setFooterState({
                     renderFooter: true,
                     renderBigFooter: true
