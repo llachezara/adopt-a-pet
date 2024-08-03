@@ -10,6 +10,7 @@ import AnimalProfileCreate from "./components/Animal-profile-create/AnimalProfil
 
 import { useAuth } from "./hooks/auth-hooks/useAuth"
 import { AuthContext } from "./contexts/AuthContext"
+import Dashboard from "./components/Dashboard/Dashboard"
 
 function App() {
     const authContextData = useAuth();
@@ -23,7 +24,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/auth/register" element={<Register />} />
                     <Route path="/auth/login" element={<Login />} />
-
+                    <Route path="/dashboard" element={<Dashboard />}/>
                     <Route path="/animal-profile/create" element={<AnimalProfileCreate/>}/>
                 </Routes>
             </div>

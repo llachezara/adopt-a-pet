@@ -23,7 +23,7 @@ export default function Header() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="#" className="nav-link">
+              <NavLink to="/dashboard" className="nav-link">
                 Dashboard
               </NavLink>
             </li>
@@ -60,7 +60,7 @@ export default function Header() {
                 </NavLink >
               </li>
               <li>
-                <NavLink to="#" className="nav-link">
+                <NavLink to="/dashboard" className="nav-link">
                   Dashboard
                 </NavLink>
               </li>

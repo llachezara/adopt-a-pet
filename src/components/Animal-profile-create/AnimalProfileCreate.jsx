@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom";
+
 import { useForm } from "../../hooks/useForm";
 import { useCreateAnimalProfile } from "../../hooks/animal-profile-hooks/useCreateAnimalProfile";
 
 export default function AnimalProfileCreate() {
     const [formStepState, setFormStepState] = useState(1);
     const { create } = useCreateAnimalProfile();
+    const navigate = useNavigate();
 
     const animalDetails = useForm({
         name: "",
@@ -76,6 +79,7 @@ export default function AnimalProfileCreate() {
             ...healthInformation.values,
             ...ownerDetails.values
         })
+        navigate("/dashboard");
     }
 
     return (
