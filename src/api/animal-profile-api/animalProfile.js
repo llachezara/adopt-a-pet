@@ -10,6 +10,10 @@ export async function createAnimalProfile(data, curretUserId) {
         ownerId: curretUserId
     };
 
+    if (animalDocData.name == "") {
+        animalDocData.name = "No name";
+    }
+
     try {
         const animalDocRef = await addDoc(animalProfileCollectionRef, animalDocData);
         await updateDoc(animalDocRef, { id: animalDocRef.id });
