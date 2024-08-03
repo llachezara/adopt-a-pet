@@ -2,10 +2,15 @@ import { useGetAnimalProfiles } from '../../hooks/animal-profile-hooks/useAnimal
 
 import Sidebar from './Sidebar/Sidebar';
 import AnimalProfileCard from '../Animal-Profile/Animal-Profile-Card/AnimalProfileCard';
+
+import { showFetchErrorMessage } from '../../utils/messagesUtil';
 import './Dashboard.css';
 
 export default function () {
     const { animalProfilesState } = useGetAnimalProfiles();
+    if (animalProfilesState.error) {
+        showFetchErrorMessage("Failed to load animal profiles.");
+    }
 
     return (
         <>

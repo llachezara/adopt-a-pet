@@ -29,7 +29,7 @@ function App() {
                     <Route path="/dashboard" element={<Dashboard />}/>
                     <Route path="/animal-profile/create" element={<AnimalProfileCreate/>}/>
                 </Routes>
-                <ToastContainer/>
+                <ToastContainer limit={1}/>
             </div>
 
             <Footer />

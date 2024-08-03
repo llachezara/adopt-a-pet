@@ -4,17 +4,23 @@ import { getAllAnimalProfiles } from "../../api/animal-profile-api/animalProfile
 
 
 export function useGetAnimalProfiles() {
-    const [animalProfilesState, setAnimalProfilesState] = useState({animalProfiles:[], loading: true});
-    console.log(animalProfilesState);
-    
+    const [animalProfilesState, setAnimalProfilesState] = useState({animalProfiles:[], loading: true, error: null});
 
     useEffect(() => {
         (async () => {
             const data = await getAllAnimalProfiles();
             if(data.error){
-                return console.log("ERORR in FETCHING ALL ANIMALS", data.error)
+                return setAnimalProfilesState((oldState) => ({ 
+                    ...oldState,
+                    error: data.error, 
+                    loading: false
+                }));
             }
-            setAnimalProfilesState(() => ({ animalProfiles: data.animalProfiles, loading: false}));
+            setAnimalProfilesState((oldState) => ({ 
+                ...oldState,
+                animalProfiles: data.animalProfiles, 
+                loading: false
+            }));
         })();
     }, []);
 

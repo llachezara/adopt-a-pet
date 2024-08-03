@@ -24,3 +24,15 @@ export const showErrorMessage = (message) => {
         hideProgressBar: true
     })
 };
+
+export const showFetchErrorMessage = (message) => {
+    toast(`${message}`, {
+        position: "top-center",
+        theme: "light",
+        type: "error",
+        autoClose: 4000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        hideProgressBar: true
+    })
+};
