@@ -1,24 +1,25 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
+import { AuthContext } from "../../contexts/AuthContext";
 import { getAllAnimalProfiles, getOneAnimalProfile } from "../../api/animal-profile-api/animalProfile";
 
 
 export function useGetAnimalProfiles() {
-    const [animalProfilesState, setAnimalProfilesState] = useState({animalProfiles:[], loading: true, error: null});
+    const [animalProfilesState, setAnimalProfilesState] = useState({ animalProfiles: [], loading: true, error: null });
 
     useEffect(() => {
         (async () => {
             const data = await getAllAnimalProfiles();
-            if(data.error){
-                return setAnimalProfilesState((oldState) => ({ 
+            if (data.error) {
+                return setAnimalProfilesState((oldState) => ({
                     ...oldState,
-                    error: data.error, 
+                    error: data.error,
                     loading: false
                 }));
             }
-            setAnimalProfilesState((oldState) => ({ 
+            setAnimalProfilesState((oldState) => ({
                 ...oldState,
-                animalProfiles: data.animalProfiles, 
+                animalProfiles: data.animalProfiles,
                 loading: false
             }));
         })();
@@ -30,26 +31,43 @@ export function useGetAnimalProfiles() {
 }
 
 export function useGetOneAnimalProfile(animalId) {
-    const [animalProfileState, setAnimalProfileState] = useState({animalProfile: null, loading: true, error: null});
+    const currentUser = useContext(AuthContext);
+    const [isOwnerState, setIsOwnerState] = useState(false);
+
+    const initialState = {
+        animalProfile: null,
+        loading: true,
+        error: null,
+        isOwner: isOwnerState
+    }
+    const [animalProfileState, setAnimalProfileState] = useState(initialState);
 
     useEffect(() => {
         (async () => {
+            if (currentUser.loading == true) {
+                return
+            }
+
             const data = await getOneAnimalProfile(animalId);
-            
-            if(data.error){
-                return setAnimalProfileState((oldState) => ({ 
+            const isOwner = currentUser.id == data.animalProfile.ownerId;
+
+            if (data.error) {
+                return setAnimalProfileState((oldState) => ({
                     ...oldState,
-                    error: data.error, 
+                    error: data.error,
                     loading: false
                 }));
             }
-            setAnimalProfileState((oldState) => ({ 
+
+            setIsOwnerState(() => isOwner);
+            setAnimalProfileState((oldState) => ({
                 ...oldState,
-                animalProfile: data.animalProfile, 
-                loading: false
+                animalProfile: data.animalProfile,
+                loading: false,
+                isOwner: isOwner
             }));
         })();
-    }, []);
+    }, [currentUser]);
 
     return {
         animalProfileState

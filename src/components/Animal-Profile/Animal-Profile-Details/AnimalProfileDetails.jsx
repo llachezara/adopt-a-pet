@@ -6,8 +6,7 @@ import './AnimalProfileDetails.css';
 export default function AnimalProfileDetails() {
     const { animalId } = useParams();
     const { animalProfileState } = useGetOneAnimalProfile(animalId);
-    const { animalProfile, loading, error } = animalProfileState;
-    console.log(animalProfile);
+    const { animalProfile, loading, error, isOwner } = animalProfileState;
 
     if (error) {
         //TODO: Navigate to 404 page
@@ -75,23 +74,25 @@ export default function AnimalProfileDetails() {
                             </div>
                         }
                     </div>
-                    <div className="owner-details">
-                        <h2 className="owner-heading">Owner Details</h2>
-                        <div className="owner-info">
-                            <p>
-                                Name: <span id="owner-name">John Doe</span>
-                            </p>
-                            <p>
-                                Phone: <span id="owner-phone">08735625112</span>
-                            </p>
-                            <p>
-                                Email: <span id="owner-email">johndoe@example.com</span>
-                            </p>
-                            <p>
-                                Location: <span id="owner-location">City, State</span>
-                            </p>
+                    {animalProfile.isAdopted || isOwner &&
+                        <div className="owner-details">
+                            <h2 className="owner-heading">Owner Details</h2>
+                            <div className="owner-info">
+                                <p>
+                                    Name: <span id="owner-name">John Doe</span>
+                                </p>
+                                <p>
+                                    Phone: <span id="owner-phone">08735625112</span>
+                                </p>
+                                <p>
+                                    Email: <span id="owner-email">johndoe@example.com</span>
+                                </p>
+                                <p>
+                                    Location: <span id="owner-location">City, State</span>
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    }
                     <div className="details-action-buttons">
                         <button id="adopt-button">Adopt</button>
 

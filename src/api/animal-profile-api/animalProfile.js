@@ -7,6 +7,7 @@ export async function createAnimalProfile(data, curretUserId) {
     const animalDocData = {
         ...data,
         adoptedFrom: "",
+        isAdopted: false,
         ownerId: curretUserId
     };
 
