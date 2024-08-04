@@ -38,6 +38,7 @@ export function useGetOneAnimalProfile(animalId) {
         animalProfile: null,
         loading: true,
         error: null,
+        isUserPresent: false,
         isOwner: isOwnerState,
         isUserAdopter: false
     }
@@ -48,7 +49,7 @@ export function useGetOneAnimalProfile(animalId) {
             if (currentUser.loading == true) {
                 return
             }
-
+            const isUserPresent = currentUser.isPresent;
             const data = await getOneAnimalProfile(animalId);
             const isOwner = currentUser.id == data.animalProfile.ownerId;
             const isUserAdopter = currentUser.id == data.animalProfile.adoptedFrom;
@@ -66,6 +67,7 @@ export function useGetOneAnimalProfile(animalId) {
                 ...oldState,
                 animalProfile: data.animalProfile,
                 loading: false,
+                isUserPresent: isUserPresent,
                 isOwner: isOwner,
                 isUserAdopter: isUserAdopter
             }));

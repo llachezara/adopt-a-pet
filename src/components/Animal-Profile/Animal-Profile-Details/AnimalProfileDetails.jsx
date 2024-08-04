@@ -6,7 +6,7 @@ import './AnimalProfileDetails.css';
 export default function AnimalProfileDetails() {
     const { animalId } = useParams();
     const { animalProfileState } = useGetOneAnimalProfile(animalId);
-    const { animalProfile, loading, error, isOwner, isUserAdopter } = animalProfileState;
+    const { animalProfile, loading, error, isUserPresent, isOwner, isUserAdopter } = animalProfileState;
 
     if (error) {
         //TODO: Navigate to 404 page
@@ -74,7 +74,7 @@ export default function AnimalProfileDetails() {
                             </div>
                         }
                     </div>
-                    {(animalProfile.isAdopted && isUserAdopter)|| isOwner &&
+                    {(animalProfile.isAdopted && isUserAdopter) || isOwner &&
                         <div className="owner-details">
                             <h2 className="owner-heading">Owner Details</h2>
                             <div className="owner-info">
@@ -96,10 +96,17 @@ export default function AnimalProfileDetails() {
                         </div>
                     }
                     <div className="details-action-buttons">
-                        <button id="adopt-button">Adopt</button>
 
-                        <button id="edit-button">Edit</button>
-                        <button id="delete-button">Delete</button>
+                        {!animalProfile.isAdopted && isUserPresent && !isOwner &&
+                            <button id="adopt-button">Adopt</button>
+                        }
+
+                        {isOwner &&
+                            <>
+                            <button id="edit-button">Edit</button>
+                            <button id="delete-button">Delete</button>
+                            </>
+                        }
 
                     </div>
                 </div>
