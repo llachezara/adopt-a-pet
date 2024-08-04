@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { getAllAnimalProfiles } from "../../api/animal-profile-api/animalProfile";
+import { getAllAnimalProfiles, getOneAnimalProfile } from "../../api/animal-profile-api/animalProfile";
 
 
 export function useGetAnimalProfiles() {
@@ -26,5 +26,32 @@ export function useGetAnimalProfiles() {
 
     return {
         animalProfilesState
+    }
+}
+
+export function useGetOneAnimalProfile(animalId) {
+    const [animalProfileState, setAnimalProfileState] = useState({animalProfile: null, loading: true, error: null});
+
+    useEffect(() => {
+        (async () => {
+            const data = await getOneAnimalProfile(animalId);
+            
+            if(data.error){
+                return setAnimalProfileState((oldState) => ({ 
+                    ...oldState,
+                    error: data.error, 
+                    loading: false
+                }));
+            }
+            setAnimalProfileState((oldState) => ({ 
+                ...oldState,
+                animalProfile: data.animalProfile, 
+                loading: false
+            }));
+        })();
+    }, []);
+
+    return {
+        animalProfileState
     }
 }

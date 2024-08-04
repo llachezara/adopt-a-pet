@@ -1,6 +1,23 @@
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useGetOneAnimalProfile } from '../../../hooks/animal-profile-hooks/useAnimalProfileQueries';
 import './AnimalProfileDetails.css';
 
 export default function AnimalProfileDetails() {
+    const { animalId } = useParams();
+    const { animalProfileState } = useGetOneAnimalProfile(animalId);
+    const { animalProfile, loading, error} = animalProfileState;
+    console.log(animalProfile);
+    
+    if (error) {
+        //TODO: Navigate to 404 page
+        return console.log(error);
+    }
+
+    if (!animalProfile) {
+        return null;
+    }
+
     return (
         <div className="details-main-container">
             <main className="details-main">
@@ -15,43 +32,39 @@ export default function AnimalProfileDetails() {
                             />
                             <div className="info">
                                 <h2 className="animal-heading">
-                                    Name: <span id="animal-name">Buddy</span>
+                                    Name: <span id="animal-name">{animalProfile["name"] || "No name"}</span>
                                 </h2>
                                 <p>
-                                    Species: <span id="animal-species">Dog</span>
+                                    Species: <span id="animal-species">{animalProfile["species"]}</span>
                                 </p>
                                 <p>
-                                    Breed: <span id="animal-breed">Golden Retriever</span>
+                                    Breed: <span id="animal-breed">{animalProfile["breed"]}</span>
                                 </p>
                                 <p>
-                                    Age: <span id="animal-age">2 years</span>
+                                    Age: <span id="animal-age">{animalProfile["age"]}</span>
                                 </p>
                                 <p>
-                                    Gender: <span id="animal-gender">Male</span>
+                                    Gender: <span id="animal-gender">{animalProfile["gender"]}</span>
                                 </p>
                                 <p>
-                                    Size: <span id="animal-size">Large</span>
+                                    Size: <span id="animal-size">{animalProfile["size"]}</span>
                                 </p>
                                 <p>
-                                    Spayed/Neutered: <span id="animal-spayed-neutered">Yes</span>
+                                    Spayed/Neutered: <span id="animal-spayed-neutered">{animalProfile["spayed"]}</span>
                                 </p>
                                 <p>
                                     Medical Conditions:{" "}
-                                    <span id="animal-medical-conditions">None</span>
+                                    <span id="animal-medical-conditions">{animalProfile["med-conditions"] == "Yes" ? animalProfile["med-conditions-info"] : "None"}</span>
                                 </p>
                                 <p>
                                     Personality Traits:{" "}
-                                    <span id="animal-personality">Friendly, Energetic</span>
+                                    <span id="animal-personality">{animalProfile["personality"]}</span>
                                 </p>
                             </div>
                         </div>
                         <div className="animal-background">
                             <h2>Pet background</h2>
-                            <p className="pet-background">
-                                Buddy has a really tough past. He was on the streets and because he
-                                is a golden, he was taken advantage from. He was a in the
-                                neighbourhood. Often he was getting lost, but returned after that.
-                            </p>
+                            <p className="pet-background">{animalProfile["background"]}</p>
                         </div>
                     </div>
                     <div className="owner-details">

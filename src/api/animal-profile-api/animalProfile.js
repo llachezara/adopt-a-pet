@@ -1,5 +1,5 @@
 import { db } from "../../config/firebase";
-import { collection, addDoc, updateDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, updateDoc, getDocs, getDoc, doc } from "firebase/firestore";
 
 const animalProfileCollectionRef = collection(db, 'animal-profiles');
 
@@ -34,6 +34,27 @@ export async function getAllAnimalProfiles() {
             animalProfiles.push(doc.data());
         });
          return { animalProfiles, error:null }
+    } catch (error) {
+        return { error }
+    }
+}
+
+function getAnimalDocReference(animalId) {
+    return doc(db, "animal-profiles", animalId);
+}
+
+export async function getOneAnimalProfile(animalId){
+    try {
+        const animalDocRef = getAnimalDocReference(animalId);
+        const animalDocSnap = await getDoc(animalDocRef);
+
+        if (!animalDocSnap.exists()) {
+            throw new Error("Animal profile does not exist.");
+        }
+
+        const animalProfile = animalDocSnap.data();
+        return { animalProfile, error:null }
+
     } catch (error) {
         return { error }
     }
