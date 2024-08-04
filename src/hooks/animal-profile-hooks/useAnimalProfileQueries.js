@@ -38,7 +38,8 @@ export function useGetOneAnimalProfile(animalId) {
         animalProfile: null,
         loading: true,
         error: null,
-        isOwner: isOwnerState
+        isOwner: isOwnerState,
+        isUserAdopter: false
     }
     const [animalProfileState, setAnimalProfileState] = useState(initialState);
 
@@ -50,6 +51,7 @@ export function useGetOneAnimalProfile(animalId) {
 
             const data = await getOneAnimalProfile(animalId);
             const isOwner = currentUser.id == data.animalProfile.ownerId;
+            const isUserAdopter = currentUser.id == data.animalProfile.adoptedFrom;
 
             if (data.error) {
                 return setAnimalProfileState((oldState) => ({
@@ -64,7 +66,8 @@ export function useGetOneAnimalProfile(animalId) {
                 ...oldState,
                 animalProfile: data.animalProfile,
                 loading: false,
-                isOwner: isOwner
+                isOwner: isOwner,
+                isUserAdopter: isUserAdopter
             }));
         })();
     }, [currentUser]);

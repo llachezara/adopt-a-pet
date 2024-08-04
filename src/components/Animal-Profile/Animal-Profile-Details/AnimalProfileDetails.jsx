@@ -6,7 +6,7 @@ import './AnimalProfileDetails.css';
 export default function AnimalProfileDetails() {
     const { animalId } = useParams();
     const { animalProfileState } = useGetOneAnimalProfile(animalId);
-    const { animalProfile, loading, error, isOwner } = animalProfileState;
+    const { animalProfile, loading, error, isOwner, isUserAdopter } = animalProfileState;
 
     if (error) {
         //TODO: Navigate to 404 page
@@ -74,22 +74,24 @@ export default function AnimalProfileDetails() {
                             </div>
                         }
                     </div>
-                    {animalProfile.isAdopted || isOwner &&
+                    {(animalProfile.isAdopted && isUserAdopter)|| isOwner &&
                         <div className="owner-details">
                             <h2 className="owner-heading">Owner Details</h2>
                             <div className="owner-info">
                                 <p>
-                                    Name: <span id="owner-name">John Doe</span>
+                                    Name: <span id="owner-name">{animalProfile["owner-name"]}</span>
                                 </p>
                                 <p>
-                                    Phone: <span id="owner-phone">08735625112</span>
+                                    Phone: <span id="owner-phone">{animalProfile["owner-phone"]}</span>
                                 </p>
                                 <p>
-                                    Email: <span id="owner-email">johndoe@example.com</span>
+                                    Email: <span id="owner-email">{animalProfile["owner-email"]}</span>
                                 </p>
-                                <p>
-                                    Location: <span id="owner-location">City, State</span>
-                                </p>
+                                {animalProfile["location"] &&
+                                    <p>
+                                        Location: <span id="owner-location">{animalProfile["location"]}</span>
+                                    </p>
+                                }
                             </div>
                         </div>
                     }
