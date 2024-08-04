@@ -8,11 +8,12 @@ import Home from "./components/Home/Home"
 import Register from "./components/Register/Register"
 import Login from "./components/Login/Login"
 
+import Dashboard from "./components/Dashboard/Dashboard"
 import AnimalProfileCreate from "./components/Animal-Profile/Animal-Profile-Create/AnimalProfileCreate"
+import AnimalProfileDetails from "./components/Animal-Profile/Animal-Profile-Details/AnimalProfileDetails"
 
 import { useAuth } from "./hooks/auth-hooks/useAuth"
 import { AuthContext } from "./contexts/AuthContext"
-import Dashboard from "./components/Dashboard/Dashboard"
 
 function App() {
     const authContextData = useAuth();
@@ -28,6 +29,7 @@ function App() {
                     <Route path="/auth/login" element={<Login />} />
                     <Route path="/dashboard" element={<Dashboard />}/>
                     <Route path="/animal-profile/create" element={<AnimalProfileCreate/>}/>
+                    <Route path="/animal-profile/:animalId/details" element={<AnimalProfileDetails/>}/>
                 </Routes>
                 <ToastContainer limit={1}/>
             </div>

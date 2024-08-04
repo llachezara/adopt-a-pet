@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './AnimalProfileCard.module.css';
 
 export default function AnimalProfileCard({
@@ -16,7 +17,7 @@ export default function AnimalProfileCard({
                         <p className={styles["pet-breed"]}>Breed: {animalData.breed}</p>
                         <p className={styles["pet-age"]}>Age: {animalData.age}</p>
                     </div>
-                    <button className={styles["pet-details-button"]}>Details</button>
+                    <Link to={`/animal-profile/${animalData.id}/details`} className={styles["pet-details-button"]}>Details</Link>
                 </div>
             </div>
         </div>

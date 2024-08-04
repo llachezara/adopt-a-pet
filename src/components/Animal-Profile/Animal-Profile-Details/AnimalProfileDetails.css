@@ -1,0 +1,176 @@
+.details-main-container {
+    background-image: url("/soft-orange-brown-watercolor-background-color-splashing-watercolor-abstract-wet-hand-drawn-for-wallpaper-card-greeting-poster-design-cover-invitation-illustration-free-vector.jpg");
+    background-size: cover;
+    padding: 0 2rem 4rem;
+}
+
+.details-content-container {
+    font-family: "Alice", sans-serif;
+    color: #333;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 3rem 4rem;
+    background: #fffaf5;
+    box-shadow: 0 0 1em #4f29068a;
+    border-radius: 10px;
+}
+
+.details-heading {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.details-heading::after {
+    content: "";
+    display: block;
+    width: 10%;
+    height: 3rem;
+    top: 1rem;
+    right: 23rem;
+    text-align: center;
+    position: absolute;
+    background-image: url("/paw-cartoon-removebg-preview.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.animal-details,
+.owner-details {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.animal-info,
+.animal-background,
+.owner-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.animal-heading {
+    margin-bottom: 5px;
+}
+
+.animal-photo {
+    display: block;
+    max-width: 40rem;
+    width: 40rem;
+    object-fit: cover;
+    object-position: center;
+    height: 30rem;
+    border-radius: 20px;
+    box-shadow: 5px 10px 10px #7775728a;
+    margin: 0 auto;
+}
+
+.info {
+    flex: 1;
+    min-width: 300px;
+    margin-left: 5px;
+}
+
+.owner-info {
+    flex: 1 1 100%;
+    margin-top: 8px;
+    gap: 10px;
+}
+
+.owner-heading {
+    font-size: 2rem;
+}
+
+.info p, .pet-background,
+.owner-info p {
+    font-size: 1.3rem;
+    color: #555;
+}
+
+.info p span,
+.owner-info p span {
+    font-weight: bold;
+    color: #1e2219;
+}
+
+.animal-background{
+    margin-top: 3rem;
+    gap: 10px;
+}
+
+.details-action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4rem 0 0;
+    gap: 4rem;
+}
+
+.details-action-buttons > button {
+    font-size: 1.2rem;
+    width: 8rem;
+    height: 3.2rem;
+    border-radius: 6px;
+    transition: background-color .2s,
+        box-shadow .15s;
+    box-shadow: 0 0 0.2em #96989b;
+    cursor: pointer;
+    border: none;
+
+    &:hover {
+        box-shadow: 0.1em 0.1em 0.2em #96989b;
+    }
+}
+
+#adopt-button {
+    border: 1px solid #63a568;
+    background: #5ddc68;
+    width: 12rem;
+    height: 4rem;
+    font-size: 1.3rem;
+    &:hover {
+        background-color: #32ac52;
+        color: #fff;
+    }
+}
+
+#edit-button {
+    border: 1px solid #4d75ba;
+    background: #5697d3;
+    color: #fff;
+
+    &:hover {
+        background-color: #466e93;
+    }
+}
+
+#delete-button {
+    border: 1px solid #a56a63;
+    background: #e3634c;
+    color: #fff;
+
+    &:hover {
+        background-color: #b64f3d;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .animal-info,
+    .animal-background,
+    .owner-info {
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    .animal-photo,
+    .info,
+    .owner-info,
+    .owner-heading {
+        max-width: 100%;
+        text-align: center;
+    }
+}
