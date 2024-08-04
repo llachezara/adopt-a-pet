@@ -6,9 +6,9 @@ import './AnimalProfileDetails.css';
 export default function AnimalProfileDetails() {
     const { animalId } = useParams();
     const { animalProfileState } = useGetOneAnimalProfile(animalId);
-    const { animalProfile, loading, error} = animalProfileState;
+    const { animalProfile, loading, error } = animalProfileState;
     console.log(animalProfile);
-    
+
     if (error) {
         //TODO: Navigate to 404 page
         return console.log(error);
@@ -26,7 +26,7 @@ export default function AnimalProfileDetails() {
                     <div className="animal-details">
                         <div className="animal-info">
                             <img
-                                src="/roxi.jpg"
+                                src={`${animalProfile["imageUrl"]}` || "/default-image.jpg"}
                                 alt="Animal Photo"
                                 className="animal-photo"
                             />
@@ -50,22 +50,30 @@ export default function AnimalProfileDetails() {
                                     Size: <span id="animal-size">{animalProfile["size"]}</span>
                                 </p>
                                 <p>
+                                    Vaccinated: <span id="animal-vaccinated">{animalProfile["vaccinated"]}</span>
+                                </p>
+                                <p>
                                     Spayed/Neutered: <span id="animal-spayed-neutered">{animalProfile["spayed"]}</span>
                                 </p>
                                 <p>
                                     Medical Conditions:{" "}
                                     <span id="animal-medical-conditions">{animalProfile["med-conditions"] == "Yes" ? animalProfile["med-conditions-info"] : "None"}</span>
                                 </p>
-                                <p>
-                                    Personality Traits:{" "}
-                                    <span id="animal-personality">{animalProfile["personality"]}</span>
-                                </p>
+                                {animalProfile["personality"] &&
+                                    <p>
+                                        Personality Traits:{" "}
+                                        <span id="animal-personality">{animalProfile["personality"]}</span>
+                                    </p>
+                                }
                             </div>
                         </div>
-                        <div className="animal-background">
-                            <h2>Pet background</h2>
-                            <p className="pet-background">{animalProfile["background"]}</p>
-                        </div>
+
+                        {animalProfile["background"] &&
+                            <div className="animal-background">
+                                <h2>Pet background</h2>
+                                <p className="pet-background">{animalProfile["background"]}</p>
+                            </div>
+                        }
                     </div>
                     <div className="owner-details">
                         <h2 className="owner-heading">Owner Details</h2>
