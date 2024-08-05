@@ -3,10 +3,10 @@ import { useState } from "react";
 import { useInputErrors } from "./useInputErrors";
 import { useSubmitButton } from "./useSubmitButton";
 
-export function useForm(initialValues) {
+export function useForm(initialValues, option) {
     const [formValues, setFormValues] = useState(initialValues);
     const [changedInput, setChangedInput] = useState({ inputName: '', inputValue: '' });
-    const [inputErrors, setInputErrors] = useInputErrors(formValues, changedInput);
+    const [inputErrors, setInputErrors] = useInputErrors(formValues, changedInput, option);
     const [submitButtonEnabledState] = useSubmitButton(inputErrors);
 
     const onChangeHandler = (e) => {

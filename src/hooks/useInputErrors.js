@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react"
 
-export function useInputErrors(formValues, changedInput) {
+export function useInputErrors(formValues, changedInput, option) {
     const initialErrorsState = {};
-    for (const key in formValues) {
-        initialErrorsState[key] = { currentError: errorsForRequiredFields[key] || null, showError: false }
-        if (key == "med-conditions-info") {
+    if (option != "skipErrorsSetting") {
+        for (const key in formValues) {
+            initialErrorsState[key] = { currentError: errorsForRequiredFields[key] || null, showError: false }
+            if (key == "med-conditions-info") {
+                initialErrorsState[key] = { currentError: null, showError: false }
+            }
+        }
+    }else{
+        for (const key in formValues) {
             initialErrorsState[key] = { currentError: null, showError: false }
         }
     }
