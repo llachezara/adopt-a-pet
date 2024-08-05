@@ -31,3 +31,17 @@ export async function updateUserCreatedAnimalsList(currentUserId, animalProfileI
     }
 }
 
+export async function updateUserAdoptedList(currentUserId, animalProfileId){
+    const currentUserDocRef = getUserDocReference(currentUserId);
+
+    try {
+        await updateDoc(currentUserDocRef, {
+            adoptedList: arrayUnion(animalProfileId)
+        })
+        console.log("Adopted from user.js");
+        
+    } catch (error) {
+        return error;
+    }
+}
+

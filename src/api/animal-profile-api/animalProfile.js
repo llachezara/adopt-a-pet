@@ -60,3 +60,17 @@ export async function getOneAnimalProfile(animalId){
         return { error }
     }
 }
+
+export async function adoptAnAnimal(animalId, currentUserId){
+    try {
+        const animalDocRef = getAnimalDocReference(animalId);
+        await updateDoc(animalDocRef, {
+            adoptedFrom: currentUserId,
+            isAdopted: true
+        })
+
+        return { error: null }
+    } catch (error) {
+        return { error }
+    }
+}

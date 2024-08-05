@@ -2,10 +2,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useGetOneAnimalProfile } from '../../../hooks/animal-profile-hooks/useAnimalProfileQueries';
 import './AnimalProfileDetails.css';
+import { showErrorMessage } from '../../../utils/messagesUtil';
 
 export default function AnimalProfileDetails() {
     const { animalId } = useParams();
-    const { animalProfileState } = useGetOneAnimalProfile(animalId);
+    const { animalProfileState, getAnimalDetails, adopt } = useGetOneAnimalProfile(animalId);
     const { animalProfile, loading, error, isUserPresent, isOwner, isUserAdopter } = animalProfileState;
 
     if (error) {
@@ -15,6 +16,17 @@ export default function AnimalProfileDetails() {
 
     if (!animalProfile) {
         return null;
+    }
+
+    console.log(`Adopted ${animalProfile.isAdopted}`, `User is Present ${isUserPresent}`, `Not owner ${!isOwner}`);
+    
+
+    const onClickAdopt = async (petId) => {
+        const adoptError = await adopt(petId);
+        if (adoptError) {
+            showErrorMessage("Adopting failed.");
+        }
+        await getAnimalDetails();
     }
 
     return (
@@ -98,13 +110,13 @@ export default function AnimalProfileDetails() {
                     <div className="details-action-buttons">
 
                         {!animalProfile.isAdopted && isUserPresent && !isOwner &&
-                            <button id="adopt-button">Adopt</button>
+                            <button id="adopt-button" onClick={()=>onClickAdopt(animalProfile.id)}>Adopt</button>
                         }
 
                         {isOwner &&
                             <>
-                            <button id="edit-button">Edit</button>
-                            <button id="delete-button">Delete</button>
+                                <button id="edit-button">Edit</button>
+                                <button id="delete-button">Delete</button>
                             </>
                         }
 
