@@ -17,9 +17,7 @@ export default function AnimalProfileDetails() {
     if (!animalProfile) {
         return null;
     }
-
-    console.log(`Adopted ${animalProfile.isAdopted}`, `User is Present ${isUserPresent}`, `Not owner ${!isOwner}`);
-    
+    const userCanSeeOwnerDetails = (animalProfile.isAdopted && isUserAdopter) || isOwner;
 
     const onClickAdopt = async (petId) => {
         const adoptError = await adopt(petId);
@@ -87,7 +85,7 @@ export default function AnimalProfileDetails() {
                             </div>
                         }
                     </div>
-                    {(animalProfile.isAdopted && isUserAdopter) || isOwner &&
+                    {userCanSeeOwnerDetails &&
                         <div className="owner-details">
                             <h2 className="owner-heading">Owner Details</h2>
                             <div className="owner-info">
