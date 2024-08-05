@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import { AuthContext } from "../../contexts/AuthContext";
-import { adoptAnAnimal, getAllAnimalProfiles, getOneAnimalProfile } from "../../api/animal-profile-api/animalProfile";
-import { updateUserAdoptedList } from "../../api/user-api/user";
-
+import { getAllAnimalProfiles, getOneAnimalProfile } from "../../api/animal-profile-api/animalProfile";
 
 export function useGetAnimalProfiles() {
     const [animalProfilesState, setAnimalProfilesState] = useState({ animalProfiles: [], loading: true, error: null });
@@ -31,7 +30,8 @@ export function useGetAnimalProfiles() {
     }
 }
 
-export function useGetOneAnimalProfile(animalId) {
+export function useGetOneAnimalProfile() {
+    const { animalId } = useParams();
     const currentUser = useContext(AuthContext);
     const [isOwnerState, setIsOwnerState] = useState(false);
 
@@ -72,27 +72,13 @@ export function useGetOneAnimalProfile(animalId) {
             isUserAdopter: isUserAdopter
         }));
     }
+
     useEffect(() => {
         getAnimalDetails();
     }, [currentUser]);
 
-
-    const adopt = async (animalId) => {
-        const adoptedData = await adoptAnAnimal(animalId, currentUser.id);
-
-        if (adoptedData.error) {
-            return adoptedData.error;
-        }
-
-        const updateUserAdoptedListError = await updateUserAdoptedList(currentUser.id, animalId);
-        if (updateUserAdoptedListError) {
-            return updateUserAdoptedListError;
-        }
-    }
-
     return {
         animalProfileState,
-        getAnimalDetails,
-        adopt
+        getAnimalDetails
     }
 }

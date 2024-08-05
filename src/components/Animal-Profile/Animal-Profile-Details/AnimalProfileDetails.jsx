@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import { useGetOneAnimalProfile } from '../../../hooks/animal-profile-hooks/useAnimalProfileQueries';
@@ -6,11 +6,12 @@ import './AnimalProfileDetails.css';
 import { showErrorMessage } from '../../../utils/messagesUtil';
 
 import AnimalProfileDelete from '../Animal-Profile-Delete/AnimalProfileDelete';
+import AnimalProfileAdopt from '../Animal-Profile-Adopt/AnimalProfileAdopt';
 
 export default function AnimalProfileDetails() {
-    const { animalId } = useParams();
-    const { animalProfileState, getAnimalDetails, adopt } = useGetOneAnimalProfile(animalId);
+    const { animalProfileState, getAnimalDetails } = useGetOneAnimalProfile();
     const { animalProfile, loading, error, isUserPresent, isOwner, isUserAdopter } = animalProfileState;
+    const [ showAdoptModalState, setShowAdoptModalState] = useState(false);
     const [ showDeleteModalState, setShowDeleteModalState] = useState(false);
 
     if (error) {
@@ -23,12 +24,11 @@ export default function AnimalProfileDetails() {
     }
     const userCanSeeOwnerDetails = (animalProfile.isAdopted && isUserAdopter) || isOwner;
 
-    const onClickAdopt = async (petId) => {
-        const adoptError = await adopt(petId);
-        if (adoptError) {
-            showErrorMessage("Adopting failed.");
-        }
-        await getAnimalDetails();
+    const showAdoptModalHandler = () => {
+        setShowAdoptModalState(true);
+    }
+    const hideAdoptModalHandler = () => {
+        setShowAdoptModalState(false)
     }
 
     const showDeleteModalHandler = () => {
@@ -120,7 +120,7 @@ export default function AnimalProfileDetails() {
                     <div className="details-action-buttons">
 
                         {!animalProfile.isAdopted && isUserPresent && !isOwner &&
-                            <button id="adopt-button" onClick={() => onClickAdopt(animalProfile.id)}>Adopt</button>
+                            <button id="adopt-button" onClick={showAdoptModalHandler}>Adopt</button>
                         }
 
                         {isOwner &&
@@ -139,6 +139,7 @@ export default function AnimalProfileDetails() {
                 </div>
 
                 {showDeleteModalState && <AnimalProfileDelete hideDeleteModalHandler={hideDeleteModalHandler} petId={animalProfile.id}/>}
+                {showAdoptModalState && <AnimalProfileAdopt hideAdoptModalHandler={hideAdoptModalHandler} petId={animalProfile.id} getAnimalDetails={getAnimalDetails}/>}
             </main>
         </div>
 

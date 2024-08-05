@@ -109,6 +109,8 @@
 }
 
 .animal-background{
+    display: flex;
+    flex-direction: column;
     margin-top: 3rem;
     gap: 10px;
 }
