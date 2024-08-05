@@ -7,12 +7,14 @@ import { showErrorMessage } from '../../../utils/messagesUtil';
 
 import AnimalProfileDelete from '../Animal-Profile-Delete/AnimalProfileDelete';
 import AnimalProfileAdopt from '../Animal-Profile-Adopt/AnimalProfileAdopt';
+import AnimalProfileEdit from '../Animal-Profile-Edit/AnimalProfileEdit';
 
 export default function AnimalProfileDetails() {
     const { animalProfileState, getAnimalDetails } = useGetOneAnimalProfile();
     const { animalProfile, loading, error, isUserPresent, isOwner, isUserAdopter } = animalProfileState;
-    const [ showAdoptModalState, setShowAdoptModalState] = useState(false);
-    const [ showDeleteModalState, setShowDeleteModalState] = useState(false);
+    const [showAdoptModalState, setShowAdoptModalState] = useState(false);
+    const [showDeleteModalState, setShowDeleteModalState] = useState(false);
+    const [showEditState, setShowEditState] = useState(false);
 
     if (error) {
         //TODO: Navigate to 404 page
@@ -37,6 +39,13 @@ export default function AnimalProfileDetails() {
 
     const hideDeleteModalHandler = () => {
         setShowDeleteModalState(false)
+    }
+
+    const showEditHandler = () => {
+        setShowEditState(true);
+    }
+    const hideEditHandler = () => {
+        setShowEditState(false)
     }
     return (
         <div className="details-main-container">
@@ -125,7 +134,7 @@ export default function AnimalProfileDetails() {
 
                         {isOwner &&
                             <>
-                                <button id="edit-button">Edit</button>
+                                <button id="edit-button" onClick={showEditHandler}>Edit</button>
                                 <button id="delete-button" onClick={showDeleteModalHandler}>Delete</button>
                             </>
                         }
@@ -138,8 +147,9 @@ export default function AnimalProfileDetails() {
                     }
                 </div>
 
-                {showDeleteModalState && <AnimalProfileDelete hideDeleteModalHandler={hideDeleteModalHandler} petId={animalProfile.id} petOwnerId={animalProfile.adoptedFrom}/>}
-                {showAdoptModalState && <AnimalProfileAdopt hideAdoptModalHandler={hideAdoptModalHandler} petId={animalProfile.id} getAnimalDetails={getAnimalDetails}/>}
+                {showDeleteModalState && <AnimalProfileDelete hideDeleteModalHandler={hideDeleteModalHandler} petId={animalProfile.id} petOwnerId={animalProfile.adoptedFrom} />}
+                {showAdoptModalState && <AnimalProfileAdopt hideAdoptModalHandler={hideAdoptModalHandler} petId={animalProfile.id} getAnimalDetails={getAnimalDetails} />}
+                {showEditState && <AnimalProfileEdit hideEditHandler={hideEditHandler} />}
             </main>
         </div>
 
