@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 import { useGetOneAnimalProfile } from '../../../hooks/animal-profile-hooks/useAnimalProfileQueries';
 import './AnimalProfileDetails.css';
@@ -10,6 +11,7 @@ export default function AnimalProfileDetails() {
     const { animalId } = useParams();
     const { animalProfileState, getAnimalDetails, adopt } = useGetOneAnimalProfile(animalId);
     const { animalProfile, loading, error, isUserPresent, isOwner, isUserAdopter } = animalProfileState;
+    const [ showDeleteModalState, setShowDeleteModalState] = useState(false);
 
     if (error) {
         //TODO: Navigate to 404 page
@@ -29,6 +31,13 @@ export default function AnimalProfileDetails() {
         await getAnimalDetails();
     }
 
+    const showDeleteModalHandler = () => {
+        setShowDeleteModalState(true);
+    }
+
+    const hideDeleteModalHandler = () => {
+        setShowDeleteModalState(false)
+    }
     return (
         <div className="details-main-container">
             <main className="details-main">
@@ -117,7 +126,7 @@ export default function AnimalProfileDetails() {
                         {isOwner &&
                             <>
                                 <button id="edit-button">Edit</button>
-                                <button id="delete-button">Delete</button>
+                                <button id="delete-button" onClick={showDeleteModalHandler}>Delete</button>
                             </>
                         }
                     </div>
@@ -129,7 +138,7 @@ export default function AnimalProfileDetails() {
                     }
                 </div>
 
-                <AnimalProfileDelete/>
+                {showDeleteModalState && <AnimalProfileDelete hideDeleteModalHandler={hideDeleteModalHandler} />}
             </main>
         </div>
 
