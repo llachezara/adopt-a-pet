@@ -4,6 +4,8 @@ import { useGetOneAnimalProfile } from '../../../hooks/animal-profile-hooks/useA
 import './AnimalProfileDetails.css';
 import { showErrorMessage } from '../../../utils/messagesUtil';
 
+import AnimalProfileDelete from '../Animal-Profile-Delete/AnimalProfileDelete';
+
 export default function AnimalProfileDetails() {
     const { animalId } = useParams();
     const { animalProfileState, getAnimalDetails, adopt } = useGetOneAnimalProfile(animalId);
@@ -126,6 +128,8 @@ export default function AnimalProfileDetails() {
                         </div>
                     }
                 </div>
+
+                <AnimalProfileDelete/>
             </main>
         </div>
 
