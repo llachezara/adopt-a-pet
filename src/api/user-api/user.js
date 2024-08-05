@@ -1,5 +1,5 @@
 import { db } from "../../config/firebase";
-import { setDoc, doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { setDoc, doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 
 export async function createUser(uid, email) {
     try {
@@ -25,6 +25,11 @@ export async function updateUserCreatedAnimalsList(currentUserId, animalProfileI
                 createdAnimalProfiles:  arrayUnion(animalProfileId)
             });
             console.log("Updated");
+        }else if(option == "remove"){
+            await updateDoc(currentUserDocRef, {
+                createdAnimalProfiles:  arrayRemove(animalProfileId)
+            });
+            console.log("Removed");
         }
     } catch (error) {
         return error;
@@ -39,7 +44,7 @@ export async function updateUserAdoptedList(currentUserId, animalProfileId){
             adoptedList: arrayUnion(animalProfileId)
         })
         console.log("Adopted from user.js");
-        
+
     } catch (error) {
         return error;
     }

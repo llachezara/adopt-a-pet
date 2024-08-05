@@ -1,5 +1,5 @@
 import { db } from "../../config/firebase";
-import { collection, addDoc, updateDoc, getDocs, getDoc, doc } from "firebase/firestore";
+import { collection, addDoc, updateDoc, getDocs, getDoc, doc, deleteDoc } from "firebase/firestore";
 
 const animalProfileCollectionRef = collection(db, 'animal-profiles');
 
@@ -34,7 +34,7 @@ export async function getAllAnimalProfiles() {
         querySnapshot.forEach((doc) => {
             animalProfiles.push(doc.data());
         });
-         return { animalProfiles, error:null }
+        return { animalProfiles, error: null }
     } catch (error) {
         return { error }
     }
@@ -44,7 +44,7 @@ function getAnimalDocReference(animalId) {
     return doc(db, "animal-profiles", animalId);
 }
 
-export async function getOneAnimalProfile(animalId){
+export async function getOneAnimalProfile(animalId) {
     try {
         const animalDocRef = getAnimalDocReference(animalId);
         const animalDocSnap = await getDoc(animalDocRef);
@@ -54,14 +54,14 @@ export async function getOneAnimalProfile(animalId){
         }
 
         const animalProfile = animalDocSnap.data();
-        return { animalProfile, error:null }
+        return { animalProfile, error: null }
 
     } catch (error) {
         return { error }
     }
 }
 
-export async function adoptAnAnimal(animalId, currentUserId){
+export async function adoptAnAnimal(animalId, currentUserId) {
     try {
         const animalDocRef = getAnimalDocReference(animalId);
         await updateDoc(animalDocRef, {
@@ -70,6 +70,17 @@ export async function adoptAnAnimal(animalId, currentUserId){
         })
 
         return { error: null }
+    } catch (error) {
+        return { error }
+    }
+}
+
+export async function deleteAnimalProfile(animalId) {
+    try {
+        const animalDocRef = getAnimalDocReference(animalId);
+        await deleteDoc(animalDocRef);
+
+        return {error: null}
     } catch (error) {
         return { error }
     }

@@ -1,13 +1,29 @@
 import { useEffect } from "react"
+import { useNavigate } from "react-router-dom";
+
 import "./AnimalProfileDelete.css"
+import { useDeleteAnimalProfile } from "../../../hooks/animal-profile-hooks/useDeleteAnimalProfile";
+import { showErrorMessage, showSuccessMessage } from "../../../utils/messagesUtil";
 
 export default function AnimalProfileDelete ({
-    hideDeleteModalHandler
+    hideDeleteModalHandler,
+    petId
 }) {
+    const navigate = useNavigate();
+    const { deleteProfile } = useDeleteAnimalProfile();
     useEffect(()=>{
         window.scrollTo(0,0);
     }, []);
     
+    const onDeleteHandler = async () => {
+        const deleteError = await deleteProfile(petId);
+        if (deleteError) {
+            showErrorMessage("Deletion failed.");
+        }
+        showSuccessMessage("Animal profile deleted!");
+        navigate("/dashboard");
+    }
+
     return (
         <div className="overlay">
             <div className="backdrop" onClick={hideDeleteModalHandler}></div>
@@ -26,7 +42,7 @@ export default function AnimalProfileDelete ({
                     </section>
                     <div className="actions">
                         <div id="form-actions">
-                            <button id="action-save" className="btn" type="submit">Delete</button>
+                            <button id="action-save" className="btn" type="submit" onClick={onDeleteHandler}>Delete</button>
                             <button id="action-cancel" className="btn" type="button" onClick={hideDeleteModalHandler}>
                                 Cancel
                             </button>
