@@ -18,7 +18,18 @@ export default function AnimalProfileEdit({
         "gender": animalProfileInfo.gender,
         "personality": animalProfileInfo.personality,
         "background": animalProfileInfo.background
-    }, "skipErrorsSetting")
+    }, "skipErrorsSetting");
+
+    const healthAndOwnerInfo = useForm({
+        "vaccinated": animalProfileInfo["vaccinated"],
+        "spayed": animalProfileInfo["spayed"],
+        "med-conditions": animalProfileInfo["med-conditions"],
+        "med-conditions-info": animalProfileInfo["med-conditions-info"],
+        "owner-name": animalProfileInfo["owner-name"],
+        "owner-email": animalProfileInfo["owner-email"],
+        "owner-phone": animalProfileInfo["owner-phone"],
+        "location": animalProfileInfo["location"]
+    }, "skipErrorsSetting");
 
     useEffect(() => {
         window?.scrollTo(0, 0);
@@ -34,6 +45,9 @@ export default function AnimalProfileEdit({
             case 1:
                 inputErrorsExist = checkCurrentFormValues(animalDetails.onSubmitCheckValues);
                 break;
+            case 2:
+                inputErrorsExist = checkCurrentFormValues(healthAndOwnerInfo.onSubmitCheckValues);
+                break;
         }
 
         if (!inputErrorsExist) {
@@ -44,6 +58,12 @@ export default function AnimalProfileEdit({
     const previousHandler = (e) => {
         e.preventDefault();
         setFormStepState(prevState => prevState - 1);
+    }
+
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+        console.log("Submit");
+        hideEditHandler();
     }
 
     return (
@@ -253,7 +273,7 @@ export default function AnimalProfileEdit({
                     </fieldset>
 
                 </form>}
-                {formStepState == 2 && <form action="#" method="POST" className="edit-form">
+                {formStepState == 2 && <form action="#" method="POST" className="edit-form" onSubmit={onSubmitHandler}>
                     <fieldset>
                         <div className="fields-wrapper">
                             <div className="fields-wrapper-1">
@@ -269,8 +289,8 @@ export default function AnimalProfileEdit({
                                                 name="vaccinated"
                                                 id="vacc-yes"
                                                 value="Yes"
-                                            // checked={healthInformation.values["vaccinated"] == "Yes"}
-                                            // onChange={healthInformation.onChangeHandler}
+                                                checked={healthAndOwnerInfo.values["vaccinated"] == "Yes"}
+                                                onChange={healthAndOwnerInfo.onChangeHandler}
                                             />
                                             <label htmlFor="vacc-yes">Yes</label>
                                             <input
@@ -278,8 +298,8 @@ export default function AnimalProfileEdit({
                                                 name="vaccinated"
                                                 id="vacc-no"
                                                 value="No"
-                                            // checked={healthInformation.values["vaccinated"] == "No"}
-                                            // onChange={healthInformation.onChangeHandler}
+                                                checked={healthAndOwnerInfo.values["vaccinated"] == "No"}
+                                                onChange={healthAndOwnerInfo.onChangeHandler}
                                             />
                                             <label htmlFor="vacc-no">No</label>
                                         </div>
@@ -292,8 +312,8 @@ export default function AnimalProfileEdit({
                                                 name="spayed"
                                                 id="spayed-yes"
                                                 value="Yes"
-                                            // checked={healthInformation.values["spayed"] == "Yes"}
-                                            // onChange={healthInformation.onChangeHandler}
+                                                checked={healthAndOwnerInfo.values["spayed"] == "Yes"}
+                                                onChange={healthAndOwnerInfo.onChangeHandler}
                                             />
                                             <label htmlFor="spayed-yes">Yes</label>
                                             <input
@@ -301,8 +321,8 @@ export default function AnimalProfileEdit({
                                                 name="spayed"
                                                 id="spayed-no"
                                                 value="No"
-                                            // checked={healthInformation.values["spayed"] == "No"}
-                                            // onChange={healthInformation.onChangeHandler}
+                                                checked={healthAndOwnerInfo.values["spayed"] == "No"}
+                                                onChange={healthAndOwnerInfo.onChangeHandler}
                                             />
                                             <label htmlFor="spayed-no">No</label>
                                         </div>
@@ -315,8 +335,8 @@ export default function AnimalProfileEdit({
                                                 name="med-conditions"
                                                 id="med-conditions-yes"
                                                 value="Yes"
-                                            // checked={healthInformation.values["med-conditions"] == "Yes"}
-                                            // onChange={healthInformation.onChangeHandler}
+                                                checked={healthAndOwnerInfo.values["med-conditions"] == "Yes"}
+                                                onChange={healthAndOwnerInfo.onChangeHandler}
                                             />
                                             <label htmlFor="med-conditions-yes">Yes</label>
                                             <input
@@ -324,8 +344,8 @@ export default function AnimalProfileEdit({
                                                 name="med-conditions"
                                                 id="med-conditions-no"
                                                 value="No"
-                                            // checked={healthInformation.values["med-conditions"] == "No"}
-                                            // onChange={healthInformation.onChangeHandler}
+                                                checked={healthAndOwnerInfo.values["med-conditions"] == "No"}
+                                                onChange={healthAndOwnerInfo.onChangeHandler}
                                             />
                                             <label htmlFor="med-conditions-no">No</label>
                                         </div>
@@ -334,16 +354,16 @@ export default function AnimalProfileEdit({
                                             name="med-conditions-info"
                                             id="med-conditions-info"
                                             placeholder="Write the medical condition..."
-                                        // className={`${healthInformation.values["med-conditions"] == "Yes" ? "" : "textarea-disabled"} ${healthInformation.inputErrors["med-conditions-info"].currentError && healthInformation.inputErrors["med-conditions-info"].showError ? "invalid" : ""}`}
-                                        // disabled={healthInformation.values["med-conditions"] == "Yes" ? false : true}
-                                        // value={healthInformation.values["med-conditions-info"]}
-                                        // onChange={healthInformation.onChangeHandler}
-                                        // onBlur={healthInformation.onBlurHandler}
-                                        // onFocus={healthInformation.onFocusHandler}
+                                            className={`${healthAndOwnerInfo.values["med-conditions"] == "Yes" ? "" : "textarea-disabled"} ${healthAndOwnerInfo.inputErrors["med-conditions-info"].currentError && healthAndOwnerInfo.inputErrors["med-conditions-info"].showError ? "invalid" : ""}`}
+                                            disabled={healthAndOwnerInfo.values["med-conditions"] == "Yes" ? false : true}
+                                            value={healthAndOwnerInfo.values["med-conditions-info"]}
+                                            onChange={healthAndOwnerInfo.onChangeHandler}
+                                            onBlur={healthAndOwnerInfo.onBlurHandler}
+                                            onFocus={healthAndOwnerInfo.onFocusHandler}
                                         />
-                                        {/* {healthInformation.inputErrors["med-conditions-info"].currentError && healthInformation.inputErrors["med-conditions-info"].showError &&
-                                <span className="invalid-input-error">{healthInformation.inputErrors["med-conditions-info"].currentError}</span>
-                            } */}
+                                        {healthAndOwnerInfo.inputErrors["med-conditions-info"].currentError && healthAndOwnerInfo.inputErrors["med-conditions-info"].showError &&
+                                            <span className="invalid-input-error">{healthAndOwnerInfo.inputErrors["med-conditions-info"].currentError}</span>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -356,17 +376,17 @@ export default function AnimalProfileEdit({
                                             type="text"
                                             id="owner-name"
                                             name="owner-name"
-                                        // className={ownerDetails.inputErrors["owner-name"].currentError && ownerDetails.inputErrors["owner-name"].showError ? "invalid" : ""}
-                                        // value={ownerDetails.values["owner-name"]}
-                                        // onChange={ownerDetails.onChangeHandler}
-                                        // onBlur={ownerDetails.onBlurHandler}
-                                        // onFocus={ownerDetails.onFocusHandler}
+                                            className={healthAndOwnerInfo.inputErrors["owner-name"].currentError && healthAndOwnerInfo.inputErrors["owner-name"].showError ? "invalid" : ""}
+                                            value={healthAndOwnerInfo.values["owner-name"]}
+                                            onChange={healthAndOwnerInfo.onChangeHandler}
+                                            onBlur={healthAndOwnerInfo.onBlurHandler}
+                                            onFocus={healthAndOwnerInfo.onFocusHandler}
                                         />
-                                        {/* {ownerDetails.inputErrors["owner-name"].currentError && ownerDetails.inputErrors["owner-name"].showError ?
-                                    <span className="invalid-input-error">{ownerDetails.inputErrors["owner-name"].currentError}</span>
-                                    :
-                                    <span className="helper-info">example: Yana Petkova</span>
-                                } */}
+                                        {healthAndOwnerInfo.inputErrors["owner-name"].currentError && healthAndOwnerInfo.inputErrors["owner-name"].showError ?
+                                            <span className="invalid-input-error">{healthAndOwnerInfo.inputErrors["owner-name"].currentError}</span>
+                                            :
+                                            <span className="helper-info">example: Yana Petkova</span>
+                                        }
                                     </div>
                                     <div className="field">
                                         <label htmlFor="owner-phone" className="required">Phone Number</label>
@@ -374,17 +394,17 @@ export default function AnimalProfileEdit({
                                             type="text"
                                             id="owner-phone"
                                             name="owner-phone"
-                                        // className={ownerDetails.inputErrors["owner-phone"].currentError && ownerDetails.inputErrors["owner-phone"].showError ? "invalid" : ""}
-                                        // value={ownerDetails.values["owner-phone"]}
-                                        // onChange={ownerDetails.onChangeHandler}
-                                        // onBlur={ownerDetails.onBlurHandler}
-                                        // onFocus={ownerDetails.onFocusHandler}
+                                            className={healthAndOwnerInfo.inputErrors["owner-phone"].currentError && healthAndOwnerInfo.inputErrors["owner-phone"].showError ? "invalid" : ""}
+                                            value={healthAndOwnerInfo.values["owner-phone"]}
+                                            onChange={healthAndOwnerInfo.onChangeHandler}
+                                            onBlur={healthAndOwnerInfo.onBlurHandler}
+                                            onFocus={healthAndOwnerInfo.onFocusHandler}
                                         />
-                                        {/* {ownerDetails.inputErrors["owner-phone"].currentError && ownerDetails.inputErrors["owner-phone"].showError ?
-                                    <span className="invalid-input-error">{ownerDetails.inputErrors["owner-phone"].currentError}</span>
-                                    :
-                                    <span className="helper-info">Please enter a valid Bulgarian phone number starting with '08', followed by 8 digits (e.g., 0871234567).</span>
-                                } */}
+                                        {healthAndOwnerInfo.inputErrors["owner-phone"].currentError && healthAndOwnerInfo.inputErrors["owner-phone"].showError ?
+                                            <span className="invalid-input-error">{healthAndOwnerInfo.inputErrors["owner-phone"].currentError}</span>
+                                            :
+                                            <span className="helper-info">Please enter a valid Bulgarian phone number starting with '08', followed by 8 digits (e.g., 0871234567).</span>
+                                        }
                                     </div>
                                     {/* enter a valid Bulgarian phone number starting with '08', followed by 8 digits (e.g., 0871234567). */}
                                     <div className="field">
@@ -393,17 +413,17 @@ export default function AnimalProfileEdit({
                                             type="text"
                                             id="owner-email"
                                             name="owner-email"
-                                        // className={ownerDetails.inputErrors["owner-email"].currentError && ownerDetails.inputErrors["owner-email"].showError ? "invalid" : ""}
-                                        // value={ownerDetails.values["owner-email"]}
-                                        // onChange={ownerDetails.onChangeHandler}
-                                        // onBlur={ownerDetails.onBlurHandler}
-                                        // onFocus={ownerDetails.onFocusHandler}
+                                            className={healthAndOwnerInfo.inputErrors["owner-email"].currentError && healthAndOwnerInfo.inputErrors["owner-email"].showError ? "invalid" : ""}
+                                            value={healthAndOwnerInfo.values["owner-email"]}
+                                            onChange={healthAndOwnerInfo.onChangeHandler}
+                                            onBlur={healthAndOwnerInfo.onBlurHandler}
+                                            onFocus={healthAndOwnerInfo.onFocusHandler}
                                         />
-                                        {/* {ownerDetails.inputErrors["owner-email"].currentError && ownerDetails.inputErrors["owner-email"].showError ?
-                                    <span className="invalid-input-error">{ownerDetails.inputErrors["owner-email"].currentError}</span>
-                                    :
-                                    <span className="helper-info">example: john.doe@gmail.com</span>
-                                } */}
+                                        {healthAndOwnerInfo.inputErrors["owner-email"].currentError && healthAndOwnerInfo.inputErrors["owner-email"].showError ?
+                                            <span className="invalid-input-error">{healthAndOwnerInfo.inputErrors["owner-email"].currentError}</span>
+                                            :
+                                            <span className="helper-info">example: john.doe@gmail.com</span>
+                                        }
                                     </div>
                                     <div className="field">
                                         <label htmlFor="location">Location</label>
@@ -411,11 +431,11 @@ export default function AnimalProfileEdit({
                                             type="text"
                                             id="location"
                                             name="location"
-                                        // className={ownerDetails.inputErrors["location"].currentError && ownerDetails.inputErrors["location"].showError ? "invalid" : ""}
-                                        // value={ownerDetails.values["location"]}
-                                        // onChange={ownerDetails.onChangeHandler}
-                                        // onBlur={ownerDetails.onBlurHandler}
-                                        // onFocus={ownerDetails.onFocusHandler}
+                                            className={healthAndOwnerInfo.inputErrors["location"].currentError && healthAndOwnerInfo.inputErrors["location"].showError ? "invalid" : ""}
+                                            value={healthAndOwnerInfo.values["location"]}
+                                            onChange={healthAndOwnerInfo.onChangeHandler}
+                                            onBlur={healthAndOwnerInfo.onBlurHandler}
+                                            onFocus={healthAndOwnerInfo.onFocusHandler}
                                         />
                                         {/* TODO: Integrate google maps */}
                                     </div>
@@ -426,7 +446,13 @@ export default function AnimalProfileEdit({
                             <button id="action-previous" className="btn" type="button" onClick={previousHandler}>
                                 Previous
                             </button>
-                            <button id="action-save" className="btn" type="submit">Save</button>
+                            <button
+                                id="action-save"
+                                type="submit"
+                                className={`btn ${healthAndOwnerInfo.submitButtonEnabledState ? "" : "form-button-disabled"}`}
+                                disabled={!healthAndOwnerInfo.submitButtonEnabledState}
+                            >Save
+                            </button>
                         </div>
                     </fieldset>
                 </form>}
