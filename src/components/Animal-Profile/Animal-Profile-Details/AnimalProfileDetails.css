@@ -65,6 +65,19 @@
     border-radius: 20px;
     box-shadow: 5px 10px 10px #7775728a;
     margin: 0 auto;
+    position: relative;
+}
+
+.animal-photo-adopted{
+    display: inline-block;
+    position: absolute;
+    width: 10rem;
+    height: 7rem;
+    background-image: url("/adopted-badge-alice.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index:2;
 }
 
 .info {
@@ -124,6 +137,12 @@
     }
 }
 
+.pet-adopted{
+    display: block;
+    text-align: left;
+    text-shadow: 0 0 1em #dbeb9c;
+}
+
 #adopt-button {
     border: 1px solid #63a568;
     background: #5ddc68;
@@ -169,7 +188,8 @@
     .animal-photo,
     .info,
     .owner-info,
-    .owner-heading {
+    .owner-heading, 
+    .pet-adopted {
         max-width: 100%;
         text-align: center;
     }

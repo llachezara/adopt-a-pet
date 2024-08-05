@@ -80,3 +80,16 @@
 .pet-details-button:hover {
     background: #43827e;
 }
+
+.animal-photo-adopted{
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    width: 7rem;
+    height: 5rem;
+    background-image: url("/adopted-badge-alice.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index:2;
+}

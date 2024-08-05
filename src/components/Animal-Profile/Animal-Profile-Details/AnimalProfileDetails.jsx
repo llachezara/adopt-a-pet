@@ -41,6 +41,7 @@ export default function AnimalProfileDetails() {
                                 alt="Animal Photo"
                                 className="animal-photo"
                             />
+                            {animalProfile.isAdopted && <span className="animal-photo-adopted"></span>}
                             <div className="info">
                                 <h2 className="animal-heading">
                                     Name: <span id="animal-name">{animalProfile["name"] || "No name"}</span>
@@ -110,7 +111,7 @@ export default function AnimalProfileDetails() {
                     <div className="details-action-buttons">
 
                         {!animalProfile.isAdopted && isUserPresent && !isOwner &&
-                            <button id="adopt-button" onClick={()=>onClickAdopt(animalProfile.id)}>Adopt</button>
+                            <button id="adopt-button" onClick={() => onClickAdopt(animalProfile.id)}>Adopt</button>
                         }
 
                         {isOwner &&
@@ -119,8 +120,13 @@ export default function AnimalProfileDetails() {
                                 <button id="delete-button">Delete</button>
                             </>
                         }
-
                     </div>
+                    {isUserAdopter &&
+                        <div className="pet-adopted">
+                            <h4>You've adopted this pet!</h4>
+                            <p>Please contact the previous owner for more information about your new furry friend.</p>
+                        </div>
+                    }
                 </div>
             </main>
         </div>

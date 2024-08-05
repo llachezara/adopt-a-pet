@@ -9,6 +9,7 @@ export default function AnimalProfileCard({
             <div className={styles["pet-for-adoption"]}>
                 <div className={styles["pet-image-container"]}>
                     <img className={styles["pet-image"]} src={animalData.imageUrl || "/default-image.jpg"} alt="Pet for adoption" />
+                    {animalData.isAdopted && <span className={styles["animal-photo-adopted"]}></span>}
                     <h5 className={styles["pet-name"]}>{animalData.name}</h5>
                 </div>
                 <div className={styles["pet-info-wrapper"]}>
