@@ -17,7 +17,7 @@ export function useAdoptAnimalProfile(){
             return adoptedData.error;
         }
 
-        const updateUserAdoptedListError = await updateUserAdoptedList(currentUser.id, animalId);
+        const updateUserAdoptedListError = await updateUserAdoptedList(currentUser.id, animalId, "add");
         if (updateUserAdoptedListError) {
             return updateUserAdoptedListError;
         }

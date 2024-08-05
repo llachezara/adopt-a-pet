@@ -36,14 +36,21 @@ export async function updateUserCreatedAnimalsList(currentUserId, animalProfileI
     }
 }
 
-export async function updateUserAdoptedList(currentUserId, animalProfileId){
+export async function updateUserAdoptedList(currentUserId, animalProfileId, option){
     const currentUserDocRef = getUserDocReference(currentUserId);
-
+    console.log("In UPDATE ADOPT LIST", animalProfileId)
     try {
-        await updateDoc(currentUserDocRef, {
-            adoptedList: arrayUnion(animalProfileId)
-        })
-        console.log("Adopted from user.js");
+        if (option == "add") {
+            await updateDoc(currentUserDocRef, {
+                adoptedList: arrayUnion(animalProfileId)
+            })
+            console.log("Adopted from user.js");
+        }else if(option == "remove"){
+            await updateDoc(currentUserDocRef, {
+                adoptedList: arrayRemove(animalProfileId)
+            })
+            console.log("ReMOVED from user ADOPTED LIST", animalProfileId);
+        }
 
     } catch (error) {
         return error;

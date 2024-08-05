@@ -7,7 +7,8 @@ import { showErrorMessage, showSuccessMessage } from "../../../utils/messagesUti
 
 export default function AnimalProfileDelete ({
     hideDeleteModalHandler,
-    petId
+    petId,
+    petOwnerId
 }) {
     const navigate = useNavigate();
     const { deleteProfile } = useDeleteAnimalProfile();
@@ -16,7 +17,7 @@ export default function AnimalProfileDelete ({
     }, []);
     
     const onDeleteHandler = async () => {
-        const deleteError = await deleteProfile(petId);
+        const deleteError = await deleteProfile(petId, petOwnerId);
         if (deleteError) {
             showErrorMessage("Deletion failed.");
         }

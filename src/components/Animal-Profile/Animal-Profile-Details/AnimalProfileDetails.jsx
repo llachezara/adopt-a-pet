@@ -138,7 +138,7 @@ export default function AnimalProfileDetails() {
                     }
                 </div>
 
-                {showDeleteModalState && <AnimalProfileDelete hideDeleteModalHandler={hideDeleteModalHandler} petId={animalProfile.id}/>}
+                {showDeleteModalState && <AnimalProfileDelete hideDeleteModalHandler={hideDeleteModalHandler} petId={animalProfile.id} petOwnerId={animalProfile.adoptedFrom}/>}
                 {showAdoptModalState && <AnimalProfileAdopt hideAdoptModalHandler={hideAdoptModalHandler} petId={animalProfile.id} getAnimalDetails={getAnimalDetails}/>}
             </main>
         </div>
