@@ -1,14 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
+import { showErrorMessage, showSuccessMessage } from '../../../utils/messagesUtil';
 import { useForm } from '../../../hooks/useForm';
+
 import { useGetOneAnimalProfile } from '../../../hooks/animal-profile-hooks/useAnimalProfileQueries';
+import { useEditAnimalProfile } from '../../../hooks/animal-profile-hooks/useEditAnimalProfile';
 import './AnimalProfileEdit.css'
 
 export default function AnimalProfileEdit() {
     const [formStepState, setFormStepState] = useState(1);
     const { animalProfileState } = useGetOneAnimalProfile();
     const { animalProfile, error, loading } = animalProfileState;
+
+    const { edit } = useEditAnimalProfile();
+    const navigate = useNavigate();
     //TODO: Add error handling
 
     const animalDetails = useForm({
@@ -77,9 +83,6 @@ export default function AnimalProfileEdit() {
             case 1:
                 inputErrorsExist = checkCurrentFormValues(animalDetails.onSubmitCheckValues);
                 break;
-            case 2:
-                inputErrorsExist = checkCurrentFormValues(healthAndOwnerInfo.onSubmitCheckValues);
-                break;
         }
 
         if (!inputErrorsExist) {
@@ -92,9 +95,23 @@ export default function AnimalProfileEdit() {
         setFormStepState(prevState => prevState - 1);
     }
 
-    const onSubmitHandler = (e) => {
+    const onSubmitHandler = async (e) => {
         e.preventDefault();
-        console.log("Submit");
+        const inputErrorsExist = checkCurrentFormValues(healthAndOwnerInfo.onSubmitCheckValues);
+        if(inputErrorsExist){
+            return
+        }
+
+        const editError = await edit(animalProfile.id, {
+            ...animalDetails.values,
+            ...healthAndOwnerInfo.values
+        })
+        if (editError) {
+            return showErrorMessage(editError.message);
+        }
+
+        showSuccessMessage("Animal profile edited!");
+        navigate(`/animal-profile/${animalProfile.id}/details`);
     }
 
     return (

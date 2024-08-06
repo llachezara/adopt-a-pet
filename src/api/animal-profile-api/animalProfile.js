@@ -85,3 +85,14 @@ export async function deleteAnimalProfile(animalId) {
         return { error }
     }
 }
+
+export async function updateAnimalProfile(animalId, data){
+    try {
+        const animalDocRef = getAnimalDocReference(animalId);
+        await updateDoc(animalDocRef, data);
+
+        return {error: null}
+    } catch (error) {
+        return { error }
+    }
+}
