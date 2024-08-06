@@ -48,16 +48,18 @@ export function useGetOneAnimalProfile() {
     const getAnimalDetails = async () => {
         const isUserPresent = currentUser.isPresent;
         const data = await getOneAnimalProfile(animalId);
-        const isOwner = currentUser.id == data.animalProfile.ownerId;
-        const isUserAdopter = currentUser.id == data.animalProfile.adoptedFrom;
 
         if (data.error) {
             return setAnimalProfileState((oldState) => ({
                 ...oldState,
+                animalProfile: {},
                 error: data.error,
                 loading: false
             }));
         }
+
+        const isOwner = currentUser.id == data.animalProfile.ownerId;
+        const isUserAdopter = currentUser.id == data.animalProfile.adoptedFrom;
 
         setIsOwnerState(() => isOwner);
         setAnimalProfileState((oldState) => ({

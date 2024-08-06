@@ -1,9 +1,9 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 import { useGetOneAnimalProfile } from '../../../hooks/animal-profile-hooks/useAnimalProfileQueries';
 import './AnimalProfileDetails.css';
-import { showErrorMessage } from '../../../utils/messagesUtil';
+import { showFetchErrorMessage } from '../../../utils/messagesUtil';
 
 import AnimalProfileDelete from '../Animal-Profile-Delete/AnimalProfileDelete';
 import AnimalProfileAdopt from '../Animal-Profile-Adopt/AnimalProfileAdopt';
@@ -13,9 +13,15 @@ export default function AnimalProfileDetails() {
     const { animalProfile, loading, error, isUserPresent, isOwner, isUserAdopter } = animalProfileState;
     const [showAdoptModalState, setShowAdoptModalState] = useState(false);
     const [showDeleteModalState, setShowDeleteModalState] = useState(false);
-    
-     //TODO: Navigate to 404 page if error profile does not exist
-    //TODO: Handle fetch errors
+
+    useEffect(() => {
+        if (error?.message == "Animal profile does not exist.") {
+            return <Navigate to={"/not-found"} />;
+        }
+        if (error) {
+            showFetchErrorMessage("Failed to load animal profile information.");
+        }
+    }, [error])
 
     if (!animalProfile) {
         return null;
