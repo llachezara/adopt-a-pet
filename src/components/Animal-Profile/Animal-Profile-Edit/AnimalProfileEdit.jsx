@@ -48,10 +48,7 @@ export default function AnimalProfileEdit() {
     }, [formStepState]);
 
     useEffect(() => {
-        if (error?.message == "Animal profile does not exist.") {
-            return <Navigate to={"/not-found"} />;
-        }
-        if (error) {
+        if (error && error?.message != "Animal profile does not exist.") {
             showFetchErrorMessage("Failed to load animal profile information.");
         }
     }, [error])
@@ -85,6 +82,9 @@ export default function AnimalProfileEdit() {
         })
     }, [loading]);
 
+    if (error?.message == "Animal profile does not exist.") {
+        return <Navigate to={"/not-found"} />;
+    }
 
     if (showLoader && !error) {
         return <Loader />;

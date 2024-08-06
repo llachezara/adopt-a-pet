@@ -15,13 +15,14 @@ export default function AnimalProfileDetails() {
     const [showDeleteModalState, setShowDeleteModalState] = useState(false);
 
     useEffect(() => {
-        if (error?.message == "Animal profile does not exist.") {
-            return <Navigate to={"/not-found"} />;
-        }
-        if (error) {
+        if (error && error?.message != "Animal profile does not exist.") {
             showFetchErrorMessage("Failed to load animal profile information.");
         }
     }, [error])
+
+    if (error?.message == "Animal profile does not exist.") {
+        return <Navigate to={"/not-found"} />;
+    }
 
     if (!animalProfile) {
         return null;
