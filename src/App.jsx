@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -15,6 +15,7 @@ import AnimalProfileEdit from "./components/Animal-Profile/Animal-Profile-Edit/A
 
 import { useAuth } from "./hooks/auth-hooks/useAuth"
 import { AuthContext } from "./contexts/AuthContext"
+import { NotFound } from "./components/Not-found/NotFound"
 
 function App() {
     const authContextData = useAuth();
@@ -32,6 +33,8 @@ function App() {
                     <Route path="/animal-profile/create" element={<AnimalProfileCreate/>}/>
                     <Route path="/animal-profile/:animalId/details" element={<AnimalProfileDetails/>}/>
                     <Route path="/animal-profile/:animalId/edit" element={<AnimalProfileEdit/>}/>
+                    <Route path="/not-found" element={<NotFound/>}/>
+                    <Route path="*" element={<Navigate to="/not-found"/>}/>
                 </Routes>
                 <ToastContainer limit={1}/>
             </div>
