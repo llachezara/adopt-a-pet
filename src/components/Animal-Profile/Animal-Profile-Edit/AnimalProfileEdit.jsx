@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
-import { showErrorMessage, showSuccessMessage } from '../../../utils/messagesUtil';
+import { showErrorMessage, showFetchErrorMessage, showSuccessMessage } from '../../../utils/messagesUtil';
 import { useForm } from '../../../hooks/useForm';
 
 import { useGetOneAnimalProfile } from '../../../hooks/animal-profile-hooks/useAnimalProfileQueries';
@@ -48,7 +48,16 @@ export default function AnimalProfileEdit() {
     }, [formStepState]);
 
     useEffect(() => {
-        if (loading) {
+        if (error?.message == "Animal profile does not exist.") {
+            return <Navigate to={"/not-found"} />;
+        }
+        if (error) {
+            showFetchErrorMessage("Failed to load animal profile information.");
+        }
+    }, [error])
+
+    useEffect(() => {
+        if (loading || error) {
             return
         }
 
@@ -77,11 +86,9 @@ export default function AnimalProfileEdit() {
     }, [loading]);
 
 
-    //TODO: Navigate to 404 page if error profile does not exist
-    if (showLoader) {
+    if (showLoader && !error) {
         return <Loader />;
     }
-    //TODO: Handle fetch errors
 
     const checkCurrentFormValues = (checkHandler) => {
         return checkHandler();
@@ -95,7 +102,7 @@ export default function AnimalProfileEdit() {
                 break;
         }
 
-        if (!inputErrorsExist) {
+        if (!inputErrorsExist && !error) {
             setFormStepState(prevState => prevState + 1);
         }
     }
@@ -108,7 +115,7 @@ export default function AnimalProfileEdit() {
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         const inputErrorsExist = checkCurrentFormValues(healthAndOwnerInfo.onSubmitCheckValues);
-        if(inputErrorsExist){
+        if(inputErrorsExist || error){
             return
         }
 
