@@ -13,7 +13,7 @@ import Dashboard from "./components/Dashboard/Dashboard"
 import AnimalProfileCreate from "./components/Animal-Profile/Animal-Profile-Create/AnimalProfileCreate"
 import AnimalProfileDetails from "./components/Animal-Profile/Animal-Profile-Details/AnimalProfileDetails"
 import AnimalProfileEdit from "./components/Animal-Profile/Animal-Profile-Edit/AnimalProfileEdit"
-import { NotFound } from "./components/Not-found/NotFound"
+import NotFound from "./components/Not-found/NotFound"
 
 import { useAuth } from "./hooks/auth-hooks/useAuth"
 import { AuthContext } from "./contexts/AuthContext"
