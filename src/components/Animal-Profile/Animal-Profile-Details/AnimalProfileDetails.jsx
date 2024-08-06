@@ -13,11 +13,9 @@ export default function AnimalProfileDetails() {
     const { animalProfile, loading, error, isUserPresent, isOwner, isUserAdopter } = animalProfileState;
     const [showAdoptModalState, setShowAdoptModalState] = useState(false);
     const [showDeleteModalState, setShowDeleteModalState] = useState(false);
-
-    if (error) {
-        //TODO: Navigate to 404 page
-        return console.log(error);
-    }
+    
+     //TODO: Navigate to 404 page if error profile does not exist
+    //TODO: Handle fetch errors
 
     if (!animalProfile) {
         return null;

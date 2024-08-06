@@ -46,9 +46,6 @@ export function useGetOneAnimalProfile() {
     const [animalProfileState, setAnimalProfileState] = useState(initialState);
 
     const getAnimalDetails = async () => {
-        if (currentUser.loading == true) {
-            return
-        }
         const isUserPresent = currentUser.isPresent;
         const data = await getOneAnimalProfile(animalId);
         const isOwner = currentUser.id == data.animalProfile.ownerId;

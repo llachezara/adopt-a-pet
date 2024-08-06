@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
@@ -12,13 +13,21 @@ import Dashboard from "./components/Dashboard/Dashboard"
 import AnimalProfileCreate from "./components/Animal-Profile/Animal-Profile-Create/AnimalProfileCreate"
 import AnimalProfileDetails from "./components/Animal-Profile/Animal-Profile-Details/AnimalProfileDetails"
 import AnimalProfileEdit from "./components/Animal-Profile/Animal-Profile-Edit/AnimalProfileEdit"
+import { NotFound } from "./components/Not-found/NotFound"
 
 import { useAuth } from "./hooks/auth-hooks/useAuth"
 import { AuthContext } from "./contexts/AuthContext"
-import { NotFound } from "./components/Not-found/NotFound"
+
+import { useShowLoader } from "./hooks/useShowLoader"
+import { Loader } from "./components/Loader/Loader"
 
 function App() {
     const authContextData = useAuth();
+    const { showLoader } = useShowLoader(authContextData.loading);
+
+    if (showLoader) {
+        return <Loader />;
+    }
 
     return (
         <AuthContext.Provider value={authContextData}>

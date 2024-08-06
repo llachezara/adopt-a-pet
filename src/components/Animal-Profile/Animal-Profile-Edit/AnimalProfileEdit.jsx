@@ -6,16 +6,19 @@ import { useForm } from '../../../hooks/useForm';
 
 import { useGetOneAnimalProfile } from '../../../hooks/animal-profile-hooks/useAnimalProfileQueries';
 import { useEditAnimalProfile } from '../../../hooks/animal-profile-hooks/useEditAnimalProfile';
+
+import { useShowLoader } from '../../../hooks/useShowLoader';
+import { Loader } from '../../Loader/Loader';
 import './AnimalProfileEdit.css'
 
 export default function AnimalProfileEdit() {
     const [formStepState, setFormStepState] = useState(1);
     const { animalProfileState } = useGetOneAnimalProfile();
     const { animalProfile, error, loading } = animalProfileState;
+    const { showLoader } = useShowLoader(loading);
 
     const { edit } = useEditAnimalProfile();
     const navigate = useNavigate();
-    //TODO: Add error handling
 
     const animalDetails = useForm({
         "name": "",
@@ -71,7 +74,14 @@ export default function AnimalProfileEdit() {
             "owner-phone": animalProfile["owner-phone"],
             "location": animalProfile["location"]
         })
-    }, [loading])
+    }, [loading]);
+
+
+    //TODO: Navigate to 404 page if error profile does not exist
+    if (showLoader) {
+        return <Loader />;
+    }
+    //TODO: Handle fetch errors
 
     const checkCurrentFormValues = (checkHandler) => {
         return checkHandler();
