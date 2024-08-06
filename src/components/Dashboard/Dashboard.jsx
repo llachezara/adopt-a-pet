@@ -5,12 +5,15 @@ import AnimalProfileCard from '../Animal-Profile/Animal-Profile-Card/AnimalProfi
 
 import { showFetchErrorMessage } from '../../utils/messagesUtil';
 import './Dashboard.css';
+import { useEffect } from 'react';
 
 export default function () {
     const { animalProfilesState } = useGetAnimalProfiles();
-    if (animalProfilesState.error) {
-        showFetchErrorMessage("Failed to load animal profiles.");
-    }
+    useEffect(()=>{
+        if (animalProfilesState.error) {
+            showFetchErrorMessage("Failed to load animal profiles.");
+        }
+    }, [animalProfilesState.error]);
 
     return (
         <>
