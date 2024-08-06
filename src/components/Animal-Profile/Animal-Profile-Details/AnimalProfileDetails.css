@@ -123,15 +123,16 @@
     gap: 4rem;
 }
 
-.details-action-buttons > button {
+.details-action-buttons > * {
     font-size: 1.2rem;
     width: 8rem;
-    height: 3.2rem;
+    padding: 0.8rem 0;
     border-radius: 6px;
     transition: background-color .2s,
         box-shadow .15s;
     box-shadow: 0 0 0.2em #96989b;
     cursor: pointer;
+    text-align: center;
     border: none;
 
     &:hover {

@@ -53,6 +53,12 @@ export function useForm(initialValues, option) {
         })
     }
 
+    const setValues = (state) => {
+        setFormValues(oldState => ({
+            ...oldState,
+            ...state
+        }))
+    }
     return {
         values: formValues,
         onChangeHandler,
@@ -61,6 +67,7 @@ export function useForm(initialValues, option) {
         onSubmitCheckValues,
         inputErrors,
         submitButtonEnabledState,
-        clearFormValues
+        clearFormValues,
+        setValues
     }
 }

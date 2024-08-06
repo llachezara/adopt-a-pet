@@ -11,6 +11,7 @@ import Login from "./components/Login/Login"
 import Dashboard from "./components/Dashboard/Dashboard"
 import AnimalProfileCreate from "./components/Animal-Profile/Animal-Profile-Create/AnimalProfileCreate"
 import AnimalProfileDetails from "./components/Animal-Profile/Animal-Profile-Details/AnimalProfileDetails"
+import AnimalProfileEdit from "./components/Animal-Profile/Animal-Profile-Edit/AnimalProfileEdit"
 
 import { useAuth } from "./hooks/auth-hooks/useAuth"
 import { AuthContext } from "./contexts/AuthContext"
@@ -30,6 +31,7 @@ function App() {
                     <Route path="/dashboard" element={<Dashboard />}/>
                     <Route path="/animal-profile/create" element={<AnimalProfileCreate/>}/>
                     <Route path="/animal-profile/:animalId/details" element={<AnimalProfileDetails/>}/>
+                    <Route path="/animal-profile/:animalId/edit" element={<AnimalProfileEdit/>}/>
                 </Routes>
                 <ToastContainer limit={1}/>
             </div>
