@@ -191,11 +191,12 @@ const errors = {
     "age": "Age must be maximum 20 characters.",
     "imageUrl": "Invalid image URL.",
     "personality": "Personality description must be maximum 40 characters.",
-    "background": "Pet's background must be maximum 200 characters.",
-    "med-conditions-info": "Medical conditions description must be maximum 50 characters.",
+    "background": "Pet's background must be maximum 400 characters.",
+    "med-conditions-info": "Medical conditions description must be maximum 150 characters.",
     "owner-name": "Name must be maximum 40 characters.",
     "owner-phone": "Phone number must be in the correct format.",
-    "owner-email": "Invalid email address."
+    "owner-email": "Invalid email address.",
+    "location": "Location must be maximum 60 characters."
 }
 
 
@@ -220,11 +221,12 @@ const regex = (inputName) => {
         "age": "^.{1,20}$",
         "imageUrl": "^(https?:\\/\\/.*\\.(?:png|jpg|jpeg|gif|bmp|svg|webp))$",
         "personality": "^.{1,40}$",
-        "background": "^.{1,200}$",
+        "background": "^.{1,400}$",
         "med-conditions-info": "^.{1,150}$",
         "owner-name": "^.{1,40}$",
         "owner-phone": "^08[7-9]\\d{7}$",
-        "owner-email": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+        "owner-email": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+        "location": "^.{1,60}$"
     }
 
     return patterns[inputName];

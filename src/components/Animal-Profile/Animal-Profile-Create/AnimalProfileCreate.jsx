@@ -476,6 +476,11 @@ export default function AnimalProfileCreate() {
                                                 onBlur={ownerDetails.onBlurHandler}
                                                 onFocus={ownerDetails.onFocusHandler}
                                             />
+                                            {ownerDetails.inputErrors["location"].currentError && ownerDetails.inputErrors["location"].showError ?
+                                                <span className="invalid-input-error">{ownerDetails.inputErrors["location"].currentError}</span>
+                                                :
+                                                <span className="helper-info">example: Ruse, Bulgaria</span>
+                                            }
                                             {/* TODO: Integrate google maps */}
                                         </div>
                                     </div>

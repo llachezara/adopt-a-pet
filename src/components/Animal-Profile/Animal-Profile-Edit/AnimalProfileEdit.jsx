@@ -499,6 +499,11 @@ export default function AnimalProfileEdit() {
                                                 onBlur={healthAndOwnerInfo.onBlurHandler}
                                                 onFocus={healthAndOwnerInfo.onFocusHandler}
                                             />
+                                            {healthAndOwnerInfo.inputErrors["location"].currentError && healthAndOwnerInfo.inputErrors["location"].showError ?
+                                                <span className="invalid-input-error">{healthAndOwnerInfo.inputErrors["location"].currentError}</span>
+                                                :
+                                                <span className="helper-info">example: Ruse, Bulgaria</span>
+                                            }
                                             {/* TODO: Integrate google maps */}
                                         </div>
                                     </div>
