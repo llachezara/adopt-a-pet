@@ -17,6 +17,9 @@ function getUserDocReference(userId) {
 }
 
 export async function updateUserCreatedAnimalsList(currentUserId, animalProfileId, option){
+    // if (!currentUserId) {
+    //     return;
+    // }
     const currentUserDocRef = getUserDocReference(currentUserId);
 
     try {
@@ -36,8 +39,13 @@ export async function updateUserCreatedAnimalsList(currentUserId, animalProfileI
     }
 }
 
-export async function updateUserAdoptedList(currentUserId, animalProfileId, option){
-    const currentUserDocRef = getUserDocReference(currentUserId);
+export async function updateUserAdoptedList(animalOwnerId, animalProfileId, option){
+    if (!animalOwnerId) {
+        return;
+    }
+    const currentUserDocRef = getUserDocReference(animalOwnerId);
+    console.log(currentUserDocRef);
+    
     console.log("In UPDATE ADOPT LIST", animalProfileId)
     try {
         if (option == "add") {
@@ -53,6 +61,8 @@ export async function updateUserAdoptedList(currentUserId, animalProfileId, opti
         }
 
     } catch (error) {
+        console.log(error);
+        
         return error;
     }
 }
