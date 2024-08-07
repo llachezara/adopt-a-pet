@@ -2,8 +2,12 @@
 
 This project was generated with [Vite](https://vitejs.dev/) and uses React version 18.3.1.
 
-## Introduction
-**AdoptAPet** is a web application designed to connect pets in need with caring individuals who are ready to adopt. Whether you are a pet owner looking to find a new home for your animal or someone eager to welcome a new pet into your life, AdoptAPet brings people and pets together.
+## Overview
+
+**AdoptAPet** is a web application built using **React** for the frontend and **Firebase** for backend services. **Firebase** is utilized for various backend functionalities, including:
+
+- **Authentication**: Handles user registration, login, and authentication. Firebase Authentication provides secure and simple ways to manage user sessions.
+- **Firestore**: Used as the NoSQL database to store and retrieve pet adoption profiles and user information.
 
 ## 🚀 Features
 
