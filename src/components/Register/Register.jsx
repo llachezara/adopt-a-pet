@@ -28,6 +28,7 @@ export default function Register() {
 
         const registerError = await register(values.email, values.password);
         if (registerError) {
+            clearFormValues();
             return showErrorMessage(registerError.message);
         }
 

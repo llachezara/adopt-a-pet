@@ -127,8 +127,13 @@ export default function AnimalProfileEdit() {
             return showErrorMessage(editError.message);
         }
 
+        clearFormsValues();
         showSuccessMessage("Animal profile edited!");
         navigate(`/animal-profile/${animalProfile.id}/details`);
+    }
+    const clearFormsValues = () => {
+        animalDetails.clearFormValues();
+        healthAndOwnerInfo.clearFormValues();
     }
 
     return (

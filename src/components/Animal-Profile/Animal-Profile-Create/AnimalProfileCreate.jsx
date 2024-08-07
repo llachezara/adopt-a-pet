@@ -84,10 +84,16 @@ export default function AnimalProfileCreate() {
             return showErrorMessage(createError.message);
         }
 
+        clearFormsValues();
         showSuccessMessage("Animal profile created!");
         navigate("/dashboard");
     }
 
+    const clearFormsValues = () => {
+        animalDetails.clearFormValues();
+        healthInformation.clearFormValues();
+        ownerDetails.clearFormValues();
+    }
     return (
         <div className="create-main-container">
             <main className="create-main">

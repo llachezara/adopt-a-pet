@@ -28,6 +28,7 @@ export default function Logout() {
         const loginError = await login(values.email, values.password);
         if (loginError) {
             console.log(loginError);
+            clearFormValues();
             return showErrorMessage(loginError.message);
         }
 
