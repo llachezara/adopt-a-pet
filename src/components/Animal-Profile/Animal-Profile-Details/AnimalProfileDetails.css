@@ -1,7 +1,7 @@
 .details-main-container {
     background-image: url("/soft-orange-brown-watercolor-background-color-splashing-watercolor-abstract-wet-hand-drawn-for-wallpaper-card-greeting-poster-design-cover-invitation-illustration-free-vector.jpg");
     background-size: cover;
-    padding: 0 2rem 4rem;
+    padding: 1.5rem 2rem 4rem;
 }
 
 .details-content-container {
@@ -128,54 +128,68 @@
     width: 8rem;
     padding: 0.8rem 0;
     border-radius: 6px;
-    transition: background-color .2s,
-        box-shadow .15s;
-    box-shadow: 0 0 0.2em #96989b;
     cursor: pointer;
     text-align: center;
     border: none;
-
-    &:hover {
-        box-shadow: 0.1em 0.1em 0.2em #96989b;
-    }
 }
 
 .pet-adopted{
     display: block;
     text-align: left;
-    text-shadow: 0 0 1em #dbeb9c;
+    font-size: 1.2rem;
+    text-shadow: 0 0 1em #d6e988;
 }
 
 #adopt-button {
     border: 1px solid #63a568;
-    background: #5ddc68;
-    width: 12rem;
-    height: 4rem;
+    background: #4bc755;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    width: 11rem;
+    height: 3.8rem;
     font-size: 1.3rem;
-    &:hover {
-        background-color: #32ac52;
-        color: #fff;
-    }
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 #edit-button {
     border: 1px solid #4d75ba;
     background: #5697d3;
     color: #fff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    letter-spacing: 0.5px;
+    
 
     &:hover {
         background-color: #466e93;
     }
+    
 }
 
 #delete-button {
     border: 1px solid #a56a63;
     background: #e3634c;
     color: #fff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    letter-spacing: 0.5px;
 
     &:hover {
         background-color: #b64f3d;
     }
+}
+
+#adopt-button:hover, #edit-button:hover, #delete-button:hover{
+    transform: translateY(-2px);
+}
+
+#adopt-button:active, #edit-button:active, #delete-button:active{
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 768px) {

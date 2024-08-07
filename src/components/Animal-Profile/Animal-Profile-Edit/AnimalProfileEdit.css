@@ -183,3 +183,7 @@ select {
 #action-previous {
     opacity: 0.8;
 }
+
+.edit-form span.helper-info, span.invalid-input-error{
+    font-size: 0.95em;
+}

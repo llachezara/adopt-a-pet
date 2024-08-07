@@ -75,7 +75,7 @@ form {
 }
 
 main {
-    padding-top: 8.5rem;
+    padding-top: 7rem;
 }
 
 input {
@@ -176,7 +176,7 @@ label.required::after {
 
 span.helper-info {
     margin-top: 0.3em;
-    font-size: 0.8em;
+    font-size: 0.85em;
     line-height: 1.2;
     font-style: italic;
 }
@@ -184,7 +184,7 @@ span.helper-info {
 span.invalid-input-error {
     margin-top: 0.35em;
     margin-left: 0.3em;
-    font-size: 0.8em;
+    font-size: 0.85em;
     line-height: 1.2;
     color: #D7382B;
 }
@@ -239,7 +239,7 @@ nav .user-nav-list {
 .nav-link {
     color: #ffffff;
     text-decoration: none;
-    font-size: 1em;
+    font-size: 1.1em;
 }
 
 .nav-link.register {
@@ -718,12 +718,16 @@ nav .user-nav-list {
     background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(226, 255, 204, 1) 100%);
 }
 
+.login-main-container{
+    padding-top: 1.3rem;
+}
+
 .login-main {
     padding-bottom: 2.2em;
 }
 
 .login-form-container {
-    max-width: 56em;
+    max-width: 56rem;
     margin: 0 auto;
     display: flex;
     box-shadow: 0 0 1em #96989b;
@@ -924,4 +928,8 @@ select {
     &:hover {
         box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
     }
+}
+
+.create-form span.helper-info, span.invalid-input-error{
+    font-size: 0.95em;
 }

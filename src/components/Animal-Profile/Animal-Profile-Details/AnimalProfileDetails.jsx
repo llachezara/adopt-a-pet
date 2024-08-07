@@ -138,7 +138,7 @@ export default function AnimalProfileDetails() {
                     </div>
                     {isUserAdopter &&
                         <div className="pet-adopted">
-                            <h4>You've adopted this pet!</h4>
+                            <h3>You've adopted this pet!</h3>
                             <p>Please contact the previous owner for more information about your new furry friend.</p>
                         </div>
                     }
