@@ -16,8 +16,8 @@ export function useForm(initialValues, option) {
                 [e.target.name]: e.target.value
             }
         });
-
-        // console.log({ inputName: e.target.name, inputValue: e.target.value });
+        
+        changeValueOfRelatedField(e.target.name, e.target.value);
         setChangedInput(state => ({ inputName: e.target.name, inputValue: e.target.value }));
     }
 
@@ -63,6 +63,39 @@ export function useForm(initialValues, option) {
             ...state
         }))
     }
+
+    const changeValueOfRelatedField = (inputName, inputValue) => {
+        console.log(inputName, inputValue);
+    
+        const relatedFields = {
+            "med-conditions": { relatedFieldName: "med-conditions-info", relatedFieldChangeValue: "" }
+        };
+    
+        if (!relatedFields.hasOwnProperty(inputName)) {
+            return;
+        }
+    
+        const conditionalHandlers = {
+            "med-conditions": (inputValue, handlerToBeExecuted) => {
+                if (inputValue === "No") {
+                    handlerToBeExecuted();
+                }
+            }
+        };
+        
+        if (!conditionalHandlers.hasOwnProperty(inputName)) {
+           return;
+        }
+
+        conditionalHandlers[inputName](inputValue, () => {
+
+            setFormValues((state) => ({
+                ...state,
+                [relatedFields[inputName].relatedFieldName]: relatedFields[inputName].relatedFieldChangeValue
+            }));
+        });
+    };
+
     return {
         values: formValues,
         onChangeHandler,
@@ -75,3 +108,4 @@ export function useForm(initialValues, option) {
         setValues
     }
 }
+
