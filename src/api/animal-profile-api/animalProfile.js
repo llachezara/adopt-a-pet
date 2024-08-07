@@ -1,5 +1,5 @@
 import { db } from "../../config/firebase";
-import { collection, addDoc, updateDoc, getDocs, getDoc, doc, deleteDoc } from "firebase/firestore";
+import { collection, addDoc, updateDoc, getDocs, getDoc, doc, deleteDoc, query, where } from "firebase/firestore";
 
 const animalProfileCollectionRef = collection(db, 'animal-profiles');
 
@@ -94,5 +94,23 @@ export async function updateAnimalProfile(animalId, data){
         return {error: null}
     } catch (error) {
         return { error }
+    }
+}
+
+export async function isUserAnimalOwner(animalId, currentUserId) {
+    try {
+        const q = query(animalProfileCollectionRef, where("id", "==", animalId), where("ownerId", "==", currentUserId));
+        const querySnapshot = await getDocs(q);
+        console.log("In UserAnimalOwner", querySnapshot);
+        
+        let documentExists = false;
+        querySnapshot.forEach((doc) => {
+            console.log("DOC", doc);
+            documentExists = doc.exists();
+        });
+
+        return { error: null, isOwner: documentExists };
+    } catch (error) {
+        return { error, isOwner: false };
     }
 }
