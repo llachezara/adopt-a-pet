@@ -21,6 +21,7 @@ import { AuthContext } from "./contexts/AuthContext"
 import { useShowLoader } from "./hooks/useShowLoader"
 import { Loader } from "./components/Loader/Loader"
 import AuthGuard from "./guards/AuthGuard"
+import PermissionGuard from "./guards/PermissionGuard"
 
 function App() {
     const authContextData = useAuth();
@@ -37,14 +38,16 @@ function App() {
             <div className="site">
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/animal-profile/:animalId/details" element={<AnimalProfileDetails />} />
                     <Route element={<AuthGuard />}>
                         <Route path="/auth/register" element={<Register />} />
                         <Route path="/auth/login" element={<Login />} />
                     </Route>
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/animal-profile/create" element={<AnimalProfileCreate />} />
-                    <Route path="/animal-profile/:animalId/details" element={<AnimalProfileDetails />} />
-                    <Route path="/animal-profile/:animalId/edit" element={<AnimalProfileEdit />} />
+                    <Route element={<PermissionGuard />}>
+                        <Route path="/animal-profile/create" element={<AnimalProfileCreate />} />
+                        <Route path="/animal-profile/:animalId/edit" element={<AnimalProfileEdit />} />
+                    </Route>
                     <Route path="/not-found" element={<NotFound />} />
                     <Route path="*" element={<Navigate to="/not-found" />} />
                 </Routes>
