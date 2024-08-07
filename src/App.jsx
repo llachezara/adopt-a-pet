@@ -20,6 +20,7 @@ import { AuthContext } from "./contexts/AuthContext"
 
 import { useShowLoader } from "./hooks/useShowLoader"
 import { Loader } from "./components/Loader/Loader"
+import AuthGuard from "./guards/AuthGuard"
 
 function App() {
     const authContextData = useAuth();
@@ -36,21 +37,23 @@ function App() {
             <div className="site">
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/auth/register" element={<Register />} />
-                    <Route path="/auth/login" element={<Login />} />
-                    <Route path="/dashboard" element={<Dashboard />}/>
-                    <Route path="/animal-profile/create" element={<AnimalProfileCreate/>}/>
-                    <Route path="/animal-profile/:animalId/details" element={<AnimalProfileDetails/>}/>
-                    <Route path="/animal-profile/:animalId/edit" element={<AnimalProfileEdit/>}/>
-                    <Route path="/not-found" element={<NotFound/>}/>
-                    <Route path="*" element={<Navigate to="/not-found"/>}/>
+                    <Route element={<AuthGuard />}>
+                        <Route path="/auth/register" element={<Register />} />
+                        <Route path="/auth/login" element={<Login />} />
+                    </Route>
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/animal-profile/create" element={<AnimalProfileCreate />} />
+                    <Route path="/animal-profile/:animalId/details" element={<AnimalProfileDetails />} />
+                    <Route path="/animal-profile/:animalId/edit" element={<AnimalProfileEdit />} />
+                    <Route path="/not-found" element={<NotFound />} />
+                    <Route path="*" element={<Navigate to="/not-found" />} />
                 </Routes>
-                <ToastContainer limit={1}/>
+                <ToastContainer limit={1} />
             </div>
 
             <Footer />
         </AuthContext.Provider>
-        
+
     )
 }
 
