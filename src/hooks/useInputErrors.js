@@ -26,6 +26,16 @@ export function useInputErrors(formValues, changedInput, option) {
             return setInputErrors(currentErrors);
         }
 
+        if (changedInput.clearedValues) {
+            const clearedState = {};
+            for (const key in formValues) {
+                clearedState[key] = { currentError: errorsForRequiredFields[key] || null, showError: false }
+                if (key == "med-conditions-info") {
+                    clearedState[key] = { currentError: null, showError: false }
+                }
+            }
+            return setInputErrors(clearedState);
+        }
         if (changedInput.inputName != "") {
 
             const { currentError, moreErrors} = checkInputValue(changedInput.inputName, changedInput.inputValue);

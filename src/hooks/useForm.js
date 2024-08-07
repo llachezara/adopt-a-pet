@@ -17,7 +17,7 @@ export function useForm(initialValues, option) {
             }
         });
 
-        console.log({ inputName: e.target.name, inputValue: e.target.value });
+        // console.log({ inputName: e.target.name, inputValue: e.target.value });
         setChangedInput(state => ({ inputName: e.target.name, inputValue: e.target.value }));
     }
 
@@ -46,11 +46,15 @@ export function useForm(initialValues, option) {
     }
 
     const clearFormValues = () => {
-        setFormValues({
-            email: "",
-            password: "",
-            repassword: ""
-        })
+        const clearedValues = {};
+        for (let inputName in formValues) {
+            clearedValues[inputName] = "";
+        }
+        
+        setFormValues(clearedValues);
+        setChangedInput(state => ({
+            clearedValues: true
+        }))
     }
 
     const setValues = (state) => {
