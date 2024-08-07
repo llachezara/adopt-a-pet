@@ -23,12 +23,13 @@ footer {
 
 .main-footer-info .main-footer-info-heading {
     margin-left: 3.5rem;
-    font-size: 1.5em;
+    font-size: 1.6em;
 }
 
 .main-footer-info .last-words {
     margin-top: 3em;
     width: 20em;
+    font-size: 0.9rem;
 }
 
 .main-footer .contact {
@@ -43,12 +44,13 @@ footer {
 
 .main-footer .contact-us-heading+.contact-us-list,
 .contact-us-list>*+* {
-    margin-top: 0.5rem;
+    margin-top: 0.45rem;
+    font-size: 0.9rem;
 }
 
  
 .main-footer .contact .contact-us-heading {
-    font-size: 1.15em;
+    font-size: 1.3em;
     margin-bottom: 0.8rem;
 }
 
