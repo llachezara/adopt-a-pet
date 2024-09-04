@@ -1,5 +1,5 @@
 import { db } from "../../config/firebase";
-import { collection, addDoc, updateDoc, getDocs, getDoc, doc, deleteDoc, query, where } from "firebase/firestore";
+import { collection, addDoc, updateDoc, getDocs, getDoc, doc, deleteDoc, query, where, getCountFromServer } from "firebase/firestore";
 
 const animalProfileCollectionRef = collection(db, 'animal-profiles');
 
@@ -25,6 +25,11 @@ export async function createAnimalProfile(data, curretUserId) {
         return { error };
     }
 
+}
+
+export async function getAnimalProfilesCount(){
+    const snapshot = await getCountFromServer(animalProfileCollectionRef);
+    return snapshot.data().count;
 }
 
 export async function getAllAnimalProfiles() {

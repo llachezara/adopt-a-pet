@@ -29,7 +29,7 @@ export default function () {
                         <div className="inline-block">Showing</div>
                         <div className="results-count inline-block">5</div>
                         <div className="inline-block">Out of</div>
-                        <div className="items-count inline-block">10</div>
+                        <div className="items-count inline-block">{animalProfilesState.count}</div>
                         <div className="inline-block">Results</div>
                     </div>
                     <main className="dashboard-main">

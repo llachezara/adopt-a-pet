@@ -2,25 +2,27 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { AuthContext } from "../../contexts/AuthContext";
-import { getAllAnimalProfiles, getOneAnimalProfile } from "../../api/animal-profile-api/animalProfile";
+import { getAllAnimalProfiles, getAnimalProfilesCount, getOneAnimalProfile } from "../../api/animal-profile-api/animalProfile";
 
 export function useGetAnimalProfiles() {
-    const [animalProfilesState, setAnimalProfilesState] = useState({ animalProfiles: [], loading: true, error: null });
+    const [animalProfilesState, setAnimalProfilesState] = useState({ animalProfiles: [], loading: true, error: null, count: undefined });
 
     useEffect(() => {
         (async () => {
             const data = await getAllAnimalProfiles();
+            const count = await getAnimalProfilesCount();
             if (data.error) {
                 return setAnimalProfilesState((oldState) => ({
                     ...oldState,
-                    error: data.error,
+                    error: data.error,  
                     loading: false
                 }));
             }
             setAnimalProfilesState((oldState) => ({
                 ...oldState,
                 animalProfiles: data.animalProfiles,
-                loading: false
+                loading: false,
+                count: count
             }));
         })();
     }, []);
